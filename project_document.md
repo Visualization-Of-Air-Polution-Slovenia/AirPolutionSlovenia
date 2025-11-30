@@ -30,6 +30,7 @@ Develop a **simple but feature-rich interactive air pollution dashboard** for Sl
 ### Data Processing (Backend-lite)
 
 - **Python 3**
+- React  
 - **pandas**, **numpy**
 - **Jupyter Notebooks** for EDA
 - Export to **CSV/JSON**
@@ -38,6 +39,7 @@ Develop a **simple but feature-rich interactive air pollution dashboard** for Sl
 
 - **HTML**
 - **CSS**
+-- **React**
 - **JavaScript**
 - **Vega-Lite + Vega-Embed** for charts
 - **Leaflet.js** (optional, if time allows)
