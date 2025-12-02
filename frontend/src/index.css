@@ -1,0 +1,80 @@
+:root {
+  /* Primary Palette (Green - Clean Air) */
+  --primary-100: #145a32;
+  --primary-90: #196f3d;
+  --primary-80: #1e8449;
+  --primary-70: #229954;
+  --primary-60: #27ae60;
+  --primary-50: #2ecc71; /* Base Primary */
+  --primary-40: #58d68d;
+  --primary-30: #82e0aa;
+  --primary-20: #abebc6;
+  --primary-10: #d5f5e3;
+
+  --primary: var(--primary-50);
+  --primary-dark: var(--primary-60);
+  
+  --secondary: #3498db; /* Blue   - Sky/Water */
+  --accent: #e74c3c;    /* Red    - High Pollution */
+  --warning: #f1c40f;   /* Yellow - Moderate Pollution */
+  
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --border: #dee2e6;
+
+  /* Sizing (padding | margin) */
+  --distance-sm: 4px;
+  --distance: 8px;
+  --distance-md: 12px;
+  --distance-lg: 16px;
+  --distance-xl: 24px;
+  --distance-xxl: 32px;
+
+  /* Font Sizes */
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+
+  /* Typography */
+  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+[data-theme='dark'] {
+  --bg: #121212;
+  --surface: #1e1e1e;
+  --text: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --border: #333333;
+  
+  /* IF needed, we can adjust later */
+  --primary: var(--primary-40); 
+  --primary-dark: var(--primary-50);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

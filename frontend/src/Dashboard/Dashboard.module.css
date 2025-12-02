@@ -1,0 +1,108 @@
+.dashboard {
+  padding: var(--distance-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.controls {
+  margin-bottom: var(--distance-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: var(--distance);
+}
+
+.visualization {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--distance-xl);
+  min-height: 500px;
+}
+
+.mapPlaceholder {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--distance);
+  padding: var(--distance-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.placeholderContent {
+  margin-top: var(--distance-xl);
+  padding: var(--distance-xl);
+  background-color: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: var(--distance);
+  width: 80%;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance-lg);
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--distance);
+  padding: var(--distance-lg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card h4 {
+  margin-bottom: var(--distance);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--distance-sm);
+}
+
+.emptyState {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Colorful additions */
+.statCard {
+  background: linear-gradient(135deg, var(--primary-10), var(--surface));
+  border: 1px solid var(--primary-20);
+  border-radius: var(--distance);
+  padding: var(--distance-lg);
+  margin-bottom: var(--distance-lg);
+}
+
+.statCard h3 {
+  color: var(--primary-90);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--distance-sm);
+}
+
+.statValue {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-top: var(--distance-sm);
+}
+
+.statDescription {
+  font-size: var(--font-size-sm);
+  margin-top: var(--distance-sm);
+  opacity: 0.8;
+}
