@@ -103,15 +103,14 @@ out/
 *.backup
 *~
 
-# Large data files (ignore raw aggregates, keep curated subsets)
+# Large aggregated datasets - too big for GitHub
 data/EEA_podatki/vsi_podatki.json
 data/EEA_podatki/vsi_podatki_kompaktno.json
-data/EEA_podatki/po_postajah/*.json
-data/EEA_podatki/po_onesnazevalcih/*.json
+data/EEA_podatki/vsi_podatki_strukturirano.json
+
 
 # Package manager lock files (uncomment if you want to ignore)
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
 
-data/EEA_podatki/vsi_podatki_strukturirano.json
