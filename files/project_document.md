@@ -2,14 +2,14 @@
 
 **Team Members:**
 
-- **Luka** – Project Manager, Data Engineering, Coordination
-- **Matic** – Data Engineering
+- **Luka** – Project Manager, UX, Coordination
+- **Matic** – Data Engineering & Python Pipeline Lead
 - **Jure** – Integration & Repository Structure
 - **Hana** – Visual & Interaction Design, Content
 - **Domen** – Frontend & Visualizations Lead
 
-
-- **Technologies:** Python, pandas, numpy, Jupyter, HTML, CSS, JavaScript, Vega-Lite, GitHub
+**Project Duration:** ~4 weeks
+**Technologies:** Python, pandas, numpy, Jupyter, HTML, CSS, JavaScript, Vega-Lite, GitHub
 
 ---
 
@@ -30,6 +30,7 @@ Develop a **simple but feature-rich interactive air pollution dashboard** for Sl
 ### Data Processing (Backend-lite)
 
 - **Python 3**
+- React  
 - **pandas**, **numpy**
 - **Jupyter Notebooks** for EDA
 - Export to **CSV/JSON**
@@ -38,9 +39,10 @@ Develop a **simple but feature-rich interactive air pollution dashboard** for Sl
 
 - **HTML**
 - **CSS**
-- **React**
+-- **React**
 - **JavaScript**
 - **Vega-Lite + Vega-Embed** for charts
+- **Leaflet.js** (optional, if time allows)
 
 ### Version Control
 
@@ -52,7 +54,20 @@ Develop a **simple but feature-rich interactive air pollution dashboard** for Sl
 ## 3. Repository Structure
 
 ```
-
+project-root/
+  data_raw/             # Original ARSO/EEA data
+  data_processed/       # Cleaned & aggregated datasets (CSV/JSON)
+  notebooks/            # Jupyter notebooks for EDA and processing
+  src/
+    index.html
+    styles.css
+    main.js
+    charts/             # Vega-Lite specs
+    components/         # Filters, legends, cards
+  docs/
+    report/
+    figures/
+  README.md
 ```
 
 ---
@@ -122,7 +137,7 @@ Simple text blocks describing:
 
 ## 6. Team Roles
 
-### **Luka — Project Manager & Lead**
+### **Luka — Project Manager & UX Lead**
 
 - Define feature scope and roadmap
 - Create UI wireframes (Figma/Miro)
@@ -132,7 +147,7 @@ Simple text blocks describing:
   - introduction, research background, evaluation, limitations
   - structure for final report
 
-### **Matic — Data Engineering**
+### **Matic — Data Engineering Lead**
 
 - Implement ingestion, cleaning, aggregation pipeline
 - Ensure processed files are clean and consistent
