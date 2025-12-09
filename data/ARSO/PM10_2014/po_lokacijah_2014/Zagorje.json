@@ -1,0 +1,2549 @@
+{
+  "location": "Zagorje",
+  "pollutant": "PM10",
+  "year": 2014,
+  "total_measurements": 363,
+  "data": [
+    {
+      "date": "2014-01-01",
+      "location": "Zagorje",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-02",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-03",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-04",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-05",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-06",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-07",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-08",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-09",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-10",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-11",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-12",
+      "location": "Zagorje",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-13",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-14",
+      "location": "Zagorje",
+      "value": 40.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-15",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-16",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-17",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-18",
+      "location": "Zagorje",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-19",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-20",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-21",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-22",
+      "location": "Zagorje",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-23",
+      "location": "Zagorje",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-24",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-25",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-26",
+      "location": "Zagorje",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-27",
+      "location": "Zagorje",
+      "value": 54.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-28",
+      "location": "Zagorje",
+      "value": 63.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-29",
+      "location": "Zagorje",
+      "value": 55.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-30",
+      "location": "Zagorje",
+      "value": 63.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-01-31",
+      "location": "Zagorje",
+      "value": 40.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-01",
+      "location": "Zagorje",
+      "value": 46.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-02",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-03",
+      "location": "Zagorje",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-04",
+      "location": "Zagorje",
+      "value": 44.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-05",
+      "location": "Zagorje",
+      "value": 52.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-06",
+      "location": "Zagorje",
+      "value": 49.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-07",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-08",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-09",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-10",
+      "location": "Zagorje",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-11",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-12",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-13",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-14",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-15",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-16",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-17",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-18",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-19",
+      "location": "Zagorje",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-20",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-21",
+      "location": "Zagorje",
+      "value": 41.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-22",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-23",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-24",
+      "location": "Zagorje",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-25",
+      "location": "Zagorje",
+      "value": 37.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-26",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-27",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-02-28",
+      "location": "Zagorje",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-01",
+      "location": "Zagorje",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-02",
+      "location": "Zagorje",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-03",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-04",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-05",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-06",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-07",
+      "location": "Zagorje",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-08",
+      "location": "Zagorje",
+      "value": 44.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-09",
+      "location": "Zagorje",
+      "value": 41.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-10",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-11",
+      "location": "Zagorje",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-12",
+      "location": "Zagorje",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-13",
+      "location": "Zagorje",
+      "value": 60.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-14",
+      "location": "Zagorje",
+      "value": 57.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-15",
+      "location": "Zagorje",
+      "value": 61.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-16",
+      "location": "Zagorje",
+      "value": 50.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-17",
+      "location": "Zagorje",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-18",
+      "location": "Zagorje",
+      "value": 47.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-19",
+      "location": "Zagorje",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-20",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-21",
+      "location": "Zagorje",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-22",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-23",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-24",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-25",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-26",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-27",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-28",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-29",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-30",
+      "location": "Zagorje",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-03-31",
+      "location": "Zagorje",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-01",
+      "location": "Zagorje",
+      "value": 40.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-02",
+      "location": "Zagorje",
+      "value": 46.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-03",
+      "location": "Zagorje",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-04",
+      "location": "Zagorje",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-05",
+      "location": "Zagorje",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-06",
+      "location": "Zagorje",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-07",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-08",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-09",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-10",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-11",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-12",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-13",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-14",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-15",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-16",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-17",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-18",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-19",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-20",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-21",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-22",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-23",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-24",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-25",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-26",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-27",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-28",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-29",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-04-30",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-01",
+      "location": "Zagorje",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-02",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-03",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-04",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-05",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-06",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-07",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-08",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-09",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-10",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-11",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-12",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-13",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-14",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-15",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-16",
+      "location": "Zagorje",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-17",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-18",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-19",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-20",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-21",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-22",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-23",
+      "location": "Zagorje",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-24",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-25",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-26",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-27",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-28",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-29",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-30",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-05-31",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-01",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-02",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-03",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-04",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-05",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-06",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-07",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-08",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-09",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-10",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-11",
+      "location": "Zagorje",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-12",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-13",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-14",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-15",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-16",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-17",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-18",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-19",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-20",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-21",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-22",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-23",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-24",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-25",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-26",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-27",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-28",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-29",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-06-30",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-01",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-02",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-03",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-04",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-05",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-06",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-07",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-08",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-09",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-10",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-11",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-12",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-13",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-14",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-15",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-16",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-17",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-18",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-19",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-20",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-21",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-22",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-23",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-24",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-25",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-26",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-27",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-28",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-29",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-30",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-07-31",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-01",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-02",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-03",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-04",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-05",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-06",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-07",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-08",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-09",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-10",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-11",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-12",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-13",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-14",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-15",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-16",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-17",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-18",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-19",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-21",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-22",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-23",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-24",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-25",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-26",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-28",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-29",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-30",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-08-31",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-01",
+      "location": "Zagorje",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-02",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-03",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-04",
+      "location": "Zagorje",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-05",
+      "location": "Zagorje",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-06",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-07",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-08",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-09",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-10",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-11",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-12",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-13",
+      "location": "Zagorje",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-14",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-15",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-16",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-17",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-18",
+      "location": "Zagorje",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-19",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-20",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-21",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-22",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-23",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-24",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-25",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-26",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-27",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-28",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-29",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-09-30",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-01",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-02",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-03",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-04",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-05",
+      "location": "Zagorje",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-06",
+      "location": "Zagorje",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-07",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-08",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-09",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-10",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-11",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-12",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-13",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-14",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-15",
+      "location": "Zagorje",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-16",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-17",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-18",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-19",
+      "location": "Zagorje",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-20",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-21",
+      "location": "Zagorje",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-22",
+      "location": "Zagorje",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-23",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-24",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-25",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-26",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-27",
+      "location": "Zagorje",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-28",
+      "location": "Zagorje",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-29",
+      "location": "Zagorje",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-30",
+      "location": "Zagorje",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-10-31",
+      "location": "Zagorje",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-01",
+      "location": "Zagorje",
+      "value": 44.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-02",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-03",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-04",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-05",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-06",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-07",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-08",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-09",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-10",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-11",
+      "location": "Zagorje",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-12",
+      "location": "Zagorje",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-13",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-14",
+      "location": "Zagorje",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-15",
+      "location": "Zagorje",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-16",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-17",
+      "location": "Zagorje",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-18",
+      "location": "Zagorje",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-19",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-20",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-21",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-22",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-23",
+      "location": "Zagorje",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-24",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-25",
+      "location": "Zagorje",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-26",
+      "location": "Zagorje",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-27",
+      "location": "Zagorje",
+      "value": 47.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-28",
+      "location": "Zagorje",
+      "value": 57.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-29",
+      "location": "Zagorje",
+      "value": 40.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-11-30",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-01",
+      "location": "Zagorje",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-02",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-03",
+      "location": "Zagorje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-04",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-05",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-06",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-07",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-08",
+      "location": "Zagorje",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-09",
+      "location": "Zagorje",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-10",
+      "location": "Zagorje",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-11",
+      "location": "Zagorje",
+      "value": 49.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-12",
+      "location": "Zagorje",
+      "value": 43.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-13",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-14",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-15",
+      "location": "Zagorje",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-16",
+      "location": "Zagorje",
+      "value": 52.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-17",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-18",
+      "location": "Zagorje",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-19",
+      "location": "Zagorje",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-20",
+      "location": "Zagorje",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-21",
+      "location": "Zagorje",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-22",
+      "location": "Zagorje",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-23",
+      "location": "Zagorje",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-24",
+      "location": "Zagorje",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-25",
+      "location": "Zagorje",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-26",
+      "location": "Zagorje",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-27",
+      "location": "Zagorje",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-28",
+      "location": "Zagorje",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-29",
+      "location": "Zagorje",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-30",
+      "location": "Zagorje",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2014-12-31",
+      "location": "Zagorje",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    }
+  ]
+}

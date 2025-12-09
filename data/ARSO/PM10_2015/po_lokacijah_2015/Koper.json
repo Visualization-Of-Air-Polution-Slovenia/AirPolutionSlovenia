@@ -1,0 +1,2465 @@
+{
+  "location": "Koper",
+  "pollutant": "PM10",
+  "year": 2015,
+  "total_measurements": 351,
+  "data": [
+    {
+      "date": "2015-01-01",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-02",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-03",
+      "location": "Koper",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-04",
+      "location": "Koper",
+      "value": 46.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-05",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-06",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-07",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-08",
+      "location": "Koper",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-09",
+      "location": "Koper",
+      "value": 62.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-10",
+      "location": "Koper",
+      "value": 87.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-11",
+      "location": "Koper",
+      "value": 69.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-12",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-13",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-14",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-15",
+      "location": "Koper",
+      "value": 68.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-16",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-17",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-18",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-19",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-20",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-21",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-22",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-23",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-24",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-25",
+      "location": "Koper",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-26",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-27",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-28",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-29",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-30",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-01-31",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-01",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-02",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-03",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-04",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-05",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-06",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-07",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-08",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-09",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-10",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-11",
+      "location": "Koper",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-12",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-13",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-14",
+      "location": "Koper",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-15",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-16",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-17",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-18",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-19",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-20",
+      "location": "Koper",
+      "value": 68.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-21",
+      "location": "Koper",
+      "value": 42.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-22",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-23",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-24",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-25",
+      "location": "Koper",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-26",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-27",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-02-28",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-13",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-14",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-15",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-16",
+      "location": "Koper",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-17",
+      "location": "Koper",
+      "value": 37.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-18",
+      "location": "Koper",
+      "value": 36.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-19",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-20",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-21",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-22",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-23",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-24",
+      "location": "Koper",
+      "value": 37.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-25",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-26",
+      "location": "Koper",
+      "value": 41.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-27",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-28",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-29",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-30",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-03-31",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-01",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-02",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-03",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-04",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-05",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-06",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-07",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-08",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-09",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-10",
+      "location": "Koper",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-11",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-12",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-13",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-14",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-15",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-16",
+      "location": "Koper",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-17",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-18",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-19",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-20",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-21",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-22",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-23",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-24",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-25",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-26",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-27",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-28",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-29",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-04-30",
+      "location": "Koper",
+      "value": 33.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-01",
+      "location": "Koper",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-02",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-03",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-04",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-05",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-06",
+      "location": "Koper",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-07",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-08",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-09",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-10",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-11",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-12",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-13",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-14",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-15",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-16",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-17",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-18",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-19",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-20",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-21",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-22",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-23",
+      "location": "Koper",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-24",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-25",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-26",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-27",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-28",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-29",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-30",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-05-31",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-01",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-02",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-03",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-04",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-06",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-07",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-08",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-09",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-10",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-11",
+      "location": "Koper",
+      "value": 26.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-12",
+      "location": "Koper",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-13",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-14",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-15",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-16",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-17",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-18",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-19",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-20",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-21",
+      "location": "Koper",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-22",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-23",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-24",
+      "location": "Koper",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-25",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-26",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-27",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-28",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-29",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-06-30",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-01",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-02",
+      "location": "Koper",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-03",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-04",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-05",
+      "location": "Koper",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-06",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-07",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-08",
+      "location": "Koper",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-09",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-10",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-11",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-12",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-13",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-14",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-15",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-16",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-17",
+      "location": "Koper",
+      "value": 24.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-18",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-19",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-20",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-21",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-22",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-23",
+      "location": "Koper",
+      "value": 29.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-24",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-25",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-26",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-27",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-28",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-29",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-30",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-07-31",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-01",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-02",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-03",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-04",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-05",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-06",
+      "location": "Koper",
+      "value": 40.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-07",
+      "location": "Koper",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-08",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-09",
+      "location": "Koper",
+      "value": 27.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-10",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-11",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-12",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-13",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-14",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-15",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-16",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-17",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-18",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-19",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-20",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-21",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-22",
+      "location": "Koper",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-23",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-24",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-25",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-26",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-27",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-28",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-29",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-30",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-08-31",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-01",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-02",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-03",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-04",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-05",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-06",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-07",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-08",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-09",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-10",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-11",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-12",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-13",
+      "location": "Koper",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-14",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-15",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-16",
+      "location": "Koper",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-17",
+      "location": "Koper",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-18",
+      "location": "Koper",
+      "value": 43.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-19",
+      "location": "Koper",
+      "value": 25.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-20",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-21",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-22",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-23",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-24",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-25",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-26",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-27",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-28",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-09-29",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-01",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-02",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-03",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-04",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-05",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-06",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-07",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-08",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-09",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-10",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-11",
+      "location": "Koper",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-12",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-13",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-14",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-15",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-16",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-17",
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-18",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-19",
+      "location": "Koper",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-20",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-21",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-22",
+      "location": "Koper",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-23",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-24",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-25",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-26",
+      "location": "Koper",
+      "value": 20.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-27",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-28",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-29",
+      "location": "Koper",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-30",
+      "location": "Koper",
+      "value": 21.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-10-31",
+      "location": "Koper",
+      "value": 22.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-01",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-02",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-03",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-04",
+      "location": "Koper",
+      "value": 70.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-05",
+      "location": "Koper",
+      "value": 99.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-06",
+      "location": "Koper",
+      "value": 59.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-07",
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-08",
+      "location": "Koper",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-09",
+      "location": "Koper",
+      "value": 67.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-10",
+      "location": "Koper",
+      "value": 78.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-11",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-12",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-13",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-14",
+      "location": "Koper",
+      "value": 53.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-15",
+      "location": "Koper",
+      "value": 45.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-16",
+      "location": "Koper",
+      "value": 54.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-17",
+      "location": "Koper",
+      "value": 59.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-18",
+      "location": "Koper",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-19",
+      "location": "Koper",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-20",
+      "location": "Koper",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-21",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-22",
+      "location": "Koper",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-23",
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-24",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-25",
+      "location": "Koper",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-26",
+      "location": "Koper",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-27",
+      "location": "Koper",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-28",
+      "location": "Koper",
+      "value": 23.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-29",
+      "location": "Koper",
+      "value": 31.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-11-30",
+      "location": "Koper",
+      "value": 52.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-01",
+      "location": "Koper",
+      "value": 82.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-02",
+      "location": "Koper",
+      "value": 53.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-03",
+      "location": "Koper",
+      "value": 48.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-04",
+      "location": "Koper",
+      "value": 47.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-05",
+      "location": "Koper",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-06",
+      "location": "Koper",
+      "value": 72.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-07",
+      "location": "Koper",
+      "value": 72.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-08",
+      "location": "Koper",
+      "value": 58.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-09",
+      "location": "Koper",
+      "value": 30.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-10",
+      "location": "Koper",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-11",
+      "location": "Koper",
+      "value": 19.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-12",
+      "location": "Koper",
+      "value": 39.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-13",
+      "location": "Koper",
+      "value": 55.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-14",
+      "location": "Koper",
+      "value": 38.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-15",
+      "location": "Koper",
+      "value": 54.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-16",
+      "location": "Koper",
+      "value": 43.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-17",
+      "location": "Koper",
+      "value": 34.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-18",
+      "location": "Koper",
+      "value": 43.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-19",
+      "location": "Koper",
+      "value": 52.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-20",
+      "location": "Koper",
+      "value": 85.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-21",
+      "location": "Koper",
+      "value": 71.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-22",
+      "location": "Koper",
+      "value": 113.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-23",
+      "location": "Koper",
+      "value": 88.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-24",
+      "location": "Koper",
+      "value": 75.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-25",
+      "location": "Koper",
+      "value": 53.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-26",
+      "location": "Koper",
+      "value": 47.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-27",
+      "location": "Koper",
+      "value": 28.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-28",
+      "location": "Koper",
+      "value": 35.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-29",
+      "location": "Koper",
+      "value": 32.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-30",
+      "location": "Koper",
+      "value": 17.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    },
+    {
+      "date": "2015-12-31",
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "aggregation": "daily_average"
+    }
+  ]
+}
