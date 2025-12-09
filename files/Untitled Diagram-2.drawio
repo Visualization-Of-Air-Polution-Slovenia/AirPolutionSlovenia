@@ -1,0 +1,186 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.1 Safari/605.1.15" version="29.2.1">
+  <diagram name="Page-1" id="ZG4HtAsXaTdL3DGU8L7B">
+    <mxGraphModel dx="2887" dy="1174" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HWnICqowy0GI5ciMZqsI-2" parent="1" style="whiteSpace=wrap;html=1;" value="mapo slovenija (vega lite, lahk kej druzga)" vertex="1">
+          <mxGeometry height="80" width="120" x="470" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-11" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-12" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-14" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="HWnICqowy0GI5ciMZqsI-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="480" />
+              <mxPoint x="770" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-21" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-22" connectable="0" parent="HWnICqowy0GI5ciMZqsI-21" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="KRITERIJ" vertex="1">
+          <mxGeometry relative="1" x="-0.0647" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-49" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-28">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="100" />
+              <mxPoint x="130" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Podatki o onesnazenju zraka" vertex="1">
+          <mxGeometry height="60" width="120" x="980" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-10" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-5" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="pm10" vertex="1">
+          <mxGeometry height="80" width="80" x="700" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-6" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="o3" vertex="1">
+          <mxGeometry height="60" width="120" x="690" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-7" parent="1" style="shape=tape;whiteSpace=wrap;html=1;" value="pm2,5" vertex="1">
+          <mxGeometry height="100" width="120" x="700" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-8" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="NO2" vertex="1">
+          <mxGeometry height="80" width="120" x="710" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-13" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-15" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="680" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-26" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-16" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="800" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-25" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="910" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Podatki o vplivu na zdravje delcev" vertex="1">
+          <mxGeometry height="70" width="120" x="1180" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-20" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.913;entryY=0.7;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-24" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.417;entryY=1.025;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Časovna obdobja&lt;div&gt;Vizualizacija po letih&lt;/div&gt;&lt;div&gt;po mesecih&lt;/div&gt;&lt;div&gt;po dnevih&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="120" x="70" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="FEATURE" vertex="1">
+          <mxGeometry height="30" width="60" x="100" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-57" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-29" parent="1" style="whiteSpace=wrap;html=1;" value="Slider" vertex="1">
+          <mxGeometry height="60" width="120" x="-160" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Vizualizacija trendov&lt;div&gt;Pojavitev v prihodnjih letih (strojno ucenje)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="70" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-36" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pojavitev bolezni ljudi na vec izpostavljenih obmocjih, tredni v prihodnjih letih, ali prejsnih&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="120" x="70" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="EU povprecne meje oziroma presezek" vertex="1">
+          <mxGeometry height="80" width="120" x="70" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-34" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.017;entryY=0.413;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="130" y="340" />
+              <mxPoint x="440" y="340" />
+              <mxPoint x="440" y="413" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-35" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.663;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-37" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.033;entryY=0.888;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-42" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-38" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Spletna stran z podatki 1" vertex="1">
+          <mxGeometry height="60" width="120" x="1830" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-43" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-39" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Spletna stran z podatki 2" vertex="1">
+          <mxGeometry height="60" width="120" x="1840" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-40" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Spletna stran z podatki 3" vertex="1">
+          <mxGeometry height="60" width="120" x="1860" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-41" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Python skripta&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="1590" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-44" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.642;entryY=1.017;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-47" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HWnICqowy0GI5ciMZqsI-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1450" y="210" />
+              <mxPoint x="1040" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-45" parent="1" style="whiteSpace=wrap;html=1;" value="json file" vertex="1">
+          <mxGeometry height="60" width="120" x="1390" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-46" edge="1" parent="1" source="HWnICqowy0GI5ciMZqsI-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.017;entryY=0.633;entryDx=0;entryDy=0;entryPerimeter=0;" target="HWnICqowy0GI5ciMZqsI-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Trendi za vsako regijo, mesto, merilnoi postajo...ali grejo gor ali dol" vertex="1">
+          <mxGeometry height="80" width="120" x="70" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-51" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Info kartie za regijo posamezno, (podatki)" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Comprare dveh regij da vidimo razlike" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-53" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Advanced filtriranje, samo po enem, dveh, vseh itd" vertex="1">
+          <mxGeometry height="60" width="120" x="-130" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-54" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="WHO limit (podatki)" vertex="1">
+          <mxGeometry height="60" width="120" x="-130" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-55" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Škatla za zdravje, oznacis bolezni ki so razsirjene po regiji glede na izbor in podatke, vpliv delci" vertex="1">
+          <mxGeometry height="90" width="120" x="-140" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-56" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ocena risk za neko bolezen v regiji, formula oziroam algo v literaturi" vertex="1">
+          <mxGeometry height="110" width="120" x="-130" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="HWnICqowy0GI5ciMZqsI-58" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Klicaji za premalo podatkov&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="-130" y="910" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
