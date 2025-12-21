@@ -2,3 +2,26 @@
 link do pdf podatkov meritev ARSO
 
 https://hmljn.arso.gov.si/zrak/kakovost%20zraka/podatki/arhiv.html
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+link za ustvar live ekstraktor trenutnih vrednosti zraka iz arsa: 
+https://podatki.gov.si/dataset/podatki-o-kakovosti-zunanjega-zraka-in-padavin-pm10-o3-so2-co-nox-voc-sestava-delcev-kakovost-padavi/resource/978f3d54-96d2-4167-a456-da7d9e0b8aec
+
+ZA urne podatke uporabimo: 
+http://www.arso.gov.si/xml/zrak/ones_zrak_urni_podatki_zadnji.xml
+
+
+In naredimo nek endpoint v smislu: 
+
+url = "http://www.arso.gov.si/xml/zrak/ones_zrak_urni_podatki_zadnji.xml"
+df = pd.read_xml(url, xpath=".//postaja")  
+print(df.columns)
+print(df.head())
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
