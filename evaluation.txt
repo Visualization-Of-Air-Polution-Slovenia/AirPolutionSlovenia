@@ -1,0 +1,35 @@
+5 Evaluation
+
+The purpose of the evaluation is to assess whether the proposed system effectively supports the analysis,  interpretation and visualization of air pollution data in Slovenia and whether it provides additional value compared to existing air quality visualization platforms. The evaluation focuses on three aspects: comparative analysis with existing solutions, scenario-based evaluation of typical use cases and basic quantitative analysis of pollution levels in relation to established health thresholds.
+
+5.1 Evaluation Setup
+
+The evaluation is based on publicly available air quality data, including particulate matter (PM2.5 and PM10) and nitrogen dioxide (NO₂) and ozone (O3) collected from multiple online sources and aggregated into a unified JSON format. The analyzed time span covers XXXX years, enabling long-term temporal analysis at daily, monthly and yearly resolutions (še prilagodim ko bo končni izdelek). TThe geographical focus of the system is Slovenia, with data aggregated at both city and regional levels.
+
+For comparison, four widely used air quality platforms were selected: IQAir, WAQI, Airly and the European Environment Agency (EEA) air quality visualization platform. These systems were chosen due to their popularity, geographical coverage and relevance to environmental monitoring. The comparison criteria are based on features relevant to the proposed design, including support for long-term temporal analysis, regional comparison, health-related interpretation, and the use of regulatory thresholds such as WHO and EU limits.
+
+5.2 Comparative Analysis
+
+A qualitative comparison reveals that while existing platforms provide real-time or near real-time air quality information, they are primarily focused on current conditions and lack advanced tools for long-term exploratory analysis. Platforms such as IQAir and WAQI provide clear and accessible city-level information but offer limited possibilities for exploring historical data or identifying long-term trends. Their support for comparing different regions is minimal and often requires switching between multiple views.
+Airly focuses on sensor-level measurements and local monitoring, which is useful for short-term observation but does not support broader regional analysis or provide contextual information related to health impacts.
+The EEA platform provides access to historical data and supports broader geographic exploration, however, it lacks integrated health impact interpretation and interactive analytical features such as trend detection and scenario-based comparisons. 
+In contrast, the proposed system integrates multiple data sources into a single interface and supports interactive temporal navigation across several (XXX) years. Users can compare Slovenian regions directly, observe how pollution levels evolve over time and interpret these levels using WHO and EU regulatory thresholds. This combination allows users not only to observe pollution levels, but also to interpret their significance and evolution over time, leading to a more comprehensive understanding of air pollution patterns.
+
+5.3 Scenario-Based Evaluation
+
+To further assess usability and analytical support, several representative user scenarios were evaluated.
+
+In the first scenario, a resident of Ljubljana explores PM2.5 levels over the past five years to determine whether air quality has improved. Using the time slider and temporal aggregation controls, the user can quickly identify trends and observe the frequency of exceedances relative to WHO limits. Compared to existing platforms, which typically require manual data extraction or provide only short-term views, the proposed system enables a faster and more intuitive assessment of long-term air quality changes.
+
+In the second scenario, a local policymaker compares air pollution levels between two Slovenian regions to identify areas with persistent exceedances. The system’s regional comparison functionality allows side-by-side analysis of trends and threshold violations, supporting evidence-based decision-making. Existing platforms either do not support such comparisons or require switching between multiple views, increasing cognitive load.
+
+In the third scenario, an individual user visits the platform to understand how air quality in their local area may affect their health. By selecting their city or region, the user can view pollution levels in relation to WHO and EU health guidelines and identify periods with frequent exceedances. The system provides contextual health indicators that help users interpret potential risks associated with long-term exposure. Based on this information, users can better understand which pollutants are most relevant for their area and make informed decisions, such as limiting outdoor activities during high pollution periods or adjusting daily habits to reduce exposure. Unlike existing platforms that primarily report numerical values or air quality indices, the proposed system supports a more health-oriented interpretation of environmental data.
+
+5.4 Quantitative Findings
+
+
+
+5.5 Discussion
+
+The evaluation results indicate that the proposed system offers meaningful improvements over existing air quality visualization platforms. Unlike many existing solutions that focus mainly on current air quality values, the system enables users to explore trends over time, compare regions and interpret pollution levels in relation to established WHO and EU guidelines. This integrated approach supports a more comprehensive understanding of air pollution patterns in Slovenia and reduces the need to rely on multiple separate tools.
+However, the system is limited by the availability and quality of the underlying data sources, which may vary across regions and time periods. Additionally, the current implementation focuses on descriptive analysis and does not include predictive functionality. Despite these limitations, the modular design allows for future extensions, such as the inclusion of additional pollutants or predictive components. Overall, the evaluation confirms that the proposed approach provides a more interpretable and user-oriented view of air pollution compared to existing platforms.
