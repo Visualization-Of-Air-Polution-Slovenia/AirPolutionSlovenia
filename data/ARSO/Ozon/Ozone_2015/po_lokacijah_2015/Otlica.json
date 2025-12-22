@@ -1,0 +1,176 @@
+{
+  "location": "Otlica",
+  "pollutant": "Ozone",
+  "year": 2015,
+  "total_measurements": 24,
+  "data": [
+    {
+      "month": 0,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Otlica",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Otlica",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Otlica",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Otlica",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Otlica",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Otlica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    }
+  ]
+}

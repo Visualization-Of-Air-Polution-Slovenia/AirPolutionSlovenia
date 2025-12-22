@@ -1,0 +1,99 @@
+{
+  "location": "Maribor Vrbanski plato",
+  "pollutant": "Ozone",
+  "year": 2013,
+  "total_measurements": 13,
+  "data": [
+    {
+      "month": 5,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Maribor Vrbanski plato",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Maribor Vrbanski plato",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Maribor Vrbanski plato",
+      "value": 15.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    }
+  ]
+}

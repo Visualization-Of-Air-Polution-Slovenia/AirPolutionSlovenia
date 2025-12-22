@@ -1,0 +1,1856 @@
+{
+  "source": "dist\\preseganja_1223slo.pdf",
+  "pollutant": "Ozone",
+  "year": 2023,
+  "total_measurements": 264,
+  "data": [
+    {
+      "month": 0,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Nova Gorica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Nova Gorica",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Koper",
+      "value": 16.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Otlica",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Otlica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Otlica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Ljubljana Bežigrad",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Ljubljana Bežigrad",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Ljubljana Bežigrad",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Ljubljana Bežigrad",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Ljubljana Bežigrad",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Maribor Vrbanski plato",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Maribor Vrbanski plato",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Maribor Vrbanski plato",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Maribor Vrbanski plato",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Maribor Vrbanski plato",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Celje",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Celje",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Celje",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Celje",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Celje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Murska Sobota",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Murska Sobota",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Murska Sobota",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Murska Sobota",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Murska Sobota",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Nova Gorica",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Nova Gorica",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Nova Gorica",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Nova Gorica",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Nova Gorica",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Nova Gorica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Nova Gorica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Nova Gorica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Koper",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Koper",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Koper",
+      "value": 18.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Koper",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Koper",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Koper",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Koper",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Zagorje",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Zagorje",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Zagorje",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Zagorje",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Novo mesto",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Novo mesto",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Novo mesto",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Iskrba",
+      "value": 5.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Iskrba",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Iskrba",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Iskrba",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Iskrba",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Otlica",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Otlica",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Otlica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Otlica",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Otlica",
+      "value": 12.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Otlica",
+      "value": 13.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Otlica",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Otlica",
+      "value": 7.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Otlica",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Otlica",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 0,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Krvavec",
+      "value": 9.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Krvavec",
+      "value": 14.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Krvavec",
+      "value": 10.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Krvavec",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Krvavec",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Krvavec",
+      "value": 2.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Krvavec",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    }
+  ]
+}

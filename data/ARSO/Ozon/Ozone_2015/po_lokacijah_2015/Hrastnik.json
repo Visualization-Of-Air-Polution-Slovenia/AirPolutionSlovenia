@@ -1,0 +1,176 @@
+{
+  "location": "Hrastnik",
+  "pollutant": "Ozone",
+  "year": 2015,
+  "total_measurements": 24,
+  "data": [
+    {
+      "month": 0,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Hrastnik",
+      "value": 8.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Hrastnik",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Hrastnik",
+      "value": 4.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Hrastnik",
+      "value": 11.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Hrastnik",
+      "value": 6.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Hrastnik",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Hrastnik",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    }
+  ]
+}

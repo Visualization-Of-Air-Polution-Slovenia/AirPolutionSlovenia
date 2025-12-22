@@ -1,0 +1,176 @@
+{
+  "location": "Murska Sobota",
+  "pollutant": "Ozone",
+  "year": 2021,
+  "total_measurements": 24,
+  "data": [
+    {
+      "month": 0,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 0,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 1,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 1,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 2,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 2,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 3,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 3,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 4,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 4,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 5,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 5,
+      "location": "Murska Sobota",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 6,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 6,
+      "location": "Murska Sobota",
+      "value": 3.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 7,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 7,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 8,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 8,
+      "location": "Murska Sobota",
+      "value": 1.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 9,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 9,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 10,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 10,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    },
+    {
+      "month": 11,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 180 μg/m³"
+    },
+    {
+      "month": 11,
+      "location": "Murska Sobota",
+      "value": 0.0,
+      "unit": "μg/m³",
+      "detail": "Concentration > 120 μg/m³ for at least 8 hours"
+    }
+  ]
+}
