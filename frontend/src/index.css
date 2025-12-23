@@ -17,12 +17,24 @@
   --secondary: #3498db; /* Blue   - Sky/Water */
   --accent: #e74c3c;    /* Red    - High Pollution */
   --warning: #f1c40f;   /* Yellow - Moderate Pollution */
+  --danger: var(--accent);
   
   --bg: #f8f9fa;
   --surface: #ffffff;
+  --surface-2: color-mix(in srgb, var(--surface) 92%, var(--bg));
   --text: #212529;
   --text-muted: #6c757d;
+  --text-secondary: var(--text-muted);
   --border: #dee2e6;
+
+  /* Glass / elevated panels */
+  --glass-bg: color-mix(in srgb, var(--surface) 80%, transparent);
+  --glass-border: color-mix(in srgb, var(--border) 92%, transparent);
+  --glass-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
+
+  /* Map styling (used inside dark map cards) */
+  --map-region-fill: #0f172a;
+  --map-region-stroke: rgba(255, 255, 255, 0.10);
 
   /* Sizing (padding | margin) */
   --distance-sm: 4px;
@@ -41,19 +53,26 @@
   --font-size-3xl: 2rem;
 
   /* Typography */
-  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family: 'Spline Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-heading: 'Space Grotesk', 'Spline Sans', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 [data-theme='dark'] {
   --bg: #121212;
   --surface: #1e1e1e;
+  --surface-2: color-mix(in srgb, var(--surface) 86%, #000);
   --text: #e0e0e0;
   --text-muted: #a0a0a0;
+  --text-secondary: var(--text-muted);
   --border: #333333;
   
   /* IF needed, we can adjust later */
   --primary: var(--primary-40); 
   --primary-dark: var(--primary-50);
+
+  --glass-bg: color-mix(in srgb, #0b1220 55%, transparent);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
 }
 
 * {

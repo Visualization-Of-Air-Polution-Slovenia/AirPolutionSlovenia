@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
@@ -10,29 +10,49 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-
-      {/* Basic logo */}
-      <div className={styles.logo}>
-        <h1><Link to="/" className={styles.logoLink}>AirPollution<span className={styles.highlight}>SLO</span></Link></h1>
+      <div className={styles.left}>
+        <div className={styles.logoIcon} aria-hidden="true">
+          <span className="material-symbols-outlined">air</span>
+        </div>
+        <h1 className={styles.title}>
+          <Link to="/" className={styles.logoLink}>
+            Air Quality <span className={styles.highlight}>SLO</span>
+          </Link>
+        </h1>
       </div>
 
-      {/* Naviagation + color change */}
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Primary">
+        <div className={styles.navPill}>
+          <NavLink to="/" end className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            >Dashboard</NavLink>
+          <NavLink to="/map" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            >Map View</NavLink>
+          <NavLink to="/analysis" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            >Analysis</NavLink>
+          <NavLink to="/health" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            >Health</NavLink>
+          <NavLink to="/about" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+            >About</NavLink>
+        </div>
+      </nav>
 
-        <Link to="/">Dashboard</Link>
-        <a href="#trends">Trends</a>
-        <a href="#health">Health Impact</a>
-        <Link to="/about">About</Link>
+      <div className={styles.actions}>
+        <div className={styles.live}>
+          <span className={styles.pulseDot} aria-hidden="true" />
+          <span>Live Data</span>
+        </div>
 
-        <button 
-          onClick={toggleTheme} 
-          className={styles.themeToggle}
-          aria-label="Toggle theme"
-        >
+        <button className={styles.iconBtn} type="button" aria-label="Notifications">
+          <span className="material-symbols-outlined">notifications</span>
+        </button>
+        <button className={styles.iconBtn} type="button" aria-label="Settings">
+          <span className="material-symbols-outlined">settings</span>
+        </button>
+
+        <button onClick={toggleTheme} className={styles.iconBtn} aria-label="Toggle theme" type="button">
           {theme === 'dark' ? ThemeIcons.Dark : ThemeIcons.Light}
         </button>
-        
-      </nav>
+      </div>
     </header>
   );
 };

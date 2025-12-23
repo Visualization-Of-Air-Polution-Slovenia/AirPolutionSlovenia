@@ -1,0 +1,315 @@
+.page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 320px;
+  flex: 0 0 auto;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.sideHeader {
+  padding: var(--distance-xl);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.sideTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+}
+
+.sideSubtitle {
+  margin-top: var(--distance-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.sideBody {
+  flex: 1;
+  overflow: auto;
+  padding: var(--distance-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance-xxl);
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--distance-md);
+}
+
+.sectionTitle {
+  font-weight: 800;
+}
+
+.smallLink {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--distance);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--distance);
+  padding: var(--distance-md);
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  cursor: pointer;
+  user-select: none;
+}
+
+.optionActive {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.optionText {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--text) 78%, transparent);
+}
+
+.timeTabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--distance-sm);
+  padding: var(--distance-sm);
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+}
+
+.timeTab {
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--text) 55%, transparent);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.timeTabActive {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--distance);
+  margin-top: var(--distance-md);
+}
+
+.input {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 12px;
+}
+
+.select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.locations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance);
+}
+
+.locationPill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--distance-md);
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+}
+
+.btnPrimary {
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--bg);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.sideFooter {
+  padding: var(--distance-xl);
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg);
+}
+
+.topbar {
+  height: 56px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--distance-xl);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.topTitle {
+  display: flex;
+  gap: var(--distance);
+  align-items: center;
+  font-weight: 800;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+}
+
+.canvas {
+  flex: 1;
+  overflow: auto;
+  padding: var(--distance-xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--distance-xl);
+}
+
+.card {
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: var(--distance-xl);
+}
+
+.card8 {
+  grid-column: span 8;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card4 {
+  grid-column: span 4;
+  min-height: 420px;
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 900;
+}
+
+.cardSubtitle {
+  margin-top: var(--distance-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+.chartArea {
+  flex: 1;
+  border-left: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 12px;
+  margin-top: var(--distance-xl);
+  background-image: linear-gradient(color-mix(in srgb, var(--text) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--text) 8%, transparent) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.legend {
+  display: flex;
+  gap: var(--distance-lg);
+  align-items: center;
+}
+
+.legendItem {
+  display: flex;
+  gap: var(--distance-sm);
+  align-items: center;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .sidebar {
+    display: none;
+  }
+  .card8,
+  .card4 {
+    grid-column: span 12;
+  }
+}

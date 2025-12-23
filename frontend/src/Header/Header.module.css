@@ -1,21 +1,43 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--distance-lg);
   padding: var(--distance-lg) var(--distance-xl);
-  background-color: var(--surface);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.logo h1 {
-  font-size: var(--font-size-2xl);
-  color: var(--text);
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--distance-md);
+  min-width: 240px;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--primary);
+}
+
+.title {
   margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .logoLink {
-  color: inherit;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -24,35 +46,80 @@
 }
 
 .nav {
+  flex: 1;
   display: flex;
-  gap: var(--distance-xl);
-  align-items: center;
-}
-
-.nav a {
-  color: var(--text);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.nav a:hover {
-  color: var(--primary);
-}
-
-.themeToggle {
-  background: none;
-  border: none;
-  color: var(--text);
-  cursor: pointer;
-  padding: var(--distance-sm);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s;
 }
 
-.themeToggle:hover {
-  background-color: var(--bg);
-  color: var(--primary);
+.navPill {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
 }
+
+.navLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+
+.navLink:hover {
+  color: var(--text);
+}
+
+.navActive {
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--glass-border);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--distance-sm);
+  min-width: 240px;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.iconBtn:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
