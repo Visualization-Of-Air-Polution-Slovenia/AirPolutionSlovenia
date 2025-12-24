@@ -21,11 +21,11 @@ A web application for visualizing air pollution data in Slovenia.
 
 1.  Clone the repository.
 2.  Navigate to the frontend directory:
-    `ash
+    `
     cd frontend
     ` 
 3.  Install dependencies:
-    `ash
+    `
     npm install
     ` 
 
@@ -33,7 +33,7 @@ A web application for visualizing air pollution data in Slovenia.
 
 To start the development server:
 
-`ash
+`
 npm run dev
 ` 
 
