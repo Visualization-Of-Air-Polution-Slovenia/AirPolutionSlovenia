@@ -110,7 +110,8 @@ data/EEA_podatki/vsi_podatki_strukturirano.json
 
 
 # Package manager lock files (uncomment if you want to ignore)
-# package-lock.json
+package-lock.json
+package.json
 # yarn.lock
 # pnpm-lock.yaml
 
