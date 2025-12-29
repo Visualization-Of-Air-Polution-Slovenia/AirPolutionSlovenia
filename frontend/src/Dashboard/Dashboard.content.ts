@@ -14,4 +14,9 @@ export const DashboardContent = {
     title: 'Annual Mean Concentration (PM₂.₅)',
     subtitle: '2014 - 2024 • Ljubljana vs. WHO Limit',
   },
+  chartCard2: {
+    title: 'Testno okno',
+    subtitle: 'test',
+  },
+
 };

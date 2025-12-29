@@ -7,6 +7,7 @@ import { CITY_OPTIONS } from './Dashboard.config';
 import { PollutantTabs } from './components/PollutantTabs';
 import { DashboardMapCard } from './components/DashboardMapCard';
 import { DashboardTrendCard } from './components/DashboardTrendCard';
+import { DashboardCard2 } from './components/DashboardCard2';
 
 const normalizeCity = (value: string) => value.split(',')[0].trim();
 
@@ -63,6 +64,7 @@ export const Dashboard = () => {
       <section className={styles.grid}>
         <DashboardMapCard selectedCity={selectedRegion} onSelectCity={setSelectedRegion} />
         <DashboardTrendCard />
+        <DashboardCard2 />
       </section>
     </main>
   );
