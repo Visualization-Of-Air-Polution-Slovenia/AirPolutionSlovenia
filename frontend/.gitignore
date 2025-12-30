@@ -115,3 +115,5 @@ package.json
 # yarn.lock
 # pnpm-lock.yaml
 
+#Testing
+/testing
