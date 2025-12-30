@@ -1,0 +1,54 @@
+.about {
+  padding: var(--distance-xxl) var(--distance-xl);
+  background-color: var(--surface);
+  min-height: 80vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  margin-bottom: var(--distance-xl);
+  color: var(--text);
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--distance-xxl);
+  color: var(--text-muted);
+  font-size: var(--font-size-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--distance-xl);
+}
+
+.card {
+  background-color: var(--bg);
+  padding: var(--distance-xl);
+  border-radius: var(--distance);
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.card h3 {
+  color: var(--primary);
+  margin-bottom: var(--distance);
+}
+
+.card p {
+  color: var(--text);
+  font-size: var(--font-size-sm);
+}
