@@ -1,145 +1,156 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import styles from './MapView.module.css';
 
 import { useAppStore } from '@/store/useStore';
 import { MapViewContent } from './MapView.content';
-import { CITIES } from './MapView.config';
+import { CitySidebarPlaceholderText } from './MapView.config';
 
-const POLLUTANT_LABELS: Record<string, string> = {
-  pm10: 'PM₁₀',
-  'pm2.5': 'PM₂.₅',
-  no2: 'NO₂',
-  o3: 'O₃',
-};
+import { SloveniaMap } from './components/SloveniaMap/SloveniaMap';
 
 export const MapView = () => {
   const { pollutionType, setPollutionType, selectedRegion, setSelectedRegion } = useAppStore();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    const exists = MapViewContent.cities.some((c) => c.key === selectedRegion);
+    if (!selectedRegion || !exists) {
+      setSelectedRegion(MapViewContent.defaults.cityKey);
+    }
+  }, [selectedRegion, setSelectedRegion]);
 
   const selectedCity = useMemo(() => {
-    const fallback = CITIES[0];
-    const city = CITIES.find((c) => c.name === selectedRegion);
+    const fallback = MapViewContent.cities.find((c) => c.key === MapViewContent.defaults.cityKey) ?? MapViewContent.cities[0];
+    const city = MapViewContent.cities.find((c) => c.key === selectedRegion);
     return city ?? fallback;
   }, [selectedRegion]);
 
+  const sidebarIcon = sidebarOpen ? MapViewContent.sidebar.toggleOpenIcon : MapViewContent.sidebar.toggleClosedIcon;
+  const sidebarButtonAria = sidebarOpen ? MapViewContent.sidebar.toggleCloseAriaLabel : MapViewContent.sidebar.toggleOpenAriaLabel;
+
+  const sidebarVariantClass =
+    selectedCity.pinVariant === 'good'
+      ? styles.sidebarVariantGood
+      : selectedCity.pinVariant === 'moderate'
+        ? styles.sidebarVariantModerate
+        : styles.sidebarVariantUnhealthy;
+
   return (
-    <main className={styles.page}>
+    <main className={styles.page} aria-label={MapViewContent.pageAriaLabel}>
       <div className={styles.mapStage}>
-        <img
-          className={styles.mapImage}
-          alt="Abstract dark map texture"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLBIH4MJBlCeZVX4qgIw1TXpCpxAaBn5bK569zBW38UX0hHAfi_wGsPYiMqwo4kJfsnFx-pYEIZE7zycsq5azrfL682mYw9tu1BweaQI4Huloc0Dvy7gM8N7zJfyg0DM7dpmvSoHGam8kDMo-QclmqAKI3nIntu-9vwhAt9U-7HYI1WSwk1DqKwNLdGDnxg2PVznDfHI4cMaAeeilNXcvEBKVD1D1HbE1kr_NOIsaMNkEhM0TzV1ghLuXHoxvZuIcuKq_9xMTaqDPh"
-        />
+        <div className={styles.mapFrame}>
+          <SloveniaMap
+            center={MapViewContent.map.center}
+            zoom={MapViewContent.map.zoom}
+            tileUrl={MapViewContent.map.tileUrl}
+            tileAttribution={MapViewContent.map.tileAttribution}
+            cities={MapViewContent.cities.map((c) => ({ key: c.key, name: c.name, position: c.position }))}
+            selectedCityKey={selectedCity.key}
+            onSelectCity={(key) => setSelectedRegion(key)}
+          />
+        </div>
+
         <div className={styles.vignette} />
 
-        <div className={`${styles.blob} ${styles.blobPrimary}`} style={{ top: '30%', left: '45%', width: 260, height: 260 }} />
-        <div className={`${styles.blob} ${styles.blobWarning}`} style={{ top: '40%', left: '55%', width: 220, height: 220 }} />
-        <div className={`${styles.blob} ${styles.blobPrimary}`} style={{ top: '25%', left: '60%', width: 160, height: 160, opacity: 0.26 }} />
-
-        {CITIES.map((city) => {
-          const moderate = city.key === 'maribor';
-          return (
-            <div
-              key={city.key}
-              className={styles.pin}
-              style={{ top: city.mapPosition.top, left: city.mapPosition.left, opacity: city.name === selectedCity.name ? 1 : 0.75 }}
-              onClick={() => setSelectedRegion(city.name)}
-              role="button"
-              tabIndex={0}
-            >
-              <div className={`${styles.pinDot} ${moderate ? styles.pinDotModerate : ''}`} />
-              <div className={styles.pinName}>{city.name}</div>
-            </div>
-          );
-        })}
+        <div className={`${styles.blob} ${styles.blobPrimary} ${styles.blobOne}`} />
+        <div className={`${styles.blob} ${styles.blobWarning} ${styles.blobTwo}`} />
+        <div className={`${styles.blob} ${styles.blobPrimary} ${styles.blobThree}`} />
       </div>
 
       <div className={styles.controls}>
         <div className={`${styles.glass} ${styles.panel}`}>
           <div className={styles.panelLabel}>{MapViewContent.panel.selectPollutantLabel}</div>
           <div className={styles.pillRow}>
-            {(['pm10', 'pm2.5', 'no2', 'o3'] as const).map((t) => (
+            {MapViewContent.pollutantOrder.map((t) => (
               <button
                 key={t}
                 className={`${styles.pill} ${pollutionType === t ? styles.pillActive : ''}`}
                 onClick={() => setPollutionType(t)}
                 type="button"
               >
-                {POLLUTANT_LABELS[t]}
+                {MapViewContent.pollutantLabels[t]}
               </button>
             ))}
           </div>
         </div>
 
-        <div className={`${styles.glass} ${styles.zoomWrap}`}>
-          <button className={styles.zoomBtn} type="button" aria-label="Zoom in">
-            <span className="material-symbols-outlined">add</span>
-          </button>
-          <button className={styles.zoomBtn} type="button" aria-label="Zoom out">
-            <span className="material-symbols-outlined">remove</span>
-          </button>
-        </div>
-
-        <button className={`${styles.glass} ${styles.panel}`} type="button" aria-label="Center map" style={{ padding: 0, width: 44, height: 44, borderRadius: 12, display: 'grid', placeItems: 'center' }}>
-          <span className="material-symbols-outlined">near_me</span>
-        </button>
+        {/* Zoom/center controls removed for now */}
       </div>
 
-      <aside className={`${styles.glass} ${styles.sidebar}`} aria-label="City details">
+      <aside
+        className={`${styles.glass} ${styles.sidebar} ${sidebarVariantClass} ${sidebarOpen ? '' : styles.sidebarCollapsed}`}
+        aria-label={MapViewContent.sidebar.ariaLabel}
+      >
+        <button
+          type="button"
+          className={styles.sidebarToggle}
+          aria-label={sidebarButtonAria}
+          onClick={() => setSidebarOpen((v) => !v)}
+        >
+          <span className="material-symbols-outlined">{sidebarIcon}</span>
+        </button>
+
         <div className={styles.sidebarHeader}>
-          <div
-            className={styles.headerImage}
-            style={{ backgroundImage: selectedCity.heroImageUrl ? `url(${selectedCity.heroImageUrl})` : 'linear-gradient(135deg, rgba(43,238,121,0.18), rgba(59,130,246,0.10))' }}
-          />
+          <div className={styles.headerImage}>
+            {selectedCity.heroImageUrl ? (
+              <img className={styles.headerImg} alt={MapViewContent.sidebar.cityImageAlt} src={selectedCity.heroImageUrl} />
+            ) : null}
+          </div>
+
           <div className={styles.headerFade} />
+
           <div className={styles.sidebarTitle}>
             <div className={styles.cityName}>{selectedCity.name}</div>
             <div className={styles.cityMeta}>
-              <span className="material-symbols-outlined" style={{ fontSize: 16, color: 'var(--primary)' }}>
-                location_on
-              </span>
+              <span className={`material-symbols-outlined ${styles.cityMetaIcon}`}>{MapViewContent.sidebar.locationIcon}</span>
               <span>{selectedCity.subtitle}</span>
             </div>
           </div>
         </div>
 
         <div className={styles.sidebarBody}>
-          <div className={styles.statCard}>
-            <div>
-              <div className={styles.statLabel}>{MapViewContent.panel.aqiLabel}</div>
-              <div className={styles.statValue}>
-                <div className={styles.aqiNumber}>{selectedCity.aqi.value}</div>
-                <div className={styles.aqiBadge}>{selectedCity.aqi.label}</div>
+          <div className={styles.sidebarScroll}>
+            <div className={styles.statCard}>
+              <div>
+                <div className={styles.statLabel}>{MapViewContent.panel.aqiLabel}</div>
+                <div className={styles.statValue}>
+                  <div className={styles.aqiNumber}>{selectedCity.aqi.value}</div>
+                  <div className={styles.aqiBadge}>{selectedCity.aqi.label}</div>
+                </div>
+              </div>
+              <div aria-hidden="true" className={styles.statusRing}>
+                <span className="material-symbols-outlined">{MapViewContent.sidebar.statusIcon}</span>
               </div>
             </div>
-            <div aria-hidden="true" style={{ width: 44, height: 44, borderRadius: 9999, border: `4px solid color-mix(in srgb, var(--primary) 30%, transparent)`, display: 'grid', placeItems: 'center', color: 'var(--primary)' }}>
-              <span className="material-symbols-outlined">check</span>
-            </div>
-          </div>
 
-          <section>
-            <div style={{ fontWeight: 800, marginBottom: 'var(--distance-md)' }}>{MapViewContent.panel.pollutantsTitle}</div>
-            <div className={styles.grid}>
-              {(['pm10', 'pm2.5', 'no2', 'o3'] as const).map((t) => {
-                const item = selectedCity.pollutants[t];
-                return (
-                  <div key={t} className={styles.gridItem}>
-                    <div className={styles.k}>{POLLUTANT_LABELS[t]}</div>
-                    <div className={styles.v}>
-                      {item.value} <span className={styles.unit}>{item.unit}</span>
+            <section>
+              <div className={styles.sectionTitle}>{MapViewContent.panel.pollutantsTitle}</div>
+              <div className={styles.grid}>
+                {MapViewContent.pollutantOrder.map((t) => {
+                  const item = selectedCity.pollutants[t];
+                  return (
+                    <div key={t} className={styles.gridItem}>
+                      <div className={styles.k}>{MapViewContent.pollutantLabels[t]}</div>
+                      <div className={styles.v}>
+                        {item.value} <span className={styles.unit}>{item.unit}</span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+                  );
+                })}
+              </div>
+            </section>
 
-          <section className={styles.advice}>
-            <div className={styles.adviceTitle}>{MapViewContent.panel.healthAdviceTitle}</div>
-            <div className={styles.adviceText}>
-              Current levels are within typical ranges. If you are sensitive, consider reducing prolonged outdoor activity when the selected pollutant spikes.
-            </div>
-          </section>
+            <section className={styles.advice}>
+              <div className={styles.adviceTitle}>{MapViewContent.panel.healthAdviceTitle}</div>
+              <div className={styles.adviceText}>{MapViewContent.sidebar.healthAdviceText}</div>
+            </section>
+
+            {!selectedCity.heroImageUrl ? (
+              <section className={styles.advice}>
+                <div className={styles.adviceText}>{CitySidebarPlaceholderText}</div>
+              </section>
+            ) : null}
+          </div>
         </div>
       </aside>
     </main>
