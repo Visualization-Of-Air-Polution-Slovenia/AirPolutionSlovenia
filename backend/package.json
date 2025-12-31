@@ -1,18 +1,13 @@
 {
-  "name": "air-pollution-slovenia",
+  "name": "air-pollution-backend",
   "version": "1.0.0",
-  "private": true,
-  "description": "Air Pollution Slovenia - Frontend and Backend",
+  "main": "index.js",
   "scripts": {
-    "dev": "cd frontend && npm run dev",
-    "install:frontend": "cd frontend && npm install",
-    "dev:frontend": "cd frontend && npm run dev",
-    "build:frontend": "cd frontend && npm run build",
-    "lint:frontend": "cd frontend && npm run lint",
-    "preview:frontend": "cd frontend && npm run preview"
+    "start": "node index.js"
   },
-  "workspaces": [
-    "frontend"
-  ]
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
 }
 

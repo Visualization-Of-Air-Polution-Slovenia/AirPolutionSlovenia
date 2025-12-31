@@ -1,5 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Render provides PORT in environment
 const PORT = process.env.PORT || 3000;
