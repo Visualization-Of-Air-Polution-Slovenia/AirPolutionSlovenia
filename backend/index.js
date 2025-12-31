@@ -1,9 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 
 // Enable CORS for all origins
 app.use(cors());
+
+// Serve static files from backend/data directory at /data
+app.use("/data", express.static(path.join(__dirname, "data")));
 
 // Render provides PORT in environment
 const PORT = process.env.PORT || 3000;
