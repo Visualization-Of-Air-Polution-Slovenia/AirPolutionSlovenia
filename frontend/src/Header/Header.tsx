@@ -42,9 +42,9 @@ export const Header = () => {
           <span>Live Data</span>
         </div>
 
-        <button className={styles.iconBtn} type="button" aria-label="Notifications">
+        {/* <button className={styles.iconBtn} type="button" aria-label="Notifications">
           <span className="material-symbols-outlined">notifications</span>
-        </button>
+        </button> */}
         <button className={styles.iconBtn} type="button" aria-label="Settings">
           <span className="material-symbols-outlined">settings</span>
         </button>

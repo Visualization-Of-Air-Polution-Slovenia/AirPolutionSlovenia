@@ -11,6 +11,8 @@ import { About } from './About/About';
 import { MapView } from './MapView/MapView';
 import { Analysis } from './Analysis/Analysis';
 import { Health } from './Health/Health';
+import { PrivacyPolicy } from './Legal/PrivacyPolicy';
+import { TermsOfService } from './Legal/TermsOfService';
 
 function App() {
   useThemeEffect();
@@ -22,12 +24,16 @@ function App() {
         <Header />
 
         <Routes>
+          {/* 4 Main pages */}
           <Route path="/" element={<Dashboard />} />
           <Route path="/map" element={<MapView />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/health" element={<Health />} />
-          {/* About us section (if needed) */}
+
+          {/* Additional pages */}
           <Route path="/about" element={<About />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
 
         <Footer />

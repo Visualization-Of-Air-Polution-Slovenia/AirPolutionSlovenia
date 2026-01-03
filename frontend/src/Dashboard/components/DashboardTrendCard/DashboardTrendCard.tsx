@@ -1,7 +1,12 @@
 import styles from './DashboardTrendCard.module.css';
 
-import { DashboardContent } from '../Dashboard.content';
+import { DashboardContent } from '../../Dashboard.content';
 
+/**
+ * DashboardTrendCard component
+ * Displays a trend chart of pollutant concentration over time.
+ * Compares city data against WHO and EU limits.
+ */
 export const DashboardTrendCard = () => {
   return (
     <section className={styles.card} aria-label="Trend chart">
@@ -13,13 +18,13 @@ export const DashboardTrendCard = () => {
 
         <div className={styles.legend}>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ background: 'var(--primary)' }} /> Ljubljana
+            <span className={`${styles.dot} ${styles.dotPrimary}`} /> Ljubljana
           </div>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ width: 22, height: 2, borderRadius: 9999, background: 'var(--primary)', opacity: 0.5 }} /> WHO Limit
+            <span className={`${styles.dot} ${styles.dotLimit} ${styles.dotLimitWho}`} /> WHO Limit
           </div>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ width: 22, height: 2, borderRadius: 9999, background: 'var(--danger)', opacity: 0.5 }} /> EU Limit
+            <span className={`${styles.dot} ${styles.dotLimit} ${styles.dotLimitEu}`} /> EU Limit
           </div>
         </div>
       </div>

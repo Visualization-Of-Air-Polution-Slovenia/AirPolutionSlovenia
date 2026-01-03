@@ -1,7 +1,12 @@
 import styles from './DashboardCard2.module.css';
 
-import { DashboardContent } from '../Dashboard.content';
+import { DashboardContent } from '../../Dashboard.content';
 
+/**
+ * DashboardCard2 component
+ * Displays an additional chart or data visualization.
+ * Currently a placeholder for future content.
+ */
 export const DashboardCard2 = () => {
   return (
     <section className={styles.card} aria-label="Additional chart">
@@ -14,9 +19,9 @@ export const DashboardCard2 = () => {
 
       <div className={styles.canvas}>
         <div className={styles.placeholder}>
-          <span className="material-symbols-outlined" style={{ fontSize: 48, color: 'var(--text-muted)' }}>
+          <span className={`material-symbols-outlined ${styles.placeholderIcon}`}>
           </span>
-          <p style={{ color: 'var(--text-muted)', marginTop: 16 }}></p>
+          <p className={styles.placeholderText}></p>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import styles from './DashboardMapCard.module.css';
 
-import { DashboardContent } from '../Dashboard.content';
-import { CITY_OPTIONS } from '../Dashboard.config';
+import { DashboardContent } from '../../Dashboard.content';
+import { CITY_OPTIONS } from '../../Dashboard.config';
 
 interface Props {
   selectedCity: string | null;
@@ -10,6 +10,11 @@ interface Props {
 
 const normalizeCity = (value: string) => value.split(',')[0].trim();
 
+/**
+ * DashboardMapCard component
+ * Displays a map of Slovenia with pollution markers for different cities.
+ * Allows selecting a city to view detailed data.
+ */
 export const DashboardMapCard = ({ selectedCity, onSelectCity }: Props) => {
   const cityValue = selectedCity ? `${selectedCity}, SI` : 'Ljubljana, SI';
 
@@ -21,15 +26,15 @@ export const DashboardMapCard = ({ selectedCity, onSelectCity }: Props) => {
           <div className={styles.subtitle}>{DashboardContent.mapCard.subtitle}</div>
         </div>
         <div className={styles.legend} aria-label="Legend">
-          <div style={{ fontWeight: 900, marginBottom: 6 }}>{DashboardContent.mapCard.legendTitle}</div>
+          <div className={styles.legendTitle}>{DashboardContent.mapCard.legendTitle}</div>
           <div className={styles.legendRow}>
-            <span className={styles.dot} style={{ background: 'var(--primary)' }} /> Good
+            <span className={`${styles.dot} ${styles.dotPrimary}`} /> Good
           </div>
           <div className={styles.legendRow}>
-            <span className={styles.dot} style={{ background: 'var(--warning)' }} /> Moderate
+            <span className={`${styles.dot} ${styles.dotWarning}`} /> Moderate
           </div>
           <div className={styles.legendRow}>
-            <span className={styles.dot} style={{ background: 'var(--danger)' }} /> Unhealthy
+            <span className={`${styles.dot} ${styles.dotDanger}`} /> Unhealthy
           </div>
         </div>
       </div>
@@ -42,35 +47,35 @@ export const DashboardMapCard = ({ selectedCity, onSelectCity }: Props) => {
           />
 
           <g className={styles.marker} transform="translate(400, 250)" onClick={() => onSelectCity('Ljubljana')}>
-            <circle cx="0" cy="0" r="6" fill="var(--primary)" className={styles.markerDot} />
+            <circle cx="0" cy="0" r="6" className={`${styles.markerDot} ${styles.markerDotPrimary}`} />
             <text className={styles.cityText} x="12" y="4">
               Ljubljana
             </text>
           </g>
 
           <g className={styles.marker} transform="translate(550, 150)" onClick={() => onSelectCity('Maribor')}>
-            <circle cx="0" cy="0" r="6" fill="var(--warning)" className={styles.markerDot} />
+            <circle cx="0" cy="0" r="6" className={`${styles.markerDot} ${styles.markerDotWarning}`} />
             <text className={styles.cityText} x="12" y="4">
               Maribor
             </text>
           </g>
 
           <g className={styles.marker} transform="translate(350, 200)" onClick={() => onSelectCity('Kranj')}>
-            <circle cx="0" cy="0" r="5" fill="var(--primary)" className={styles.markerDot} />
+            <circle cx="0" cy="0" r="5" className={`${styles.markerDot} ${styles.markerDotPrimary}`} />
             <text className={styles.cityText} x="-45" y="4">
               Kranj
             </text>
           </g>
 
           <g className={styles.marker} transform="translate(200, 350)" onClick={() => onSelectCity('Koper')}>
-            <circle cx="0" cy="0" r="5" fill="var(--primary)" className={styles.markerDot} />
+            <circle cx="0" cy="0" r="5" className={`${styles.markerDot} ${styles.markerDotPrimary}`} />
             <text className={styles.cityText} x="12" y="4">
               Koper
             </text>
           </g>
 
           <g className={styles.marker} transform="translate(500, 220)" onClick={() => onSelectCity('Celje')}>
-            <circle cx="0" cy="0" r="5" fill="var(--danger)" className={styles.markerDot} />
+            <circle cx="0" cy="0" r="5" className={`${styles.markerDot} ${styles.markerDotDanger}`} />
             <text className={styles.cityText} x="12" y="4">
               Celje
             </text>
@@ -98,12 +103,12 @@ export const DashboardMapCard = ({ selectedCity, onSelectCity }: Props) => {
 
           <div className={styles.split}>
             <div className={styles.k}>Avg AQI</div>
-            <div style={{ fontWeight: 900, color: 'var(--primary)' }}>42 (Good)</div>
+            <div className={styles.aqiValue}>42 (Good)</div>
           </div>
         </div>
 
         <button className={styles.locate} type="button" aria-label="My location">
-          <span className="material-symbols-outlined" style={{ color: 'var(--text-muted)' }}>
+          <span className={`material-symbols-outlined ${styles.locateIcon}`}>
             my_location
           </span>
         </button>

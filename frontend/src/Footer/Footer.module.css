@@ -19,3 +19,15 @@
   display: flex;
   gap: var(--distance-lg);
 }
+
+.links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-weight: 500;
+}
+
+.links a:hover {
+  color: #10b981; /* Emerald green */
+  transform: translateY(-2px);
+}

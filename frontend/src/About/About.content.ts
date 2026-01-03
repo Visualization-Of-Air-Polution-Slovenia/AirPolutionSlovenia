@@ -4,4 +4,5 @@ export const teamMembers = [
   { name: 'Jure', role: 'Integration & Repository Structure' },
   { name: 'Hana', role: 'Visual & Interaction Design, Content' },
   { name: 'Domen', role: 'Frontend & Visualizations Lead' },
+  { name: 'assist. prof. dr. Ciril Bohak', role: 'Mentor', customInitials: 'C' },
 ];

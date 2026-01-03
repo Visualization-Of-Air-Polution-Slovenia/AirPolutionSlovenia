@@ -1,13 +1,17 @@
 import styles from './PollutantTabs.module.css';
 
 import type { PollutantType } from '@/store/useStore';
-import { POLLUTION_TABS } from '../Dashboard.config';
+import { POLLUTION_TABS } from '../../Dashboard.config';
 
 interface Props {
   value: PollutantType;
   onChange: (value: PollutantType) => void;
 }
 
+/**
+ * PollutantTabs component
+ * Renders a list of tabs for selecting different pollutants.
+ */
 export const PollutantTabs = ({ value, onChange }: Props) => {
   return (
     <div className={styles.wrap} role="tablist" aria-label="Pollutant selection">

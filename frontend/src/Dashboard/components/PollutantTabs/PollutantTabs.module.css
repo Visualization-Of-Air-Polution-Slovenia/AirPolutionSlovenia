@@ -23,6 +23,7 @@
   font-weight: 800;
   font-size: 13px;
   white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
 .tab:hover {
@@ -30,10 +31,19 @@
   color: var(--text);
 }
 
+.tab:active {
+  transform: scale(0.96);
+}
+
 .active {
   background: var(--primary);
   color: var(--bg);
   box-shadow: 0 6px 18px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.active:hover {
+  background: var(--primary-dark);
+  color: var(--bg);
 }
 
 .icon {

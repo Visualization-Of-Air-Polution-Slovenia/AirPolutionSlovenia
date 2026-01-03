@@ -85,27 +85,73 @@
 }
 
 .updated {
+  display: block;
+  margin-top: var(--distance-sm);
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.9em;
+  opacity: 0.9;
 }
 
 .heroActions {
   display: flex;
-  flex-direction: column;
-  gap: var(--distance-lg);
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--distance-xl);
+  align-items: center;
 }
 
-.actionRow {
+.actionsCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance-sm);
+}
+
+.controlsCol {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--distance-lg);
-  align-items: center;
+  gap: var(--distance-xl);
+  align-items: flex-end;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance-sm);
+}
+
+.controlLabel {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-left: 4px;
 }
 
 .selectWrap {
   position: relative;
   display: inline-flex;
   align-items: center;
+}
+
+.selectWrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform 0.3s ease, border-color 0.2s ease;
+  pointer-events: none;
+  top: 50%;
+}
+
+.selectWrap:focus-within::after {
+  transform: translateY(-35%) rotate(-135deg);
+  border-color: var(--primary);
 }
 
 .selectIcon {
@@ -122,9 +168,16 @@
   border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
   background: var(--surface);
   color: var(--text);
-  padding: 12px 12px 12px 38px;
+  padding: 12px 36px 12px 38px;
   font-weight: 700;
   cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
 .grid {
@@ -145,6 +198,6 @@
   }
 
   .grid {
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 0.8fr 1.2fr;
   }
 }
