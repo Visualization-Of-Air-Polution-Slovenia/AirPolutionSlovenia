@@ -5,6 +5,8 @@ import styles from './Analysis.module.css';
 import { useAppStore } from '@/store/useStore';
 import { AnalysisContent } from './Analysis.content';
 
+import { TrendCard } from './components/TrendCard/TrendCard';
+
 const POLLUTANTS = [
   { key: 'pm10', label: 'PM₁₀' },
   { key: 'pm2.5', label: 'PM₂.₅' },
@@ -212,6 +214,8 @@ export const Analysis = () => {
               </div>
             </div>
           </div>
+
+          <TrendCard />
         </div>
       </section>
     </main>

@@ -1,25 +1,29 @@
-import styles from './DashboardTrendCard.module.css';
+import styles from './TrendCard.module.css';
+import { AnalysisContent } from '../../Analysis.content';
 
-import { DashboardContent } from '../Dashboard.content';
-
-export const DashboardTrendCard = () => {
+/**
+ * TrendCard component
+ * Displays a trend chart of pollutant concentration over time.
+ * Compares city data against WHO and EU limits.
+ */
+export const TrendCard = () => {
   return (
     <section className={styles.card} aria-label="Trend chart">
       <div className={styles.titleRow}>
         <div>
-          <div className={styles.h3}>{DashboardContent.chartCard.title}</div>
-          <div className={styles.subtitle}>{DashboardContent.chartCard.subtitle}</div>
+          <div className={styles.h3}>{AnalysisContent.widgets.chartCard.title}</div>
+          <div className={styles.subtitle}>{AnalysisContent.widgets.chartCard.subtitle}</div>
         </div>
 
         <div className={styles.legend}>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ background: 'var(--primary)' }} /> Ljubljana
+            <span className={`${styles.dot} ${styles.dotPrimary}`} /> Ljubljana
           </div>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ width: 22, height: 2, borderRadius: 9999, background: 'var(--primary)', opacity: 0.5 }} /> WHO Limit
+            <span className={`${styles.dot} ${styles.dotLimit} ${styles.dotLimitWho}`} /> WHO Limit
           </div>
           <div className={styles.legendItem}>
-            <span className={styles.dot} style={{ width: 22, height: 2, borderRadius: 9999, background: 'var(--danger)', opacity: 0.5 }} /> EU Limit
+            <span className={`${styles.dot} ${styles.dotLimit} ${styles.dotLimitEu}`} /> EU Limit
           </div>
         </div>
       </div>

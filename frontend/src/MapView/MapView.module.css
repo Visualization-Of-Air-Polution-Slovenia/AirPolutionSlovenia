@@ -11,16 +11,14 @@
 .mapStage {
   position: absolute;
   inset: 0;
-  background: var(--surface-darker);
+  background: var(--surface-2);
 }
 
-.mapImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-  filter: grayscale(1) brightness(0.6);
-  mix-blend-mode: overlay;
+.mapFrame {
+  position: absolute;
+  inset: 0;
+  padding: var(--distance-xl);
+  z-index: 0;
 }
 
 .vignette {
@@ -28,6 +26,7 @@
   inset: 0;
   background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .blob {
@@ -35,6 +34,8 @@
   border-radius: 9999px;
   filter: blur(80px);
   opacity: 0.22;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .blobPrimary {
@@ -46,11 +47,33 @@
   opacity: 0.14;
 }
 
+.blobOne {
+  top: 30%;
+  left: 45%;
+  width: 260px;
+  height: 260px;
+}
+
+.blobTwo {
+  top: 40%;
+  left: 55%;
+  width: 220px;
+  height: 220px;
+}
+
+.blobThree {
+  top: 25%;
+  left: 60%;
+  width: 160px;
+  height: 160px;
+  opacity: 0.26;
+}
+
 .controls {
   position: absolute;
-  top: var(--distance-xl);
-  left: var(--distance-xl);
-  z-index: 10;
+  top: var(--distance-xxl);
+  left: var(--distance-xxl);
+  z-index: 1001;
   display: flex;
   flex-direction: column;
   gap: var(--distance-lg);
@@ -108,63 +131,7 @@
   transform: translateY(-1px);
 }
 
-.zoomControls {
-  width: 44px;
-  display: flex;
-  flex-direction: column;
-}
-
-.zoomBtn {
-  width: 44px;
-  height: 44px;
-  border: 0;
-  cursor: pointer;
-  color: var(--text);
-  background: transparent;
-}
-
-.zoomBtn + .zoomBtn {
-  border-top: 1px solid var(--glass-border);
-}
-
-.zoomWrap {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.pin {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--distance-sm);
-  cursor: pointer;
-}
-
-.pinDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--text) 35%, transparent);
-  background: var(--primary);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--primary) 40%, transparent);
-}
-
-.pinDotModerate {
-  background: var(--warning);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--warning) 45%, transparent);
-}
-
-.pinName {
-  font-size: 11px;
-  font-weight: 700;
-  color: color-mix(in srgb, var(--text) 90%, transparent);
-  padding: 3px 8px;
-  border-radius: 9999px;
-  background: color-mix(in srgb, #000 45%, transparent);
-}
+/* zoom/center controls intentionally removed */
 
 .sidebar {
   position: absolute;
@@ -172,11 +139,31 @@
   right: var(--distance-xl);
   bottom: var(--distance-xl);
   width: min(420px, calc(100% - 2 * var(--distance-xl)));
-  z-index: 20;
+  z-index: 1002;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
+  transition: transform 0.26s ease;
+  will-change: transform;
+  box-shadow: var(--glass-shadow);
+  border-left: 2px solid color-mix(in srgb, var(--sidebar-accent, var(--primary)) 28%, transparent);
+}
+
+.sidebarVariantGood {
+  --sidebar-accent: var(--primary);
+}
+
+.sidebarVariantModerate {
+  --sidebar-accent: var(--warning);
+}
+
+.sidebarVariantUnhealthy {
+  --sidebar-accent: var(--danger);
+}
+
+.sidebarCollapsed {
+  transform: translateX(calc(100% - 22px));
 }
 
 .sidebarHeader {
@@ -188,8 +175,19 @@
 .headerImage {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary) 18%, transparent),
+    color-mix(in srgb, var(--secondary) 10%, transparent)
+  );
+  overflow: hidden;
+}
+
+.headerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .headerFade {
@@ -219,13 +217,52 @@
   font-weight: 600;
 }
 
+.cityMetaIcon {
+  font-size: 16px;
+  color: var(--sidebar-accent, var(--primary));
+}
+
 .sidebarBody {
   flex: 1;
+  overflow: visible;
+  position: relative;
+}
+
+.sidebarScroll {
+  height: 100%;
   overflow: auto;
   padding: var(--distance-xl);
   display: flex;
   flex-direction: column;
   gap: var(--distance-xl);
+}
+
+.sidebarToggle {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--sidebar-accent, var(--primary)) 45%, var(--glass-border));
+  background: color-mix(in srgb, var(--glass-bg) 92%, var(--surface));
+  box-shadow: var(--glass-shadow);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.sidebarToggle:global(:focus-visible) {
+  outline: 2px solid color-mix(in srgb, var(--sidebar-accent, var(--primary)) 70%, transparent);
+  outline-offset: 3px;
+}
+
+.sidebarToggle :global(.material-symbols-outlined) {
+  color: var(--sidebar-accent, var(--primary));
+  font-size: 26px;
+  line-height: 1;
 }
 
 .statCard {
@@ -252,7 +289,7 @@
 .aqiNumber {
   font-size: 40px;
   font-weight: 900;
-  color: var(--primary);
+  color: var(--sidebar-accent, var(--primary));
 }
 
 .aqiBadge {
@@ -260,8 +297,18 @@
   font-weight: 800;
   padding: 4px 10px;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--primary) 18%, transparent);
-  color: var(--primary);
+  background: color-mix(in srgb, var(--sidebar-accent, var(--primary)) 18%, transparent);
+  color: var(--sidebar-accent, var(--primary));
+}
+
+.statusRing {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 4px solid color-mix(in srgb, var(--sidebar-accent, var(--primary)) 30%, transparent);
+  display: grid;
+  place-items: center;
+  color: var(--sidebar-accent, var(--primary));
 }
 
 .grid {
@@ -277,7 +324,7 @@
   background: color-mix(in srgb, var(--surface-2) 55%, transparent);
 }
 
-.k { 
+.k {
   font-size: 12px;
   color: var(--text-muted);
   font-weight: 700;
@@ -313,28 +360,25 @@
   line-height: 1.6;
 }
 
+.sectionTitle {
+  font-weight: 800;
+  margin-bottom: var(--distance-md);
+}
+
 @media (max-width: 980px) {
-  .sidebar {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    margin: var(--distance-xl);
-    width: auto;
-    height: 520px;
+  .mapFrame {
+    padding: var(--distance-lg);
   }
 
   .controls {
-    position: relative;
-    margin: var(--distance-xl);
+    top: var(--distance-lg);
+    left: var(--distance-lg);
   }
 
-  .mapStage {
-    position: relative;
-    height: 520px;
-  }
-
-  .page {
-    overflow: auto;
+  .sidebar {
+    top: var(--distance-lg);
+    right: var(--distance-lg);
+    bottom: var(--distance-lg);
+    width: min(420px, calc(100% - 2 * var(--distance-lg)));
   }
 }

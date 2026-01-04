@@ -1,54 +1,99 @@
-.about {
-  padding: var(--distance-xxl) var(--distance-xl);
-  background-color: var(--surface);
-  min-height: 80vh;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: var(--distance-xl);
+  animation: fadeIn 0.6s ease-out;
 }
 
-.about h2 {
-  margin-bottom: var(--distance-xl);
-  color: var(--text);
+.header {
   text-align: center;
+  margin-bottom: 4rem;
 }
 
-.description {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto var(--distance-xxl);
+.title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: var(--distance-md);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
   color: var(--text-muted);
-  font-size: var(--font-size-lg);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--distance-xl);
+  margin-top: var(--distance-xl);
 }
 
-.card {
-  background-color: var(--bg);
-  padding: var(--distance-xl);
-  border-radius: var(--distance);
-  border: 1px solid var(--border);
+.gridItem {
+  flex: 0 1 calc(33.333% - var(--distance-xl));
+  min-width: 280px;
+  animation: slideUp 0.6s ease-out backwards;
+}
+
+/* Animation delays for items */
+.gridItem:nth-child(1) { animation-delay: 0.1s; }
+.gridItem:nth-child(2) { animation-delay: 0.2s; }
+.gridItem:nth-child(3) { animation-delay: 0.3s; }
+.gridItem:nth-child(4) { animation-delay: 0.4s; }
+.gridItem:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .gridItem {
+    flex: 0 1 100%;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}
+
+.contactSection {
+  margin-top: 4rem;
   text-align: center;
-  transition: transform 0.2s;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  animation: fadeIn 0.6s ease-out 0.6s backwards;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary);
+.contactSection p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-.card h3 {
+.contactLink {
   color: var(--primary);
-  margin-bottom: var(--distance);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
-.card p {
-  color: var(--text);
-  font-size: var(--font-size-sm);
+.contactLink:hover {
+  text-decoration: underline;
 }

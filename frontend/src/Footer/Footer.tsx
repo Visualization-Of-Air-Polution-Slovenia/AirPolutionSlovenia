@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -8,8 +9,8 @@ export const Footer = () => {
         <p>&copy; {new Date().getFullYear()} Air Pollution Slovenia. Data provided by ARSO.</p>
         
         <div className={styles.links}>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-of-service">Terms of Service</Link>
         </div>
         
       </div>

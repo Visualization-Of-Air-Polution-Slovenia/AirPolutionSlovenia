@@ -39,6 +39,12 @@
 .logoLink {
   color: var(--text);
   text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logoLink:hover {
+  text-decoration: none;
+  opacity: 0.7;
 }
 
 .highlight {
@@ -71,6 +77,8 @@
 
 .navLink:hover {
   color: var(--text);
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  text-decoration: none;
 }
 
 .navActive {

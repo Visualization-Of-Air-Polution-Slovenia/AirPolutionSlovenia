@@ -17,5 +17,9 @@ export const AnalysisContent = {
     trendsTitle: 'Pollutant Trends Over Time',
     trendsSubtitle: 'Comparative analysis (Weekly View)',
     summaryTitle: 'Summary',
+    chartCard: {
+      title: 'Annual Mean Concentration (PM₂.₅)',
+      subtitle: '2014 - 2024 • Ljubljana vs. WHO Limit',
+    },
   },
 };

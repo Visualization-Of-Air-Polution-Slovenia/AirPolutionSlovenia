@@ -1,0 +1,96 @@
+.card {
+  border-radius: 18px;
+  padding: var(--distance-xl);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: background-color 120ms ease, border-color 120ms ease, transform 0.2s ease;
+  border-left: 4px solid transparent;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.card:hover {
+  background: color-mix(in srgb, var(--glass-bg) 85%, transparent);
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--distance-lg);
+  margin-bottom: var(--distance-lg);
+}
+
+.iconBox {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.badge {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  color: color-mix(in srgb, var(--text) 55%, transparent);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: var(--distance-sm);
+}
+
+.cardBody {
+  color: color-mix(in srgb, var(--text) 65%, transparent);
+  font-size: var(--font-size-sm);
+  line-height: 1.65;
+  margin-bottom: var(--distance-lg);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--distance-sm);
+}
+
+.tag {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  font-weight: 700;
+  transition: background-color 0.2s ease;
+}
+
+.tag:hover {
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
