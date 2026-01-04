@@ -1,0 +1,17 @@
+Epidemiologija/vpliv na zdravje:
+https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(13)62158-3/fulltext - globalna analiza vpliva PM2.5 na mortaliteto
+https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(20)30272-2/fulltext - refinirana ocena zdravstvenega bremena zaradi onesnaženja
+https://nijz.si/moje-okolje/zrak/povisane-ravni-delcev-v-zraku-priporocila-za-prebivalce/ - lokalna priporočila in smernice za varovanje zdravja
+https://nijz.si/moje-okolje/zrak/
+
+Vizualizacija podatkov o onesnaženju zraka:
+https://www.mdpi.com/2073-4433/8/8/148 - interaktivna spletna vizualizacija urbanih podatkov o zraku
+https://www.sciencedirect.com/science/article/pii/S1364815218304195 - primeri vizualizacij okoljskih podatkov za interpretacijo trendov
+https://ieeexplore.ieee.org/document/9074283/references#references - vizualizacija podatkov o onesnaženju (časovno-prostorski prikaz)
+https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1977046&dswid=3832 - estetika in uporabniške preference pri vizualizaciji okoljskih podatkov
+
+Trendi in dolgoročni podatki/metode:
+https://ieeexplore.ieee.org/abstract/document/8807233 - analiza dolgoročnih trendov onesnaženja zraka
+
+Napovedovanje/strojno učenje:
+https://www.researchgate.net/profile/Aditya-C-R/publication/327746379_Detection_and_Prediction_of_Air_Pollution_using_Machine_Learning_Models/links/5f12668ea6fdcc3ed7120693/Detection-and-Prediction-of-Air-Pollution-using-Machine-Learning-Models.pdf - odkrivanje in napovedovanje onesnaženja zraka z ML modeli
