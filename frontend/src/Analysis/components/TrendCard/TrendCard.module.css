@@ -10,6 +10,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   animation: fadeIn 0.6s ease-out forwards;
   animation-delay: 0.1s;
+  flex: 1; /* Take remaining space if container is flex */
 }
 
 .card:hover {

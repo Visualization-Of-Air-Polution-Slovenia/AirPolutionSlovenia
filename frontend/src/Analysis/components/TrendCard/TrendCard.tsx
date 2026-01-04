@@ -1,19 +1,18 @@
-import styles from './DashboardTrendCard.module.css';
-
-import { DashboardContent } from '../../Dashboard.content';
+import styles from './TrendCard.module.css';
+import { AnalysisContent } from '../../Analysis.content';
 
 /**
- * DashboardTrendCard component
+ * TrendCard component
  * Displays a trend chart of pollutant concentration over time.
  * Compares city data against WHO and EU limits.
  */
-export const DashboardTrendCard = () => {
+export const TrendCard = () => {
   return (
     <section className={styles.card} aria-label="Trend chart">
       <div className={styles.titleRow}>
         <div>
-          <div className={styles.h3}>{DashboardContent.chartCard.title}</div>
-          <div className={styles.subtitle}>{DashboardContent.chartCard.subtitle}</div>
+          <div className={styles.h3}>{AnalysisContent.widgets.chartCard.title}</div>
+          <div className={styles.subtitle}>{AnalysisContent.widgets.chartCard.subtitle}</div>
         </div>
 
         <div className={styles.legend}>

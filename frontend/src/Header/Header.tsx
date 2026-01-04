@@ -23,8 +23,6 @@ export const Header = () => {
 
       <nav className={styles.nav} aria-label="Primary">
         <div className={styles.navPill}>
-          <NavLink to="/" end className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
-            >Dashboard</NavLink>
           <NavLink to="/map" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
             >Map View</NavLink>
           <NavLink to="/analysis" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}

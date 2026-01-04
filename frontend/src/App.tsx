@@ -6,7 +6,6 @@ import { useThemeEffect } from '@/hooks/useThemeEffect';
 
 import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
-import { Dashboard } from './Dashboard/Dashboard';
 import { About } from './About/About';
 import { MapView } from './MapView/MapView';
 import { Analysis } from './Analysis/Analysis';
@@ -25,7 +24,7 @@ function App() {
 
         <Routes>
           {/* 4 Main pages */}
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<MapView />} />
           <Route path="/map" element={<MapView />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/health" element={<Health />} />
