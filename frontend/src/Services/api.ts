@@ -5,6 +5,27 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 /**
+ * Custom error class for API errors
+ */
+export class ApiError extends Error {
+  status: number;
+
+  constructor(
+    status: number,
+    message: string,
+  ) {
+    super(message);
+    this.status = status;
+    this.name = 'ApiError';
+  }
+
+  /** Returns true if the error is retryable (503 = backend starting up) */
+  get isRetryable(): boolean {
+    return this.status === 503;
+  }
+}
+
+/**
  * Base fetch wrapper with error handling
  */
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
@@ -20,7 +41,12 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> 
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`API Error (${response.status}): ${errorBody || response.statusText}`);
+    throw new ApiError(
+      response.status,
+      response.status === 503
+        ? 'Backend is starting up, please wait...'
+        : `API Error (${response.status}): ${errorBody || response.statusText}`,
+    );
   }
 
   return response.json();
