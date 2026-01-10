@@ -96,15 +96,15 @@ const cities: CityDefinition[] = [
     pinVariant: null,
     pollutants: {},
   },
-  // {
-  //   key: '@5136',
-  //   name: 'Murska Sobota',
-  //   subtitle: 'Pomurje',
-  //   position: { lat: 46.6613, lng: 16.1661 },
-  //   aqi: null,
-  //   pinVariant: null,
-  //   pollutants: {},
-  // },
+  {
+    key: '@5139',
+    name: 'Zagorje',
+    subtitle: 'Central Sava',
+    position: { lat: 46.131114182212, lng: 14.996115171781 },
+    aqi: null,
+    pinVariant: null,
+    pollutants: {},
+  },
 ];
 
 export const MapViewContent = {

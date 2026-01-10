@@ -19,4 +19,6 @@ export interface CityDefinition {
   pollutants: Partial<Record<PollutantType, PollutantData>>;
   heroImageUrl?: string;
   pinVariant: 'good' | 'moderate' | 'unhealthy' | null;
+  /** Health advice based on AQI level - populated from API */
+  healthAdvice?: string;
 }

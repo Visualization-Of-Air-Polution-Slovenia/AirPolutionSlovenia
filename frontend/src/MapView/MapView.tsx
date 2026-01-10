@@ -74,6 +74,16 @@ export const MapView = () => {
       return 'Hazardous';
     };
 
+    // Helper to get health advice based on AQI
+    const getHealthAdvice = (aqi: number): string => {
+      if (aqi <= 50) return 'Air quality is considered satisfactory, and air pollution poses little or no risk.';
+      if (aqi <= 100) return 'Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.';
+      if (aqi <= 150) return 'Members of sensitive groups may experience health effects. The general public is not likely to be affected.';
+      if (aqi <= 200) return 'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.';
+      if (aqi <= 300) return 'Health warnings of emergency conditions. The entire population is more likely to be affected.';
+      return 'Health alert: everyone may experience more serious health effects.';
+    };
+
     // Build pollutants object with only available data
     const pollutants: typeof staticCity.pollutants = {};
     
@@ -98,6 +108,7 @@ export const MapView = () => {
       },
       pollutants,
       pinVariant: getAqiBadge(apiData.aqi),
+      healthAdvice: getHealthAdvice(apiData.aqi),
     };
   }, [staticCity, cityApiData]);
 
@@ -236,7 +247,9 @@ export const MapView = () => {
 
             <section className={styles.advice}>
               <div className={styles.adviceTitle}>{MapViewContent.panel.healthAdviceTitle}</div>
-              <div className={styles.adviceText}>{MapViewContent.sidebar.healthAdviceText}</div>
+              <div className={styles.adviceText}>
+                {selectedCity.healthAdvice ?? MapViewContent.sidebar.healthAdviceText}
+              </div>
             </section>
           </div>
         </div>
