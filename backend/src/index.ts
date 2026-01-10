@@ -23,16 +23,16 @@ app.get("/ping", (_req: Request, res: Response) => {
   res.json({ message: "pong", time: new Date() });
 });
 
-app.get("/city/:cityName", async (req: Request, res: Response) => {
+app.get("/city/:cityKey", async (req: Request, res: Response) => {
   if (!AQODP_TOKEN) {
     return res.status(503).json({ error: "Service currently unavailable." });
   }
 
-  const cityName = req.params.cityName;
+  const cityKey = req.params.cityKey;
 
   try {
-    const cityData = await getData(cityName);
-    res.json({ city: cityName, data: cityData });
+    const cityData = await getData(AQODP_TOKEN,cityKey);
+    res.json({ city: cityKey, data: cityData });
   } catch (error) {
     console.error("Failed to fetch city data", error);
     res.status(500).json({ error: "Unable to fetch city data." });
