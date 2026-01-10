@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
       // Retry every 5 seconds for cold start, gives ~60 seconds total wait time
       retryDelay: (attemptIndex, error) => {
         if (error instanceof ApiError && error.status === 503) {
-          return 5000; // Fixed 5 second delay between retries
+          return (attemptIndex + 1 + Math.random()) * 5000; // Fixed 5 second delay between retries
         }
         return 1000;
       },

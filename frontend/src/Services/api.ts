@@ -2,7 +2,7 @@
  * API Service for communicating with the backend
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.BACKEND_API_URL || 'http://localhost:3000';
 
 /**
  * Custom error class for API errors
