@@ -365,6 +365,28 @@
   margin-bottom: var(--distance-md);
 }
 
+.loadingText {
+  margin-top: var(--distance-md);
+  padding: var(--distance-md);
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.loadingAqi {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.errorText {
+  margin-top: var(--distance-sm);
+  font-size: var(--font-size-sm);
+  color: var(--error, #ef4444);
+}
+
 @media (max-width: 980px) {
   .mapFrame {
     padding: var(--distance-lg);

@@ -2,25 +2,21 @@ import type { PollutantType } from '@/store/useStore';
 
 export const CitySidebarPlaceholderText = 'Details for this city are not available yet.';
 
-export type CityKey =
-  | 'ljubljana'
-  | 'maribor'
-  | 'koper'
-  | 'celje'
-  | 'kranj'
-  | 'velenje'
-  | 'novo_mesto'
-  | 'ptuj'
-  | 'nova_gorica'
-  | 'murska_sobota';
+export interface PollutantData {
+  value: number;
+  unit: string;
+  badge?: 'good' | 'moderate' | 'unhealthy';
+}
 
 export interface CityDefinition {
-  key: CityKey;
+  key: string;
   name: string;
   subtitle: string;
   position: { lat: number; lng: number };
-  aqi: { value: number; label: string };
-  pollutants: Record<PollutantType, { value: number; unit: string; badge?: 'good' | 'moderate' | 'unhealthy' }>;
+  /** AQI is null until loaded from API */
+  aqi: { value: number; label: string } | null;
+  /** Pollutants are optional - only show what's available from API */
+  pollutants: Partial<Record<PollutantType, PollutantData>>;
   heroImageUrl?: string;
-  pinVariant: 'good' | 'moderate' | 'unhealthy';
+  pinVariant: 'good' | 'moderate' | 'unhealthy' | null;
 }
