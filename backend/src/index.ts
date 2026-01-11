@@ -17,33 +17,21 @@ app.use("/data", express.static(dataDir));
 
 const PORT = Number(process.env.PORT) || 3000;
 const AQODP_TOKEN = process.env.AQODP_Token;
-let startingUp = 0;
-
 app.get("/", (_req: Request, res: Response) => {
   res.send("Backend is working 🎉");
 });
 
 app.get("/ping", (_req: Request, res: Response) => {
-  if (startingUp < 5) {
-    startingUp += 1;
-    return res.status(503).json({ message: "Backend is starting up, please wait..." });
-  }
-
   res.json({ message: "pong", time: new Date() });
 });
 
 app.get("/city/:cityKey", async (req: Request, res: Response) => {
-  if (startingUp < 5) {
-    startingUp += 1;
-    return res.status(503).json({ message: "Backend is starting up, please wait..." });
-  }
-
   if (!AQODP_TOKEN) {
     return res.status(503).json({ error: "Service currently unavailable." });
   }
 
   const cityKey = req.params.cityKey;
-  startingUp = 0;
+  
   try {
     const cityData = await getData(AQODP_TOKEN,cityKey);
     res.json({ city: cityKey, data: cityData });
