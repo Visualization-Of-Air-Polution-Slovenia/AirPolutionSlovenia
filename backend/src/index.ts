@@ -6,7 +6,10 @@ import { getData } from "./helpers/get_current_data";
 const app = express();
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(cors({
+  origin: ['https://ambitious-sea-01dfcc903.1.azurestaticapps.net', 'http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
 
 // Serve static files from backend/data directory at /data
 const dataDir = path.resolve(__dirname, "..", "data");
