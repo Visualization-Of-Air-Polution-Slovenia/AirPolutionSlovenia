@@ -7,7 +7,7 @@ const app = express();
 
 // Enable CORS for all origins
 app.use(cors({
-  origin: ['https://ambitious-sea-01dfcc903.1.azurestaticapps.net', 'http://localhost:5173', 'http://localhost:3000'],
+  origin: ['https://ambitious-sea-01dfcc903.1.azurestaticapps.net', 'http://localhost:5173'],
   credentials: true
 }));
 
@@ -27,7 +27,7 @@ app.get("/ping", (_req: Request, res: Response) => {
 
 app.get("/city/:cityKey", async (req: Request, res: Response) => {
   if (!AQODP_TOKEN) {
-    return res.status(503).json({ error: "Service currently unavailable." });
+    return res.status(503).json({ error: "Service not configured." });
   }
 
   const cityKey = req.params.cityKey;
