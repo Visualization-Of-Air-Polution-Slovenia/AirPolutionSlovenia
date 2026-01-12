@@ -1,7 +1,7 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
-import { getData } from "./helpers/get_current_data";
+import { getData, getSloveniaStations, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
 
 const app = express();
 
@@ -17,6 +17,13 @@ app.use("/data", express.static(dataDir));
 
 const PORT = Number(process.env.PORT) || 3000;
 const AQODP_TOKEN = process.env.AQODP_Token;
+
+const sloveniaData = {
+  sloveniaLocations: null as WaqiLocationData[] | null,
+  updatedAt: null as Date | null,
+  data: [] as any[],
+}
+
 app.get("/", (_req: Request, res: Response) => {
   res.send("Backend is working 🎉");
 });
@@ -39,6 +46,39 @@ app.get("/city/:cityKey", async (req: Request, res: Response) => {
     console.error("Failed to fetch city data", error);
     res.status(500).json({ error: "Unable to fetch city data." });
   }
+});
+
+app.get("/sloveniaData", async (req: Request, res: Response) => {
+  if (!AQODP_TOKEN) {
+    return res.status(503).json({ error: "Service not configured." });
+  }
+
+  if (sloveniaData.sloveniaLocations === null) {
+    try {
+      sloveniaData.sloveniaLocations = await getSloveniaStations(AQODP_TOKEN);
+    } catch (error) {
+      console.error("Failed to fetch Slovenia stations", error);
+      return res.status(500).json({ error: "Unable to fetch Slovenia stations." });
+    }
+  }
+
+  // Refresh data if older than 1 hour
+  if (sloveniaData.updatedAt === null || (new Date().getTime() - sloveniaData.updatedAt.getTime()) > 60 * 60 * 1000) {
+    const allData: SimplifiedCityData[] = [];
+    for (const location of sloveniaData.sloveniaLocations) {
+      try {
+        const cityData = await getData(AQODP_TOKEN, "@" + location.uid, true);
+        allData.push(cityData);
+      } catch (error) {
+        console.error("Failed to fetch Slovenia city data", error);
+      }
+    }
+
+    sloveniaData.data = allData;
+    sloveniaData.updatedAt = new Date();
+  }
+
+  res.json({ data: sloveniaData.data });
 });
 
 app.listen(PORT, () => {
