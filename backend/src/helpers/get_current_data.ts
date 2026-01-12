@@ -44,9 +44,15 @@ interface WaqiForecast {
   };
 }
 
+interface WaqiCity {
+  name: string;
+  geo: [string, string];
+}
+
 interface WaqiStationData {
   aqi: number;
   idx: number;
+  city: WaqiCity;
   dominentpol: string;
   iaqi: WaqiIaqi;
   time: WaqiTime;
@@ -54,7 +60,7 @@ interface WaqiStationData {
   debug?: { sync: string };
 }
 
-interface WaqiLocationData {
+export type WaqiLocationData = {
   lat: number;
   lon: number;
   uid: number;
@@ -75,21 +81,21 @@ interface WaqiResponse<T> {
 // ============================================================================
 
 export interface SimplifiedCityData {
-  aqi: number;
-  dominantPollutant: string;
-  pollutants: {
+  aqi?: number;
+  dominantPollutant?: string;
+  pollutants?: {
     pm10?: number;
     pm25?: number;
     no2?: number;
     o3?: number;
   };
-  weather: {
+  weather?: {
     temperature?: number;
     humidity?: number;
     pressure?: number;
     wind?: number;
   };
-  time: {
+  time?: {
     local: string;
     iso: string;
   };
@@ -97,14 +103,16 @@ export interface SimplifiedCityData {
     pm10?: WaqiForecastDay[];
     pm25?: WaqiForecastDay[];
     o3?: WaqiForecastDay[];
+    uvi?: WaqiForecastDay[];
   };
+  city?: WaqiCity;
 }
 
 // ============================================================================
 // Data Fetching
 // ============================================================================
 
-export async function getData(token: string, cityKey: string): Promise<SimplifiedCityData> {
+export async function getData(token: string, cityKey: string, forcast = false): Promise<SimplifiedCityData> {
   const res = await fetch(
     `https://api.waqi.info/feed/${encodeURIComponent(cityKey)}/?token=${encodeURIComponent(token)}`
   );
@@ -116,6 +124,13 @@ export async function getData(token: string, cityKey: string): Promise<Simplifie
   }
 
   const data = json.data;
+
+  if (forcast) {
+    return {
+      city: data.city,
+      forecast: data.forecast?.daily,
+    };
+  }
 
   return {
     aqi: data.aqi,
@@ -139,7 +154,7 @@ export async function getData(token: string, cityKey: string): Promise<Simplifie
   };
 }
 
-export async function getSloveniaStations(token: string): Promise<any> {
+export async function getSloveniaStations(token: string): Promise<WaqiLocationData[]> {
   const latlng = "46.8766,13.2812,45.4215,16.5961"; // Slovenia bounding box
   const res = await fetch(
     `https://api.waqi.info/map/bounds/?token=${encodeURIComponent(token)}&latlng=${encodeURIComponent(latlng)}`
@@ -153,7 +168,5 @@ export async function getSloveniaStations(token: string): Promise<any> {
 
   const data = json.data;
 
-  data.filter((station) => !station.station.name.endsWith("Slovenia"));
-
-  return data;
+  return data.filter((station) => station.station.name.endsWith("Slovenia"));
 }
