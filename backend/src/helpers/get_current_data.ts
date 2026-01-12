@@ -44,7 +44,7 @@ interface WaqiForecast {
   };
 }
 
-interface WaqiData {
+interface WaqiStationData {
   aqi: number;
   idx: number;
   dominentpol: string;
@@ -54,9 +54,20 @@ interface WaqiData {
   debug?: { sync: string };
 }
 
-interface WaqiResponse {
+interface WaqiLocationData {
+  lat: number;
+  lon: number;
+  uid: number;
+  aqi: string;
+  station: {
+    name: string;
+    time: string;
+  }
+}
+
+interface WaqiResponse<T> {
   status: 'ok' | 'error';
-  data: WaqiData | string; // string when error
+  data: T; // string when error
 }
 
 // ============================================================================
@@ -95,10 +106,10 @@ export interface SimplifiedCityData {
 
 export async function getData(token: string, cityKey: string): Promise<SimplifiedCityData> {
   const res = await fetch(
-    `http://api.waqi.info/feed/${encodeURIComponent(cityKey)}/?token=${encodeURIComponent(token)}`
+    `https://api.waqi.info/feed/${encodeURIComponent(cityKey)}/?token=${encodeURIComponent(token)}`
   );
 
-  const json: WaqiResponse = await res.json();
+  const json: WaqiResponse<WaqiStationData | string> = await res.json();
 
   if (json.status !== 'ok' || typeof json.data === 'string') {
     throw new Error(typeof json.data === 'string' ? json.data : 'Unknown API error');
@@ -126,4 +137,23 @@ export async function getData(token: string, cityKey: string): Promise<Simplifie
       iso: data.time.iso,
     },
   };
+}
+
+export async function getSloveniaStations(token: string): Promise<any> {
+  const latlng = "46.8766,13.2812,45.4215,16.5961"; // Slovenia bounding box
+  const res = await fetch(
+    `https://api.waqi.info/map/bounds/?token=${encodeURIComponent(token)}&latlng=${encodeURIComponent(latlng)}`
+  );
+
+  const json: WaqiResponse<WaqiLocationData[] | string> = await res.json();
+
+  if (json.status !== 'ok' || typeof json.data === 'string') {
+    throw new Error(typeof json.data === 'string' ? json.data : 'Unknown API error');
+  }
+
+  const data = json.data;
+
+  data.filter((station) => !station.station.name.endsWith("Slovenia"));
+
+  return data;
 }
