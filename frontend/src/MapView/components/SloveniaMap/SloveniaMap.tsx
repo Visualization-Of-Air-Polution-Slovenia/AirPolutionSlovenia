@@ -1,10 +1,16 @@
 import 'leaflet/dist/leaflet.css';
 
+import 'leaflet.heat/dist/leaflet-heat.js'
+
 import L, { type LatLngExpression } from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
 
 import styles from './SloveniaMap.module.css';
+import type { SimplifiedCityData } from '@/Services/api';
+import { useAppStore } from '@/store/useStore';
+import HeatmapLayer from "react-leaflet-heat-layer";
+
 
 export type SloveniaMapCity = {
   key: string;
@@ -21,6 +27,7 @@ export type SloveniaMapProps = {
   cities: SloveniaMapCity[];
   selectedCityKey: string;
   onSelectCity: (cityKey: string) => void;
+  sloveniaData: SimplifiedCityData[];
 };
 
 const markerUrl = '/marker.png';
@@ -54,7 +61,10 @@ export const SloveniaMap = ({
   cities,
   selectedCityKey,
   onSelectCity,
+  sloveniaData,
 }: SloveniaMapProps) => {
+  const { pollutionType } = useAppStore();
+
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
 
@@ -65,6 +75,18 @@ export const SloveniaMap = ({
     <div className={styles.wrap} aria-label="Map">
       <MapContainer className={styles.map} center={center} zoom={zoom} scrollWheelZoom>
         <TileLayer url={tileUrl} attribution={tileAttribution} />
+        <HeatmapLayer
+          latlngs={sloveniaData
+            .map(data => {
+              const forecast = data.forecast?.[pollutionType];
+              const value = Array.isArray(forecast) && forecast.length > 0 ? forecast[0].avg : 0;
+              const lat = parseFloat(data.city?.geo?.[0] ?? '0');
+              const lng = parseFloat(data.city?.geo?.[1] ?? '0');
+              return [lat, lng, value];
+            })
+            .filter(([,, value]) => value !== 0)
+          }
+        />
 
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
 
@@ -83,7 +105,6 @@ export const SloveniaMap = ({
                 click: () => onSelectCity(city.key),
               }}
             >
-              <Popup>{city.name}</Popup>
             </Marker>
           );
         })}

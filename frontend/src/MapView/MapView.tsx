@@ -147,6 +147,7 @@ export const MapView = () => {
             cities={MapViewContent.cities.map((c) => ({ key: c.key, name: c.name, position: c.position }))}
             selectedCityKey={selectedCity.key}
             onSelectCity={(key) => setSelectedRegion(key)}
+            sloveniaData={ sloveniaApiData?.data ?? [] }
           />
         </div>
 
