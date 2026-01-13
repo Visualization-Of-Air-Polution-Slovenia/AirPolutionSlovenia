@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import styles from './MapView.module.css';
 
-import { useCityData } from '@/Services';
+import { useCityData, useSloveniaData } from '@/Services';
 import { useAppStore } from '@/store/useStore';
 import { MapViewContent } from './MapView.content';
 
@@ -20,6 +20,17 @@ export const MapView = () => {
   // - Caches the result (won't re-fetch if you switch back to same city)
   // - Provides isLoading, error, and data states
   const { data: cityApiData, isLoading, error } = useCityData(selectedRegion);
+
+  const { data: sloveniaApiData, isLoading: sloveniaLoading, error: sloveniaError } = useSloveniaData();
+
+  useEffect(() => {
+    if (sloveniaLoading) {
+      console.debug(`[API] Loading data for Slovenia`);
+    }
+    if (sloveniaError) {
+      console.error(`[API] Error fetching Slovenia data:`, sloveniaError);
+    }
+  }, [sloveniaLoading, sloveniaError]);
 
   // Log to console so you can see what's happening
   useEffect(() => {

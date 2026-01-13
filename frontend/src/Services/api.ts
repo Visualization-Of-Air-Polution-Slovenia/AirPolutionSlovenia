@@ -64,13 +64,13 @@ export interface ForecastDay {
 }
 
 export interface SimplifiedCityData {
-  aqi: number;
-  dominantPollutant: string;
-  city: {
+  aqi?: number;
+  dominantPollutant?: string;
+  city?: {
     name: string;
-    geo: [number, number];
+    geo: [string, string];
   };
-  pollutants: {
+  pollutants?: {
     pm10?: number;
     pm25?: number;
     no2?: number;
@@ -78,26 +78,31 @@ export interface SimplifiedCityData {
     co?: number;
     so2?: number;
   };
-  weather: {
+  weather?: {
     temperature?: number;
     humidity?: number;
     pressure?: number;
     wind?: number;
   };
-  time: {
+  time?: {
     local: string;
     iso: string;
   };
   forecast?: {
     pm10?: ForecastDay[];
-    pm25?: ForecastDay[];
+    "pm2.5"?: ForecastDay[];
     o3?: ForecastDay[];
+    no2?: ForecastDay[];
   };
 }
 
 export interface CityDataResponse {
   city: string;
   data: SimplifiedCityData;
+}
+
+export interface SloveniaDataResponse {
+  data: SimplifiedCityData[];
 }
 
 export interface PingResponse {
@@ -121,4 +126,11 @@ export function ping(): Promise<PingResponse> {
  */
 export function getCityData(cityName: string): Promise<CityDataResponse> {
   return fetchApi<CityDataResponse>(`/city/${encodeURIComponent(cityName)}`);
+}
+
+/** 
+ * Get pollution forecast data for all Slovenian locations
+ */
+export function getSloveniaForecastData(): Promise<{ data: SimplifiedCityData[] }> {
+  return fetchApi<{ data: SimplifiedCityData[] }>('/sloveniaData');
 }

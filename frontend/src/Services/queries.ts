@@ -4,7 +4,7 @@
  */
 
 import { useQuery } from '@tanstack/react-query';
-import { getCityData, ping, type CityDataResponse, type PingResponse } from './api';
+import { getCityData, getSloveniaForecastData, ping, type CityDataResponse, type PingResponse, type SloveniaDataResponse } from './api';
 
 // ============================================================================
 // Query Keys
@@ -13,6 +13,7 @@ import { getCityData, ping, type CityDataResponse, type PingResponse } from './a
 export const queryKeys = {
   ping: ['ping'] as const,
   cityData: (cityName: string) => ['cityData', cityName] as const,
+  sloveniaData: ['sloveniaData'] as const,
 };
 
 // ============================================================================
@@ -40,4 +41,15 @@ export function useCityData(cityName: string | null) {
     enabled: !!cityName, // Only fetch when cityName is provided
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
+}
+
+/**
+ * Hook to fetch pollution data for all Slovenian locations
+ */
+export function useSloveniaData() {
+  return useQuery<SloveniaDataResponse, Error>({
+    queryKey: queryKeys.sloveniaData,
+    queryFn: () => getSloveniaForecastData(),
+    staleTime: 1000 * 60 * 60, // 1 hour
+  })
 }
