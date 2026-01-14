@@ -3,7 +3,7 @@ import styles from './Health.module.css';
 import { HealthContent, ResearchLinks, SystemicCards } from './Health.content';
 import { HealthCard } from './components/HealthCard/HealthCard';
 import { HealthResearchLink } from './components/HealthResearchLink/HealthResearchLink';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useAppStore } from '@/store/useStore';
 import { LOCATIONS, type LocationId } from './Health.locations';
 import { getAirQualityPrompt } from './Health.prompts';
@@ -23,26 +23,14 @@ export const Health = () => {
     return cityApiData.data.aqi;
   }, [cityApiData]);
 
-  console.log(airIndex);
-
-
   const airPrompt = airIndex !== null ? getAirQualityPrompt(airIndex) : null;
 
-  // dynamically adjust card tones
-  const adjustedCards = SystemicCards.map((card) => {
-    if (!airPrompt) return card;
-    return { ...card, tone: airPrompt.cardTone };
-  });
-
   const level = airIndex !== null ? getAirQualityLevel(airIndex) : null;
-  const dynamicCards = level ? getDynamicCardContent(level) : SystemicCards;
-
-
-  const locations = useMemo(() => {
-      const base = ['Maribor', 'Ljubljana'];
-      if (selectedRegion && !base.includes(selectedRegion)) return [selectedRegion, ...base];
-      return base;
-    }, [selectedRegion]);
+  const dynamicCards = useMemo(() => {
+    const baseCards = level ? getDynamicCardContent(level) : SystemicCards;
+    if (!airPrompt) return baseCards;
+    return baseCards.map((card) => ({ ...card, tone: airPrompt.cardTone }));
+  }, [level, airPrompt]);
 
   return (
     <main className={styles.page}>
@@ -68,9 +56,13 @@ export const Health = () => {
         </h1>
 
         <p className={styles.intro}>
-          {airPrompt
-            ? airPrompt.intro
-            : 'Select a city to view current air quality and health information.'}
+          {isLoading
+            ? 'Loading current air quality…'
+            : error
+              ? 'Failed to load current air quality. Please try again.'
+              : airPrompt
+                ? airPrompt.intro
+                : 'Select a city to view current air quality and health information.'}
         </p>
       </div>
 
@@ -101,7 +93,13 @@ export const Health = () => {
             {airPrompt ? airPrompt.alert.label : 'Select a city'}
           </div>
           <div className={styles.alertValue}>
-            {airPrompt ? `${airPrompt.alert.value} (${airIndex})` : 'Data not available'}
+            {isLoading
+              ? 'Loading…'
+              : error
+                ? 'Data not available'
+                : airPrompt
+                  ? `${airPrompt.alert.value} (${airIndex})`
+                  : 'Data not available'}
           </div>
         </div>
       </div>
