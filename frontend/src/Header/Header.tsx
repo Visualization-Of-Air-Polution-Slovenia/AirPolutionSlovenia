@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
@@ -7,6 +7,7 @@ import { ThemeIcons } from './Header.content';
 
 export const Header = () => {
   const { theme, toggleTheme } = useAppStore();
+  const location = useLocation();
 
   return (
     <header className={styles.header}>
@@ -23,7 +24,7 @@ export const Header = () => {
 
       <nav className={styles.nav} aria-label="Primary">
         <div className={styles.navPill}>
-          <NavLink to="/map" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
+          <NavLink to="/map" className={({ isActive }) => `${styles.navLink} ${isActive || location.pathname === '/' ? styles.navActive : ''}`}
             >Map View</NavLink>
           <NavLink to="/analysis" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navActive : ''}`}
             >Analysis</NavLink>
