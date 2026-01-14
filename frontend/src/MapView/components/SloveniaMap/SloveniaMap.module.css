@@ -24,6 +24,20 @@
   animation: markerGlow 1.25s ease-in-out infinite;
 }
 
+.circleLabel {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #111 !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  padding: 0 !important;
+}
+
+.circleLabel::before {
+  display: none !important; /* removes tooltip little arrow */
+}
+
 @keyframes markerGlow {
   0% {
     filter:
