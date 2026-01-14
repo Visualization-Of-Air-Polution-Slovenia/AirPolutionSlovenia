@@ -17,6 +17,16 @@ export const HealthContent = {
   },
 };
 
+export interface SystemicCard {
+  icon: string;
+  title: string;
+  badge: string;
+  tone: 'info' | 'warning' | 'danger' | 'neutral';
+  border: string;
+  body: string;
+  tags: string[];
+}
+
 export const SystemicCards = [
   {
     icon: 'pulmonology',
