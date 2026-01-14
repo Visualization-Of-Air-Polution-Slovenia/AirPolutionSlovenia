@@ -17,11 +17,11 @@ const addHoursUtc = (base: Date, hours: number) =>
   new Date(base.getTime() + hours * MS_HOUR);
 
 const formatUtcHour = (d: Date) =>
-  `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')} ` +
-  `${String(d.getUTCHours()).padStart(2, '0')}:00`;
+  `${String(d.getHours()).padStart(2, '0')}:00 ` +
+  `${String(d.getDate()).padStart(2, '0')}. ${String(d.getMonth() + 1).padStart(2, '0')}. ${d.getFullYear()}`;
 
 const formatLocalDate = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} `;
+  `${String(d.getDate()).padStart(2, '0')}. ${String(d.getMonth() + 1).padStart(2, '0')}. ${d.getFullYear()}`;
 
 export const MapView = () => {
 
