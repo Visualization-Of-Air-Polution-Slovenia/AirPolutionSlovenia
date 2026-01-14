@@ -63,6 +63,16 @@ const getDangerLevel = (pollutant: PollutantType, v: number): 0 | 1 | 2 | 3 => {
   }
 };
 
+const getHeatMaxValue = (pollutant: PollutantType): number => {
+  switch (pollutant) {
+    case 'pm10': return 150;
+    case 'pm2.5': return 80;
+    case 'o3': return 300;
+    case 'no2': return 150;
+    default: return 100;
+  }
+}
+
 const getDangerColors = (level: 0 | 1 | 2 | 3) => {
   // Keep it simple: green → yellow → orange → red
   switch (level) {
@@ -155,6 +165,8 @@ export const SloveniaMap = ({
           longitudeExtractor={(p: OmLocationTimeData) => p.longitude}
           latitudeExtractor={(p: OmLocationTimeData) => p.latitude}
           intensityExtractor={(p: OmLocationTimeData) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso)}
+          max={getHeatMaxValue(pollutionType)}
+          useLocalExtrema={false}
         />
 
 
