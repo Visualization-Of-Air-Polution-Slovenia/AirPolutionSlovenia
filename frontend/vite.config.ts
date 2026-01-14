@@ -16,4 +16,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      // forward frontend /api/* requests to your backend on :3000
+      '/api': 'http://localhost:3000',
+    },
+  },
 })

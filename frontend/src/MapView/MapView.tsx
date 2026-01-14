@@ -8,7 +8,30 @@ import { MapViewContent } from './MapView.content';
 
 import { SloveniaMap } from './components/SloveniaMap/SloveniaMap';
 
+const MS_HOUR = 60 * 60 * 1000;
+
+const floorToUtcHour = (d: Date) =>
+  new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), 0, 0, 0));
+
+const addHoursUtc = (base: Date, hours: number) =>
+  new Date(base.getTime() + hours * MS_HOUR);
+
+const formatUtcHour = (d: Date) =>
+  `${String(d.getHours()).padStart(2, '0')}:00 ` +
+  `${String(d.getDate()).padStart(2, '0')}. ${String(d.getMonth() + 1).padStart(2, '0')}. ${d.getFullYear()}`;
+
+const formatLocalDate = (d: Date) =>
+  `${String(d.getDate()).padStart(2, '0')}. ${String(d.getMonth() + 1).padStart(2, '0')}. ${d.getFullYear()}`;
+
 export const MapView = () => {
+
+  const nowUtcHour = useMemo(() => floorToUtcHour(new Date()), []);
+  const [timeOffsetHours, setTimeOffsetHours] = useState(0);
+
+  const selectedTimeIso = useMemo(() => {
+    return addHoursUtc(nowUtcHour, timeOffsetHours).toISOString();
+  }, [nowUtcHour, timeOffsetHours]);
+
   const { pollutionType, setPollutionType, selectedRegion, setSelectedRegion } = useAppStore();
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -108,7 +131,7 @@ export const MapView = () => {
       pollutants.no2 = { value: apiData.pollutants.no2, unit: 'µg/m³', badge: getAqiBadge(apiData.pollutants.no2) };
     }
     if (apiData.pollutants.o3 !== undefined) {
-      pollutants.o3 = { value: apiData.pollutants.o3, unit: 'µg/m³', badge: getAqiBadge(apiData.pollutants.o3) };
+      pollutants.o3 = { value: apiData.pollutants.o3, unit: 'PPM', badge: getAqiBadge(apiData.pollutants.o3) };
     }
 
     return {
@@ -148,6 +171,7 @@ export const MapView = () => {
             selectedCityKey={selectedCity.key}
             onSelectCity={(key) => setSelectedRegion(key)}
             sloveniaData={ sloveniaApiData?.data ?? [] }
+            selectedTimeIso={selectedTimeIso}
           />
         </div>
 
@@ -172,6 +196,25 @@ export const MapView = () => {
                 {MapViewContent.pollutantLabels[t]}
               </button>
             ))}
+          </div>
+          <div className={styles.panelLabel}>Time</div>
+
+          <div className={styles.sliderWrap}>
+            <input
+              className={styles.slider}
+              type="range"
+              min={-72}
+              max={72}
+              step={1}
+              value={timeOffsetHours}
+              onChange={(e) => setTimeOffsetHours(Number(e.target.value))}
+              aria-label="Select time"
+            />
+            <div className={styles.sliderMeta}>
+              <span>{formatLocalDate(addHoursUtc(nowUtcHour, -72))}</span>
+              <strong>{formatUtcHour(new Date(selectedTimeIso))}</strong>
+              <span>{formatLocalDate(addHoursUtc(nowUtcHour, 72))}</span>
+            </div>
           </div>
         </div>
 

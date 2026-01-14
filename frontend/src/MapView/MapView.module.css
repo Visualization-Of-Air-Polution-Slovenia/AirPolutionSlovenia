@@ -387,6 +387,24 @@
   color: var(--error, #ef4444);
 }
 
+.sliderWrap {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.sliderMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
 @media (max-width: 980px) {
   .mapFrame {
     padding: var(--distance-lg);
