@@ -8,21 +8,23 @@ import { useAppStore } from '@/store/useStore';
 import { LOCATIONS, type LocationId } from './Health.locations';
 import { getAirQualityPrompt } from './Health.prompts';
 import { getDynamicCardContent, getAirQualityLevel } from './Health.dynamic';
+import { useCityData } from '@/Services';
 
 /**
  * Displays health impact analysis, systemic health effects cards, and research links.
  */
 export const Health = () => {
   const { selectedRegion, setSelectedRegion } = useAppStore();
-  const [airIndex, setAirIndex] = useState<number | null>(null);
 
   // simulate or fetch AQI
-  useEffect(() => {
-    if (selectedRegion) {
-      const simulatedIndex = Math.floor(Math.random() * 150);
-      setAirIndex(simulatedIndex);
-    }
-  }, [selectedRegion]);
+  const { data: cityApiData, isLoading, error } = useCityData(selectedRegion);
+  const airIndex = useMemo(() => {
+    if (!cityApiData?.data?.aqi) return null;
+    return cityApiData.data.aqi;
+  }, [cityApiData]);
+
+  console.log(airIndex);
+
 
   const airPrompt = airIndex !== null ? getAirQualityPrompt(airIndex) : null;
 
