@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
 import { getData, getSloveniaStations, newSloveniaData, OmLocationTimeData, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
-
+import { csvRouter } from "./routes/csv";
 const app = express();
 
 // Enable CORS for all origins
@@ -15,6 +15,9 @@ app.use(cors({
 const dataDir = path.resolve(__dirname, "..", "data");
 app.use("/data", express.static(dataDir));
 
+// Mount CSV API routes
+app.use(csvRouter);
+
 const PORT = Number(process.env.PORT) || 3000;
 const AQODP_TOKEN = process.env.AQODP_Token;
 
@@ -22,7 +25,7 @@ const sloveniaData = {
   sloveniaLocations: null as WaqiLocationData[] | null,
   updatedAt: null as Date | null,
   data: [] as any[],
-}
+};
 
 const sloveniaDataOM = {
   sloveniaLocations: null as WaqiLocationData[] | null,
@@ -44,9 +47,9 @@ app.get("/city/:cityKey", async (req: Request, res: Response) => {
   }
 
   const cityKey = req.params.cityKey;
-  
+
   try {
-    const cityData = await getData(AQODP_TOKEN,cityKey);
+    const cityData = await getData(AQODP_TOKEN, cityKey);
     res.json({ city: cityKey, data: cityData });
   } catch (error) {
     console.error("Failed to fetch city data", error);
@@ -54,7 +57,7 @@ app.get("/city/:cityKey", async (req: Request, res: Response) => {
   }
 });
 
-app.get("/sloveniaData", async (req: Request, res: Response) => {
+app.get("/sloveniaData", async (_req: Request, res: Response) => {
   if (!AQODP_TOKEN) {
     return res.status(503).json({ error: "Service not configured." });
   }
@@ -69,8 +72,12 @@ app.get("/sloveniaData", async (req: Request, res: Response) => {
   }
 
   // Refresh data if older than 1 hour
-  if (sloveniaData.updatedAt === null || (new Date().getTime() - sloveniaData.updatedAt.getTime()) > 60 * 60 * 1000) {
+  if (
+    sloveniaData.updatedAt === null ||
+    (new Date().getTime() - sloveniaData.updatedAt.getTime()) > 60 * 60 * 1000
+  ) {
     const allData: SimplifiedCityData[] = [];
+
     for (const location of sloveniaData.sloveniaLocations) {
       try {
         const cityData = await getData(AQODP_TOKEN, "@" + location.uid, true);
