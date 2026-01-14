@@ -1,7 +1,7 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
 import path from "path";
-import { getData, getSloveniaStations, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
+import { getData, getSloveniaStations, newSloveniaData, OmLocationTimeData, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
 
 const app = express();
 
@@ -22,6 +22,12 @@ const sloveniaData = {
   sloveniaLocations: null as WaqiLocationData[] | null,
   updatedAt: null as Date | null,
   data: [] as any[],
+}
+
+const sloveniaDataOM = {
+  sloveniaLocations: null as WaqiLocationData[] | null,
+  updatedAt: null as Date | null,
+  data: [] as OmLocationTimeData[],
 }
 
 app.get("/", (_req: Request, res: Response) => {
@@ -79,6 +85,37 @@ app.get("/sloveniaData", async (req: Request, res: Response) => {
   }
 
   res.json({ data: sloveniaData.data });
+});
+
+app.get("/v2/sloveniaData", async (req: Request, res: Response) => {
+  if (!AQODP_TOKEN) {
+    return res.status(503).json({ error: "Service not configured." });
+  }
+
+  if (sloveniaDataOM.sloveniaLocations === null) {
+    try {
+      sloveniaDataOM.sloveniaLocations = await getSloveniaStations(AQODP_TOKEN);
+    } catch (error) {
+      console.error("Failed to fetch Slovenia stations", error);
+      return res.status(500).json({ error: "Unable to fetch Slovenia stations." });
+    }
+  }
+
+  if (sloveniaDataOM.updatedAt === null || (new Date().getTime() - sloveniaDataOM.updatedAt.getTime()) > 60 * 60 * 1000) {
+    let newData;
+    try {
+      newData = await newSloveniaData(sloveniaDataOM.sloveniaLocations) ?? [];
+    }
+    catch (error) {
+      console.error("Failed to fetch Slovenia city data v2", error);
+    }
+
+
+    sloveniaDataOM.data = newData!;
+    sloveniaDataOM.updatedAt = new Date();
+  }
+
+  return res.json({ data: sloveniaDataOM.data });
 });
 
 app.listen(PORT, () => {

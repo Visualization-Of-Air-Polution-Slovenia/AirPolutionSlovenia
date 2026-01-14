@@ -1,3 +1,5 @@
+import { fetchWeatherApi } from "openmeteo";
+
 // ============================================================================
 // WAQI API Response Types
 // ============================================================================
@@ -69,7 +71,17 @@ export type WaqiLocationData = {
     name: string;
     time: string;
   }
-}
+};
+
+export type OmLocationTimeData = {
+  latitude: number;
+  longitude: number;
+  time: Date[] // ISO timestamps;
+  pm10: number[];
+  "pm2.5": number[];
+  o3: number[];
+  no2: number[];
+};
 
 interface WaqiResponse<T> {
   status: 'ok' | 'error';
@@ -169,4 +181,49 @@ export async function getSloveniaStations(token: string): Promise<WaqiLocationDa
   const data = json.data;
 
   return data.filter((station) => station.station.name.endsWith("Slovenia"));
+}
+
+export async function newSloveniaData(locations: WaqiLocationData[]): Promise<OmLocationTimeData[]> {
+  const params = {
+    latitude: locations.map(loc => loc.lat).join(','),
+    longitude: locations.map(loc => loc.lon).join(','),
+    hourly: ["pm10", "pm2_5", "ozone", "nitrogen_dioxide"],
+    timezone: "Europe/Berlin",
+    past_days: 3,
+  };
+
+  const url = "https://air-quality-api.open-meteo.com/v1/air-quality";
+  const responses = await fetchWeatherApi(url, params);
+
+  const result = [];
+
+  let ind = 0;
+
+  for (const response of responses) {
+    // Attributes for timezone and location
+    const elevation = response.elevation();
+    const timezone = response.timezone();
+    const timezoneAbbreviation = response.timezoneAbbreviation();
+    const utcOffsetSeconds = response.utcOffsetSeconds();
+
+    const hourly = response.hourly()!;
+
+    const weatherData: OmLocationTimeData = {
+      time: Array.from(
+        { length: (Number(hourly.timeEnd()) - Number(hourly.time())) / hourly.interval() }, 
+        (_, i) => new Date((Number(hourly.time()) + i * hourly.interval() + utcOffsetSeconds) * 1000)
+      ),
+      pm10: Array.from(hourly.variables(0)?.valuesArray() ?? []),
+      'pm2.5': Array.from(hourly.variables(1)?.valuesArray() ?? []),
+      o3: Array.from(hourly.variables(2)?.valuesArray() ?? []),
+      no2: Array.from(hourly.variables(3)?.valuesArray() ?? []),
+      latitude: locations[ind].lat,
+      longitude: locations[ind].lon,
+    };
+
+    result.push(weatherData);
+    ind++;
+  }
+
+  return result;
 }
