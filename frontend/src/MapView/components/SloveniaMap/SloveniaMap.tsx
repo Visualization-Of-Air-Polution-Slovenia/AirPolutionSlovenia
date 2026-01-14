@@ -1,15 +1,13 @@
 import 'leaflet/dist/leaflet.css';
 
-import 'leaflet.heat/dist/leaflet-heat.js'
-
 import L, { type LatLngExpression } from 'leaflet';
 import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
 
 import styles from './SloveniaMap.module.css';
-import type { SimplifiedCityData } from '@/Services/api';
-import { useAppStore } from '@/store/useStore';
-import HeatmapLayer from "react-leaflet-heat-layer";
+import type { OmLocationTimeData } from '@/Services/api';
+import { useAppStore, type PollutantType } from '@/store/useStore';
+import { HeatmapLayer }  from 'react-leaflet-heatmap-layer-v3';
 
 
 export type SloveniaMapCity = {
@@ -27,7 +25,8 @@ export type SloveniaMapProps = {
   cities: SloveniaMapCity[];
   selectedCityKey: string;
   onSelectCity: (cityKey: string) => void;
-  sloveniaData: SimplifiedCityData[];
+  sloveniaData: OmLocationTimeData[];
+  selectedTimeIso: string; // ISO timestamp (hour precision)
 };
 
 const markerUrl = '/marker.png';
@@ -52,6 +51,39 @@ const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoo
   return null;
 };
 
+const closestIndexToTarget = (times: string[], targetIso: string) => {
+  if (times.length === 0) return -1;
+
+  const target = Date.parse(targetIso);
+  if (!Number.isFinite(target)) return -1;
+
+  let bestIdx = 0;
+  let bestDist = Math.abs(Date.parse(times[0]) - target);
+
+  for (let i = 1; i < times.length; i++) {
+    const t = Date.parse(times[i]);
+    if (!Number.isFinite(t)) continue;
+
+    const dist = Math.abs(t - target);
+    if (dist < bestDist) {
+      bestDist = dist;
+      bestIdx = i;
+    }
+  }
+  return bestIdx;
+};
+
+const getIntensityForTypeAtTime = (p: OmLocationTimeData, pollutionType: PollutantType, targetIso: string) => {
+  const series = p[pollutionType];
+  if (!Array.isArray(series) || series.length === 0) return 0;
+
+  const idx = closestIndexToTarget(p.time, targetIso);
+  if (idx < 0 || idx >= series.length) return 0;
+
+  const v = series[idx];
+  return Number.isFinite(v) ? v : 0;
+};
+
 export const SloveniaMap = ({
   center,
   zoom,
@@ -62,6 +94,7 @@ export const SloveniaMap = ({
   selectedCityKey,
   onSelectCity,
   sloveniaData,
+  selectedTimeIso
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
@@ -75,20 +108,15 @@ export const SloveniaMap = ({
     <div className={styles.wrap} aria-label="Map">
       <MapContainer className={styles.map} center={center} zoom={zoom} scrollWheelZoom>
         <TileLayer url={tileUrl} attribution={tileAttribution} />
-        <HeatmapLayer
-          latlngs={sloveniaData
-            .map(data => {
-              const forecast = data.forecast?.[pollutionType];
-              const value = Array.isArray(forecast) && forecast.length > 0 ? forecast[0].avg : 0;
-              const lat = parseFloat(data.city?.geo?.[0] ?? '0');
-              const lng = parseFloat(data.city?.geo?.[1] ?? '0');
-              return [lat, lng, value];
-            })
-            .filter(([,, value]) => value !== 0)
-          }
-        />
-
+        
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
+
+        <HeatmapLayer
+          points={sloveniaData.filter((p: OmLocationTimeData) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso) !== 0)}
+          longitudeExtractor={(p: OmLocationTimeData) => p.longitude}
+          latitudeExtractor={(p: OmLocationTimeData) => p.latitude}
+          intensityExtractor={(p: OmLocationTimeData) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso)}
+        />
 
         {cities.map((city) => {
           const pos: LatLngExpression = [city.position.lat, city.position.lng];

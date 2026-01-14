@@ -96,6 +96,16 @@ export interface SimplifiedCityData {
   };
 }
 
+export type OmLocationTimeData = {
+  latitude: number;
+  longitude: number;
+  time: string[] // ISO timestamps;
+  pm10: number[];
+  "pm2.5": number[];
+  o3: number[];
+  no2: number[];
+};
+
 export interface CityDataResponse {
   city: string;
   data: SimplifiedCityData;
@@ -104,6 +114,11 @@ export interface CityDataResponse {
 export interface SloveniaDataResponse {
   data: SimplifiedCityData[];
 }
+
+export type OmSloveniaDataResponse = {
+  data: OmLocationTimeData[];
+};
+
 
 export interface PingResponse {
   message: string;
@@ -131,6 +146,6 @@ export function getCityData(cityName: string): Promise<CityDataResponse> {
 /** 
  * Get pollution forecast data for all Slovenian locations
  */
-export function getSloveniaForecastData(): Promise<{ data: SimplifiedCityData[] }> {
-  return fetchApi<{ data: SimplifiedCityData[] }>('/sloveniaData');
+export function getSloveniaForecastData(): Promise<OmSloveniaDataResponse> {
+  return fetchApi<OmSloveniaDataResponse>('/v2/sloveniaData');
 }
