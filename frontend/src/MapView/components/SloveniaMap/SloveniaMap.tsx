@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import styles from './SloveniaMap.module.css';
 import type { OmLocationTimeData } from '@/Services/api';
 import { useAppStore, type PollutantType } from '@/store/useStore';
-import { HeatmapLayer }  from 'react-leaflet-heatmap-layer-v3';
+import { HeatLayer, type HeatPoint } from './HeatLayer';
 
 
 export type SloveniaMapCity = {
@@ -147,6 +147,13 @@ export const SloveniaMap = ({
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
+  const heatPoints: HeatPoint[] = sloveniaData
+    .map((p) => {
+      const v = getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso);
+      return [p.latitude, p.longitude, v] as HeatPoint;
+    })
+    .filter(([, , v]) => Number.isFinite(v) && v > 0);
+
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
 
@@ -160,18 +167,12 @@ export const SloveniaMap = ({
         
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
 
-        <HeatmapLayer
-          points={sloveniaData.filter((p: OmLocationTimeData) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso) !== 0)}
-          longitudeExtractor={(p: OmLocationTimeData) => p.longitude}
-          latitudeExtractor={(p: OmLocationTimeData) => p.latitude}
-          intensityExtractor={(p: OmLocationTimeData) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso)}
-          max={getHeatMaxValue(pollutionType)}
-          useLocalExtrema={false}
-        />
+        <HeatLayer points={heatPoints} max={getHeatMaxValue(pollutionType)} />
 
 
         {/* Pins for each location in sloveniaData, showing number of particles */}
         {sloveniaData.map((p, idx) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const value = getIntensityForTypeAtTime(p, pollutionType as any, selectedTimeIso);
 
           if (!Number.isFinite(value) || value === 0) return null;

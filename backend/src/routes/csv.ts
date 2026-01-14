@@ -17,6 +17,14 @@ type UnifiedRow = {
 };
 
 let cachedRows: UnifiedRow[] | null = null;
+let cachedMeta: { arsoFile: string | null; eeaFile: string | null; warnings: string[] } | null = null;
+
+function firstExistingFile(...candidates: string[]): string | null {
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
 
 
 function normPollutant(raw: string) {
@@ -124,20 +132,66 @@ function parseEeaDaily(filePath: string): UnifiedRow[] {
   return rows;
 }
 
-function loadAllRows(): UnifiedRow[] {
-  if (cachedRows) return cachedRows;
+function loadAllRows(): {
+  rows: UnifiedRow[];
+  meta: { arsoFile: string | null; eeaFile: string | null; warnings: string[] };
+} {
+  if (cachedRows && cachedMeta) return { rows: cachedRows, meta: cachedMeta };
 
-  const arsoPath = path.resolve(__dirname, "..", "..", "data", "arso_daily.csv");
-  const eeaPath = path.resolve(__dirname, "..", "..", "data", "eea_daily.csv");
+  const dataDir = path.resolve(__dirname, "..", "..", "data");
 
-  const arsoRows = fs.existsSync(arsoPath) ? parseArsoDaily(arsoPath) : [];
-  const eeaRows = fs.existsSync(eeaPath) ? parseEeaDaily(eeaPath) : [];
+  // Support multiple naming conventions that exist in this repo.
+  const arsoPath = firstExistingFile(
+    path.resolve(dataDir, "arso_daily.csv"),
+    path.resolve(dataDir, "ARSO_Daily.csv"),
+    path.resolve(dataDir, "ARSO_daily.csv")
+  );
+  const eeaPath = firstExistingFile(
+    path.resolve(dataDir, "eea_daily.csv"),
+    path.resolve(dataDir, "EEA_Daily.csv"),
+    path.resolve(dataDir, "EEA_daily.csv")
+  );
+
+  const warnings: string[] = [];
+
+  let arsoRows: UnifiedRow[] = [];
+  if (arsoPath) {
+    try {
+      arsoRows = parseArsoDaily(arsoPath);
+    } catch (e: any) {
+      warnings.push(`Failed to parse ARSO CSV (${path.basename(arsoPath)}): ${e?.message ?? String(e)}`);
+    }
+  } else {
+    warnings.push('ARSO daily CSV not found in backend/data (expected ARSO_Daily.csv or arso_daily.csv).');
+  }
+
+  let eeaRows: UnifiedRow[] = [];
+  if (eeaPath) {
+    try {
+      eeaRows = parseEeaDaily(eeaPath);
+    } catch (e: any) {
+      warnings.push(`Failed to parse EEA CSV (${path.basename(eeaPath)}): ${e?.message ?? String(e)}`);
+    }
+  } else {
+    warnings.push('EEA daily CSV not found in backend/data (expected EEA_Daily.csv or eea_daily.csv).');
+  }
 
   cachedRows = [...arsoRows, ...eeaRows];
+  cachedMeta = {
+    arsoFile: arsoPath ? path.basename(arsoPath) : null,
+    eeaFile: eeaPath ? path.basename(eeaPath) : null,
+    warnings,
+  };
 
-  console.log(`✅ Loaded data: ARSO=${arsoRows.length}, EEA=${eeaRows.length}, TOTAL=${cachedRows.length}`);
+  console.log(
+    `✅ Loaded data: ARSO=${arsoRows.length} (${cachedMeta.arsoFile ?? 'missing'}), ` +
+      `EEA=${eeaRows.length} (${cachedMeta.eeaFile ?? 'missing'}), TOTAL=${cachedRows.length}`
+  );
+  if (warnings.length) {
+    console.warn(`⚠️ CSV warnings: ${warnings.join(' | ')}`);
+  }
 
-  return cachedRows;
+  return { rows: cachedRows, meta: cachedMeta };
 }
 
 // --- endpoints ---
@@ -145,10 +199,18 @@ function loadAllRows(): UnifiedRow[] {
 // Full dataset (merged + normalized; no filtering)
 csvRouter.get("/api/arso/all", (_req, res) => {
   try {
-    const rows = loadAllRows();
-    res.json({ rows });
+    const { rows, meta } = loadAllRows();
+    res.json({ rows, meta });
   } catch (e: any) {
-    res.status(500).json({ error: e?.message ?? "Failed to load full data" });
+    // Keep the site usable even if something unexpected happens.
+    res.status(200).json({
+      rows: [],
+      meta: {
+        arsoFile: null,
+        eeaFile: null,
+        warnings: [e?.message ?? 'Failed to load full data'],
+      },
+    });
   }
 });
 
@@ -183,7 +245,7 @@ csvRouter.get("/api/cities/eea", (_req, res) => {
 // Cities from BOTH sources combined (normalized)
 csvRouter.get("/api/cities", (_req, res) => {
   try {
-    const rows = loadAllRows();
+    const { rows } = loadAllRows();
     const cities = Array.from(new Set(rows.map((r) => r.city))).sort((a, b) => a.localeCompare(b));
     res.json({ cities, count: cities.length });
   } catch (e: any) {
@@ -194,7 +256,7 @@ csvRouter.get("/api/cities", (_req, res) => {
 // Debug counts per city|pollutant|source (optional but useful)
 csvRouter.get("/api/arso/debug-counts", (req, res) => {
   try {
-    const rows = loadAllRows();
+    const { rows } = loadAllRows();
     const city = typeof req.query.city === "string" ? req.query.city : undefined;
 
     const counts: Record<string, number> = {};

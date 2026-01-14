@@ -1,11 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import styles from './Analysis.module.css';
 
 import { useAppStore } from '@/store/useStore';
 import { AnalysisContent } from './Analysis.content';
-
-
 
 const POLLUTANTS = [
   { key: 'pm10', label: 'PM₁₀' },
@@ -48,20 +46,17 @@ const LIMITS_ANNUAL_BY_AUTH: Record<LimitAuthority, Partial<Record<PollutantKey,
 
 
 export const Analysis = () => {
-  const { pollutionType, selectedRegion, setSelectedRegion } = useAppStore();
+  const { pollutionType } = useAppStore();
 
   const [timeRange, setTimeRange] = useState<TimeRangeKey>('7D');
+  const [rangeMode, setRangeMode] = useState<'preset' | 'custom'>('preset');
+  const [customDays, setCustomDays] = useState<number>(30);
+  const didInitRangeRef = useRef(false);
 
   const [startDateInput, setStartDateInput] = useState<string>('2023-10-01');
   const [endDateInput, setEndDateInput] = useState<string>('2023-10-07');
 
- 
-  const [selectedCities, setSelectedCities] = useState<string[]>(['Ljubljana']);
   const [activeCity, setActiveCity] = useState<string>('Ljubljana');
-
-
-  const [isAddOpen, setIsAddOpen] = useState(false);
-  const [cityToAdd, setCityToAdd] = useState<string>('');
 
   // multi-select pollutants
   const [selectedPollutants, setSelectedPollutants] = useState<PollutantKey[]>([
@@ -74,28 +69,54 @@ export const Analysis = () => {
   const [allRows, setAllRows] = useState<FullRow[]>([]);
   const [allStatus, setAllStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [allError, setAllError] = useState<string>('');
+  const [allWarning, setAllWarning] = useState<string>('');
 
   useEffect(() => {
     let cancelled = false;
+
+    const parseDateLocal = (s: string) => new Date(`${s}T00:00:00`);
+    const formatDateLocal = (d: Date) => d.toISOString().slice(0, 10);
+    const initialDays = 7; // matches initial timeRange default: '7D'
 
     async function loadAll() {
       try {
         setAllStatus('loading');
         setAllError('');
+        setAllWarning('');
 
-        const res = await fetch('/api/arso/all');
+        const apiBaseRaw = import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL) : '';
+        const apiBase = apiBaseRaw.replace(/\/$/, '');
+        const url = `${apiBase}/api/arso/all`;
+
+        const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
 
         const rows = Array.isArray(json.rows) ? (json.rows as FullRow[]) : [];
+        const warnings = Array.isArray(json.meta?.warnings) ? (json.meta.warnings as string[]) : [];
         if (!cancelled) {
           setAllRows(rows);
+          if (warnings.length) setAllWarning(warnings.join(' | '));
           setAllStatus('success');
+
+          if (!didInitRangeRef.current && rows.length > 0) {
+            const dates = rows.map((r) => r.date).filter(Boolean);
+            const maxDate = dates.reduce((acc, d) => (d > acc ? d : acc), dates[0]);
+            const end = parseDateLocal(maxDate);
+            const days = initialDays;
+            const start = new Date(end);
+            start.setDate(start.getDate() - (days - 1));
+            setStartDateInput(formatDateLocal(start));
+            setEndDateInput(formatDateLocal(end));
+            didInitRangeRef.current = true;
+          }
         }
-      } catch (e: any) {
+      } catch (e: unknown) {
         if (!cancelled) {
           setAllStatus('error');
-          setAllError(e?.message ?? 'Failed to load full dataset');
+          const msg = e instanceof Error ? e.message : String(e);
+          setAllError(`${msg}. Is the backend running, or is VITE_API_URL reachable?`);
+          setAllRows([]);
         }
       }
     }
@@ -111,36 +132,29 @@ export const Analysis = () => {
 
     const uniq = Array.from(new Set(allRows.map((r) => r.city))).sort((a, b) => a.localeCompare(b));
 
+    if (uniq.length === 0) return ['Ljubljana', 'Celje', 'Maribor'];
+
     if (uniq.includes('Ljubljana')) {
       return ['Ljubljana', ...uniq.filter((c) => c !== 'Ljubljana')];
     }
     return uniq;
   }, [allStatus, allRows]);
 
+  const dataRange = useMemo(() => {
+    if (allRows.length === 0) return null;
+    const dates = allRows.map((r) => r.date).filter(Boolean);
+    if (dates.length === 0) return null;
+
+    const minDate = dates.reduce((acc, d) => (d < acc ? d : acc), dates[0]);
+    const maxDate = dates.reduce((acc, d) => (d > acc ? d : acc), dates[0]);
+    return { minDate, maxDate };
+  }, [allRows]);
 
   useEffect(() => {
-    if (!selectedCities.includes(activeCity)) {
-      setActiveCity(selectedCities[0] ?? 'Ljubljana');
-    }
-  }, [selectedCities, activeCity]);
-
-
-  useEffect(() => {
-
-    if (allCities.includes('Ljubljana')) {
-      setSelectedCities((prev) => (prev.length ? prev : ['Ljubljana']));
-      setActiveCity((prev) => prev || 'Ljubljana');
-    } else {
-
-      setSelectedCities((prev) => (prev.length ? prev : [allCities[0] ?? 'Celje']));
-      setActiveCity((prev) => prev || (allCities[0] ?? 'Celje'));
-    }
-  }, [allCities]);
-
-
-  const availableToAdd = useMemo(() => {
-    return allCities.filter((c) => !selectedCities.includes(c));
-  }, [allCities, selectedCities]);
+    if (allCities.length === 0) return;
+    if (allCities.includes(activeCity)) return;
+    setActiveCity(allCities.includes('Ljubljana') ? 'Ljubljana' : (allCities[0] ?? 'Ljubljana'));
+  }, [allCities, activeCity]);
 
   // Build an index: city -> pollutant -> sorted points[]
   const indexed = useMemo(() => {
@@ -198,18 +212,69 @@ export const Analysis = () => {
     return start <= end ? { start, end } : { start: end, end: start };
   };
 
-
-  const setPresetRangeFromStart = (t: TimeRangeKey) => {
-    if (!startDateInput) return;
-
-    const start = parseDate(startDateInput);
+  const setRangeToLatest = (t: TimeRangeKey) => {
+    if (!dataRange) return;
+    const end = parseDate(dataRange.maxDate);
     const days = limitDaysFromTimeRange(t);
+    const start = new Date(end);
+    start.setDate(start.getDate() - (days - 1));
 
-    const end = new Date(start);
-    end.setDate(end.getDate() + (days - 1));
-
+    setStartDateInput(formatDate(start));
     setEndDateInput(formatDate(end));
   };
+
+  // Custom mode: keep end date synced to start + N days.
+  useEffect(() => {
+    if (rangeMode !== 'custom') return;
+    if (!startDateInput) return;
+    if (!Number.isFinite(customDays) || customDays <= 0) return;
+
+    const start = parseDate(startDateInput);
+    const end = new Date(start);
+    end.setDate(end.getDate() + (customDays - 1));
+    setEndDateInput(formatDate(end));
+  }, [rangeMode, startDateInput, customDays]);
+
+  const countsByPollutant = useMemo(() => {
+    const out: Record<PollutantKey, number> = { pm10: 0, 'pm2.5': 0, no2: 0, o3: 0 };
+    const { start, end } = clampDateOrder(startDateInput, endDateInput);
+    if (!start || !end) return out;
+
+    for (const r of allRows) {
+      if (r.city !== activeCity) continue;
+      if (r.date < start || r.date > end) continue;
+
+      if (r.pollutant === pollutantLabelToCsv.pm10) out.pm10 += 1;
+      if (r.pollutant === pollutantLabelToCsv['pm2.5']) out['pm2.5'] += 1;
+      if (r.pollutant === pollutantLabelToCsv.no2) out.no2 += 1;
+      if (r.pollutant === pollutantLabelToCsv.o3) out.o3 += 1;
+    }
+
+    return out;
+  }, [allRows, activeCity, startDateInput, endDateInput, pollutantLabelToCsv]);
+
+  const countsByCity = useMemo(() => {
+    const out: Record<string, number> = {};
+    const { start, end } = clampDateOrder(startDateInput, endDateInput);
+    if (!start || !end) return out;
+
+    const selectedPollutantSet = new Set(selectedPollutants.map((k) => pollutantLabelToCsv[k]));
+    for (const r of allRows) {
+      if (r.date < start || r.date > end) continue;
+      if (!selectedPollutantSet.has(r.pollutant)) continue;
+      out[r.city] = (out[r.city] ?? 0) + 1;
+    }
+    return out;
+  }, [allRows, selectedPollutants, startDateInput, endDateInput, pollutantLabelToCsv]);
+
+  const [cityPage, setCityPage] = useState(0);
+  const cityPageSize = 8;
+  const cityPages = Math.max(1, Math.ceil(allCities.length / cityPageSize));
+  const visibleCities = cityPages > 1 ? allCities.slice(cityPage * cityPageSize, (cityPage + 1) * cityPageSize) : allCities;
+
+  useEffect(() => {
+    setCityPage((p) => Math.min(Math.max(0, p), cityPages - 1));
+  }, [cityPages]);
 
 
 
@@ -415,28 +480,6 @@ export const Analysis = () => {
     else setSelectedPollutants(POLLUTANTS.map((p) => p.key));
   };
 
-  const addSelectedCity = (city: string) => {
-    if (!city) return;
-    setSelectedCities((prev) => (prev.includes(city) ? prev : [...prev, city]));
-    setActiveCity(city);
-    setIsAddOpen(false);
-    setCityToAdd('');
-  };
-
-  const removeSelectedCity = (city: string) => {
-    setSelectedCities((prev) => {
-      const next = prev.filter((c) => c !== city);
-      // never allow empty selection — fallback to Ljubljana or first city
-      if (next.length === 0) return allCities.includes('Ljubljana') ? ['Ljubljana'] : [allCities[0] ?? 'Celje'];
-      return next;
-    });
-
-    if (activeCity === city) {
-      const fallback = selectedCities.filter((c) => c !== city)[0] ?? 'Ljubljana';
-      setActiveCity(fallback);
-    }
-  };
-
   return (
     <main className={styles.page}>
       <aside className={styles.sidebar} aria-label="Analysis controls">
@@ -457,6 +500,7 @@ export const Analysis = () => {
             <div className={styles.grid2}>
               {POLLUTANTS.map((p) => {
                 const checked = selectedPollutants.includes(p.key);
+                const count = countsByPollutant[p.key];
                 return (
                   <label key={p.key} className={`${styles.option} ${checked ? styles.optionActive : ''}`}>
                     <input
@@ -465,15 +509,44 @@ export const Analysis = () => {
                       checked={checked}
                       onChange={() => togglePollutant(p.key)}
                     />
-                    <span className={styles.optionText}>{p.label}</span>
+                    <span className={styles.optionText}>
+                      {p.label}
+                      <span style={{ marginLeft: 6, opacity: 0.7, fontWeight: 700 }}>({count ?? 0})</span>
+                    </span>
                   </label>
                 );
               })}
+            </div>
+            <div style={{ marginTop: 8, color: 'var(--text-muted)', fontSize: 12 }}>
+              Counts shown for <b>{activeCity}</b> within the selected date range.
             </div>
           </section>
 
           <section>
             <div className={styles.sectionTitle}>{AnalysisContent.side.timeRange}</div>
+
+            <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+              <button
+                type="button"
+                className={styles.smallLink}
+                onClick={() => {
+                  setRangeMode('preset');
+                  setRangeToLatest(timeRange);
+                }}
+                style={{ textDecoration: rangeMode === 'preset' ? 'underline' : 'none' }}
+              >
+                Preset
+              </button>
+              <button
+                type="button"
+                className={styles.smallLink}
+                onClick={() => setRangeMode('custom')}
+                style={{ textDecoration: rangeMode === 'custom' ? 'underline' : 'none' }}
+              >
+                Custom
+              </button>
+            </div>
+
             <div className={styles.timeTabs}>
               {(['7D', '30D', '1Y', '10Y'] as const).map((t) => (
                 <button
@@ -482,13 +555,39 @@ export const Analysis = () => {
                   type="button"
                   onClick={() => {
                     setTimeRange(t);
-                    setPresetRangeFromStart(t);
+                    if (rangeMode === 'preset') {
+                      setRangeToLatest(t);
+                    } else {
+                      setCustomDays(limitDaysFromTimeRange(t));
+                    }
                   }}
                 >
                   {t}
                 </button>
               ))}
             </div>
+
+            {dataRange && (
+              <div style={{ marginTop: 8, color: 'var(--text-muted)', fontSize: 12 }}>
+                Available data: {dataRange.minDate} → {dataRange.maxDate}
+              </div>
+            )}
+
+            {rangeMode === 'custom' && (
+              <div style={{ marginTop: 10 }}>
+                <label style={{ display: 'grid', gap: 6, fontSize: 12, color: 'var(--text-muted)' }}>
+                  Days
+                  <input
+                    className={styles.input}
+                    type="number"
+                    min={1}
+                    step={1}
+                    value={customDays}
+                    onChange={(e) => setCustomDays(Math.max(1, Number(e.target.value) || 1))}
+                  />
+                </label>
+              </div>
+            )}
 
             <div className={styles.inputRow}>
               <input
@@ -512,6 +611,7 @@ export const Analysis = () => {
                   setStartDateInput(start);
                   setEndDateInput(end);
                 }}
+                disabled={rangeMode === 'custom'}
               />
             </div>
           </section>
@@ -538,8 +638,9 @@ export const Analysis = () => {
             <div className={styles.sectionTitle}>{AnalysisContent.side.locations}</div>
 
             <div className={styles.locations}>
-              {selectedCities.map((loc) => {
+              {visibleCities.map((loc) => {
                 const isActive = loc === activeCity;
+                const count = countsByCity[loc] ?? 0;
 
                 return (
                   <div
@@ -560,111 +661,38 @@ export const Analysis = () => {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--distance)' }}>
                       <span className={styles.dot} style={{ background: 'var(--primary)' }} />
-                      <span style={{ fontWeight: 700 }}>{loc}</span>
+                      <span style={{ fontWeight: 800 }}>{loc}</span>
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeSelectedCity(loc);
-                      }}
-                      style={{ border: 0, background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer' }}
-                      aria-label={`Remove ${loc}`}
-                      title="Remove"
-                    >
-                      <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
-                        close
-                      </span>
-                    </button>
+                    <span style={{ color: 'var(--text-muted)', fontWeight: 800, fontSize: 12 }}>{count}</span>
                   </div>
                 );
               })}
 
-              <div style={{ position: 'relative' }}>
-                <button
-                  type="button"
-                  onClick={() => setIsAddOpen((v) => !v)}
-                  style={{
-                    borderRadius: 12,
-                    padding: '10px 12px',
-                    border: '1px dashed color-mix(in srgb, var(--border) 70%, transparent)',
-                    background: 'transparent',
-                    color: 'var(--text-muted)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 'var(--distance-sm)',
-                    fontWeight: 800,
-                    fontSize: 12,
-                    width: '100%',
-                  }}
-                >
-                  <span className="material-symbols-outlined" style={{ fontSize: 16 }}>
-                    add
-                  </span>
-                  Add Location
-                </button>
-
-                {isAddOpen && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      zIndex: 50,
-                      top: 'calc(100% + 8px)',
-                      left: 0,
-                      right: 0,
-                      borderRadius: 12,
-                      border: '1px solid var(--glass-border)',
-                      background: 'var(--surface-1)',
-                      padding: 10,
-                      boxShadow: '0 12px 30px rgba(0,0,0,0.18)',
-                    }}
+              {cityPages > 1 && (
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
+                  <button
+                    type="button"
+                    className={styles.smallLink}
+                    onClick={() => setCityPage((p) => Math.max(0, p - 1))}
+                    disabled={cityPage === 0}
+                    style={{ opacity: cityPage === 0 ? 0.6 : 1 }}
                   >
-                    <div style={{ display: 'grid', gap: 8 }}>
-                      <select className={styles.select} value={cityToAdd} onChange={(e) => setCityToAdd(e.target.value)}>
-                        <option value="" disabled>
-                          Select a city…
-                        </option>
-                        {availableToAdd.map((c) => (
-                          <option key={c} value={c}>
-                            {c}
-                          </option>
-                        ))}
-                      </select>
-
-                      <button
-                        type="button"
-                        className={styles.btnPrimary}
-                        onClick={() => addSelectedCity(cityToAdd)}
-                        disabled={!cityToAdd}
-                        style={{ opacity: cityToAdd ? 1 : 0.6, cursor: cityToAdd ? 'pointer' : 'not-allowed' }}
-                      >
-                        Add
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsAddOpen(false);
-                          setCityToAdd('');
-                        }}
-                        style={{
-                          border: 0,
-                          background: 'transparent',
-                          color: 'var(--text-muted)',
-                          cursor: 'pointer',
-                          fontWeight: 700,
-                          padding: '6px 0 0',
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </div>
+                    Prev
+                  </button>
+                  <div style={{ color: 'var(--text-muted)', fontSize: 12, fontWeight: 700 }}>
+                    Page {cityPage + 1} / {cityPages}
                   </div>
-                )}
-              </div>
+                  <button
+                    type="button"
+                    className={styles.smallLink}
+                    onClick={() => setCityPage((p) => Math.min(cityPages - 1, p + 1))}
+                    disabled={cityPage >= cityPages - 1}
+                    style={{ opacity: cityPage >= cityPages - 1 ? 0.6 : 1 }}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           </section>
         </div>
@@ -742,6 +770,11 @@ export const Analysis = () => {
               <div className={styles.chartArea}>
                 {allStatus === 'loading' && <div style={{ padding: 16, color: 'var(--text-muted)' }}>Loading full dataset…</div>}
                 {allStatus === 'error' && <div style={{ padding: 16, color: 'var(--warning)' }}>{allError}</div>}
+                {allStatus === 'success' && allWarning && (
+                  <div style={{ padding: 16, color: 'var(--text-muted)' }}>
+                    Data warnings: {allWarning}
+                  </div>
+                )}
                 {allStatus === 'success' && selectedPollutants.length === 0 && (
                   <div style={{ padding: 16, color: 'var(--text-muted)' }}>Select at least one pollutant.</div>
                 )}
