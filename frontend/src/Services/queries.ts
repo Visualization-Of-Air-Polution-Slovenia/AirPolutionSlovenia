@@ -4,7 +4,7 @@
  */
 
 import { useQuery } from '@tanstack/react-query';
-import { getCityData, getSloveniaForecastData, ping, type CityDataResponse, type OmSloveniaDataResponse, type PingResponse, type SloveniaDataResponse } from './api';
+import { getCityData, getSloveniaForecastData, ping, type CityDataResponse, type OmSloveniaDataResponse, type PingResponse } from './api';
 
 // ============================================================================
 // Query Keys

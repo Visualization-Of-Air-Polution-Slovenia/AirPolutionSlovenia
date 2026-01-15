@@ -1,0 +1,38 @@
+name: Keep Render Alive
+
+on:
+  schedule:
+      - cron: '*/14 * * * *'  # Every 14 minutes
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl with retry and status check
+        shell: bash
+        run: |
+            set -euo pipefail
+
+            URL="https://airpolutionslovenia.onrender.com/ping"
+
+            echo "🌐 First attempt to /ping"
+            RESPONSE=$(curl -sS -L -w "%{http_code}" -o result.txt "$URL" || echo "CURL_FAILED")
+            echo "RESPONSE: $RESPONSE"
+
+            if [[ "$RESPONSE" == "CURL_FAILED" ]]; then
+            echo "❌ curl failed completely."
+            exit 2
+            fi
+
+            STATUS="${RESPONSE: -3}"
+            echo "HTTP Status: $STATUS"
+
+            if [[ "$STATUS" != "200" ]]; then
+            echo "⏱ Waiting 20s and retrying..."
+            sleep 20
+            RESPONSE=$(curl -sS -L -w "%{http_code}" -o result.txt "$URL" || echo "CURL_FAILED")
+            echo "RETRY RESPONSE: $RESPONSE"
+            STATUS="${RESPONSE: -3}"
+            echo "Retry HTTP Status: $STATUS"
+            [[ "$STATUS" == "200" ]] || exit 1
+            fi

@@ -120,29 +120,40 @@ export const MapView = () => {
 
     // Build pollutants object with only available data
     const pollutants: typeof staticCity.pollutants = {};
-    
-    if (apiData.pollutants.pm10 !== undefined) {
-      pollutants.pm10 = { value: apiData.pollutants.pm10, unit: 'µg/m³', badge: getAqiBadge(apiData.pollutants.pm10) };
+
+    const apiPollutants = apiData.pollutants;
+    if (apiPollutants) {
+      if (apiPollutants.pm10 !== undefined) {
+        pollutants.pm10 = { value: apiPollutants.pm10, unit: 'µg/m³', badge: getAqiBadge(apiPollutants.pm10) };
+      }
+      if (apiPollutants.pm25 !== undefined) {
+        pollutants['pm2.5'] = { value: apiPollutants.pm25, unit: 'µg/m³', badge: getAqiBadge(apiPollutants.pm25) };
+      }
+      if (apiPollutants.no2 !== undefined) {
+        pollutants.no2 = { value: apiPollutants.no2, unit: 'µg/m³', badge: getAqiBadge(apiPollutants.no2) };
+      }
+      if (apiPollutants.o3 !== undefined) {
+        pollutants.o3 = { value: apiPollutants.o3, unit: 'PPM', badge: getAqiBadge(apiPollutants.o3) };
+      }
     }
-    if (apiData.pollutants.pm25 !== undefined) {
-      pollutants['pm2.5'] = { value: apiData.pollutants.pm25, unit: 'µg/m³', badge: getAqiBadge(apiData.pollutants.pm25) };
-    }
-    if (apiData.pollutants.no2 !== undefined) {
-      pollutants.no2 = { value: apiData.pollutants.no2, unit: 'µg/m³', badge: getAqiBadge(apiData.pollutants.no2) };
-    }
-    if (apiData.pollutants.o3 !== undefined) {
-      pollutants.o3 = { value: apiData.pollutants.o3, unit: 'PPM', badge: getAqiBadge(apiData.pollutants.o3) };
+
+    const aqiValue = apiData.aqi ?? staticCity.aqi?.value;
+    if (aqiValue === undefined) {
+      return {
+        ...staticCity,
+        pollutants,
+      };
     }
 
     return {
       ...staticCity,
       aqi: {
-        value: apiData.aqi,
-        label: getAqiLabel(apiData.aqi),
+        value: aqiValue,
+        label: getAqiLabel(aqiValue),
       },
       pollutants,
-      pinVariant: getAqiBadge(apiData.aqi),
-      healthAdvice: getHealthAdvice(apiData.aqi),
+      pinVariant: getAqiBadge(aqiValue),
+      healthAdvice: getHealthAdvice(aqiValue),
     };
   }, [staticCity, cityApiData]);
 

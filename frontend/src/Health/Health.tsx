@@ -32,16 +32,7 @@ export const Health = () => {
     return cityApiData.data.aqi;
   }, [cityApiData]);
 
-  console.log(airIndex);
-
-
   const airPrompt = airIndex !== null ? getAirQualityPrompt(airIndex) : null;
-
-  // dynamically adjust card tones
-  const adjustedCards = SystemicCards.map((card) => {
-    if (!airPrompt) return card;
-    return { ...card, tone: airPrompt.cardTone };
-  });
 
   const level = airIndex !== null ? getAirQualityLevel(airIndex) : null;
   const aqiTone = levelToTone(level);
