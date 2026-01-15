@@ -127,11 +127,4 @@ app.get("/v2/sloveniaData", async (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-
-  // Only run keep-alive.js if not in development mode
-  if (process.env.NODE_ENV === "production") {
-    require("../keep-alive.js");
-
-    console.log("Started keep-alive.js in a detached process.");
-  }
 });
