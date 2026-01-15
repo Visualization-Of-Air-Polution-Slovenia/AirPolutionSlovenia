@@ -11,19 +11,28 @@ jobs:
       - name: Curl with retry and status check
         shell: bash
         run: |
-          echo "🌐 First attempt to /health"
-          RESPONSE=$(curl -s -w "%{http_code}" -o result.txt https://airpolutionslovenia.onrender.com/health)
-          echo "RESPONSE: $RESPONSE"
-          
-          if [[ "$RESPONSE" == "CURL_FAILED" ]]; then
+            set -euo pipefail
+
+            URL="https://airpolutionslovenia.onrender.com/health"
+
+            echo "🌐 First attempt to /health"
+            RESPONSE=$(curl -sS -L -w "%{http_code}" -o result.txt "$URL" || echo "CURL_FAILED")
+            echo "RESPONSE: $RESPONSE"
+
+            if [[ "$RESPONSE" == "CURL_FAILED" ]]; then
             echo "❌ curl failed completely."
             exit 2
-          fi
-          STATUS="${RESPONSE: -3}"
-          echo "HTTP Status: $STATUS"
-          if [[ "$STATUS" != "200" ]]; then
+            fi
+
+            STATUS="${RESPONSE: -3}"
+            echo "HTTP Status: $STATUS"
+
+            if [[ "$STATUS" != "200" ]]; then
             echo "⏱ Waiting 20s and retrying..."
             sleep 20
-            RESPONSE=$(curl -s -w "%{http_code}" -o result.txt https://airpolutionslovenia.onrender.com/health)
+            RESPONSE=$(curl -sS -L -w "%{http_code}" -o result.txt "$URL" || echo "CURL_FAILED")
             echo "RETRY RESPONSE: $RESPONSE"
-          fi
+            STATUS="${RESPONSE: -3}"
+            echo "Retry HTTP Status: $STATUS"
+            [[ "$STATUS" == "200" ]] || exit 1
+            fi
