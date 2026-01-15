@@ -1,4 +1,5 @@
 import cors from "cors";
+import { spawn } from "child_process";
 import express, { Request, Response } from "express";
 import path from "path";
 import { getData, getSloveniaStations, newSloveniaData, OmLocationTimeData, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
@@ -127,4 +128,11 @@ app.get("/v2/sloveniaData", async (req: Request, res: Response) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+
+  // Only run keep-alive.js if not in development mode
+  if (process.env.NODE_ENV === "production") {
+    require("../keep-alive.js");
+
+    console.log("Started keep-alive.js in a detached process.");
+  }
 });

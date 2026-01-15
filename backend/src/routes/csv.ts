@@ -12,12 +12,20 @@ type UnifiedRow = {
   year: number;
   pollutant: string;  // normalized pollutant labels
   month: number;
-  source: "arso" | "eea";
+  source: "arso" | "eea" | "arso_forecast" | "eea_forecast";
   station_id?: string;
 };
 
 let cachedRows: UnifiedRow[] | null = null;
-let cachedMeta: { arsoFile: string | null; eeaFile: string | null; warnings: string[] } | null = null;
+let cachedMeta:
+  | {
+      arsoFile: string | null;
+      eeaFile: string | null;
+      arsoForecastFile: string | null;
+      eeaForecastFile: string | null;
+      warnings: string[];
+    }
+  | null = null;
 
 function firstExistingFile(...candidates: string[]): string | null {
   for (const p of candidates) {
@@ -25,7 +33,6 @@ function firstExistingFile(...candidates: string[]): string | null {
   }
   return null;
 }
-
 
 function normPollutant(raw: string) {
   const x0 = (raw ?? "").trim();
@@ -132,25 +139,69 @@ function parseEeaDaily(filePath: string): UnifiedRow[] {
   return rows;
 }
 
+function parseForecastDaily(filePath: string, source: "arso_forecast" | "eea_forecast"): UnifiedRow[] {
+  // forecast CSV: city,pollutant,date,forecast_value
+  const text = fs.readFileSync(filePath, "utf-8");
+  const lines = text.split(/\r?\n/);
+
+  const rows: UnifiedRow[] = [];
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line) continue;
+
+    const parts = line.split(",");
+    if (parts.length < 4) continue;
+
+    const city = normCity(parts[0]);
+    const pollutant = normPollutant(parts[1]);
+    const date = parts[2]?.trim();
+    const value = Number(parts[3]);
+
+    if (!date || !city || !pollutant) continue;
+    if (!Number.isFinite(value)) continue;
+
+    const year = Number(date.slice(0, 4));
+    const month = Number(date.slice(5, 7));
+    if (!Number.isFinite(year) || !Number.isFinite(month)) continue;
+
+    rows.push({ date, value, city, year, pollutant, month, source });
+  }
+
+  return rows;
+}
+
 function loadAllRows(): {
   rows: UnifiedRow[];
-  meta: { arsoFile: string | null; eeaFile: string | null; warnings: string[] };
+  meta: {
+    arsoFile: string | null;
+    eeaFile: string | null;
+    arsoForecastFile: string | null;
+    eeaForecastFile: string | null;
+    warnings: string[];
+  };
 } {
   if (cachedRows && cachedMeta) return { rows: cachedRows, meta: cachedMeta };
 
-  const dataDir = path.resolve(__dirname, "..", "..", "data");
+  const dataDir = path.resolve(process.cwd(), "data");
 
-  // Support multiple naming conventions that exist in this repo.
-  const arsoPath = firstExistingFile(
-    path.resolve(dataDir, "arso_daily.csv"),
-    path.resolve(dataDir, "ARSO_Daily.csv"),
-    path.resolve(dataDir, "ARSO_daily.csv")
-  );
-  const eeaPath = firstExistingFile(
-    path.resolve(dataDir, "eea_daily.csv"),
-    path.resolve(dataDir, "EEA_Daily.csv"),
-    path.resolve(dataDir, "EEA_daily.csv")
-  );
+
+const arsoPath = firstExistingFile(
+  path.resolve(dataDir, "ARSO_Daily.csv")
+);
+
+const eeaPath = firstExistingFile(
+  path.resolve(dataDir, "EEA_Daily.csv")
+);
+
+const arsoForecastPath = firstExistingFile(
+  path.resolve(dataDir, "ARSO_daily_forecasts_2026.csv")
+);
+
+const eeaForecastPath = firstExistingFile(
+  path.resolve(dataDir, "EEA_daily_forecasts_2026.csv")
+);
+
 
   const warnings: string[] = [];
 
@@ -162,7 +213,7 @@ function loadAllRows(): {
       warnings.push(`Failed to parse ARSO CSV (${path.basename(arsoPath)}): ${e?.message ?? String(e)}`);
     }
   } else {
-    warnings.push('ARSO daily CSV not found in backend/data (expected ARSO_Daily.csv or arso_daily.csv).');
+    warnings.push("ARSO daily CSV not found in backend/data (expected ARSO_Daily.csv or arso_daily.csv).");
   }
 
   let eeaRows: UnifiedRow[] = [];
@@ -173,22 +224,47 @@ function loadAllRows(): {
       warnings.push(`Failed to parse EEA CSV (${path.basename(eeaPath)}): ${e?.message ?? String(e)}`);
     }
   } else {
-    warnings.push('EEA daily CSV not found in backend/data (expected EEA_Daily.csv or eea_daily.csv).');
+    warnings.push("EEA daily CSV not found in backend/data (expected EEA_Daily.csv or eea_daily.csv).");
   }
 
-  cachedRows = [...arsoRows, ...eeaRows];
+  let arsoForecastRows: UnifiedRow[] = [];
+  if (arsoForecastPath) {
+    try {
+      arsoForecastRows = parseForecastDaily(arsoForecastPath, "arso_forecast");
+    } catch (e: any) {
+      warnings.push(
+        `Failed to parse ARSO forecast CSV (${path.basename(arsoForecastPath)}): ${e?.message ?? String(e)}`
+      );
+    }
+  } else {
+    warnings.push("ARSO forecast CSV not found in backend/data (expected ARSO_daily_forecasts_2026(.csv)).");
+  }
+
+  let eeaForecastRows: UnifiedRow[] = [];
+  if (eeaForecastPath) {
+    try {
+      eeaForecastRows = parseForecastDaily(eeaForecastPath, "eea_forecast");
+    } catch (e: any) {
+      warnings.push(
+        `Failed to parse EEA forecast CSV (${path.basename(eeaForecastPath)}): ${e?.message ?? String(e)}`
+      );
+    }
+  } else {
+    warnings.push("EEA forecast CSV not found in backend/data (expected EEA_daily_forecasts_2026(.csv)).");
+  }
+
+  cachedRows = [...arsoRows, ...eeaRows, ...arsoForecastRows, ...eeaForecastRows];
+
   cachedMeta = {
     arsoFile: arsoPath ? path.basename(arsoPath) : null,
     eeaFile: eeaPath ? path.basename(eeaPath) : null,
+    arsoForecastFile: arsoForecastPath ? path.basename(arsoForecastPath) : null,
+    eeaForecastFile: eeaForecastPath ? path.basename(eeaForecastPath) : null,
     warnings,
   };
 
-  console.log(
-    `✅ Loaded data: ARSO=${arsoRows.length} (${cachedMeta.arsoFile ?? 'missing'}), ` +
-      `EEA=${eeaRows.length} (${cachedMeta.eeaFile ?? 'missing'}), TOTAL=${cachedRows.length}`
-  );
-  if (warnings.length) {
-    console.warn(`⚠️ CSV warnings: ${warnings.join(' | ')}`);
+    if (warnings.length) {
+    console.warn(`⚠️ CSV warnings: ${warnings.join(" | ")}`);
   }
 
   return { rows: cachedRows, meta: cachedMeta };
@@ -208,13 +284,15 @@ csvRouter.get("/api/arso/all", (_req, res) => {
       meta: {
         arsoFile: null,
         eeaFile: null,
-        warnings: [e?.message ?? 'Failed to load full data'],
+        arsoForecastFile: null,
+        eeaForecastFile: null,
+        warnings: [e?.message ?? "Failed to load full data"],
       },
     });
   }
 });
 
-// Cities from ARSO only (raw or normalized? this is normalized)
+// Cities from ARSO only (normalized)
 csvRouter.get("/api/cities/arso", (_req, res) => {
   try {
     const arsoPath = path.resolve(__dirname, "..", "..", "data", "arso_daily.csv");
@@ -275,4 +353,11 @@ csvRouter.get("/api/arso/debug-counts", (req, res) => {
   } catch (e: any) {
     res.status(500).json({ error: e?.message ?? "debug failed" });
   }
+});
+
+csvRouter.post("/api/arso/reload", (_req, res) => {
+  cachedRows = null;
+  cachedMeta = null;
+  const { rows, meta } = loadAllRows();
+  res.json({ ok: true, rows: rows.length, meta });
 });
