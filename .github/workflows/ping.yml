@@ -13,9 +13,9 @@ jobs:
         run: |
             set -euo pipefail
 
-            URL="https://airpolutionslovenia.onrender.com/health"
+            URL="https://airpolutionslovenia.onrender.com/ping"
 
-            echo "🌐 First attempt to /health"
+            echo "🌐 First attempt to /ping"
             RESPONSE=$(curl -sS -L -w "%{http_code}" -o result.txt "$URL" || echo "CURL_FAILED")
             echo "RESPONSE: $RESPONSE"
 
