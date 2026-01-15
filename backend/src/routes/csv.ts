@@ -183,36 +183,25 @@ function loadAllRows(): {
 } {
   //if (cachedRows && cachedMeta) return { rows: cachedRows, meta: cachedMeta };
 
-  const dataDir = path.resolve(process.cwd(), "backend", "data");
+  const dataDir = path.resolve(process.cwd(), "data");
 
 
-  // Support multiple naming conventions that exist in this repo.
-  const arsoPath = firstExistingFile(
-    path.resolve(dataDir, "arso_daily.csv"),
-    path.resolve(dataDir, "ARSO_Daily.csv"),
-    path.resolve(dataDir, "ARSO_daily.csv")
-  );
+const arsoPath = firstExistingFile(
+  path.resolve(dataDir, "ARSO_Daily.csv")
+);
 
-  const eeaPath = firstExistingFile(
-    path.resolve(dataDir, "eea_daily.csv"),
-    path.resolve(dataDir, "EEA_Daily.csv"),
-    path.resolve(dataDir, "EEA_daily.csv")
-  );
+const eeaPath = firstExistingFile(
+  path.resolve(dataDir, "EEA_Daily.csv")
+);
 
-  // Forecasts
-  const arsoForecastPath = firstExistingFile(
-    path.resolve(dataDir, "ARSO_daily_forecasts_2026.csv"),
-    path.resolve(dataDir, "ARSO_daily_forecasts_2026"),
-    path.resolve(dataDir, "arso_daily_forecasts_2026.csv"),
-    path.resolve(dataDir, "arso_daily_forecasts_2026")
-  );
+const arsoForecastPath = firstExistingFile(
+  path.resolve(dataDir, "ARSO_daily_forecasts_2026.csv")
+);
 
-  const eeaForecastPath = firstExistingFile(
-    path.resolve(dataDir, "EEA_daily_forecasts_2026.csv"),
-    path.resolve(dataDir, "EEA_daily_forecasts_2026"),
-    path.resolve(dataDir, "eea_daily_forecasts_2026.csv"),
-    path.resolve(dataDir, "eea_daily_forecasts_2026")
-  );
+const eeaForecastPath = firstExistingFile(
+  path.resolve(dataDir, "EEA_daily_forecasts_2026.csv")
+);
+
 
   const warnings: string[] = [];
 
