@@ -18,8 +18,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      // forward frontend /api/* requests to your backend on :3000
-      '/api': 'http://localhost:3000',
+      // LOCAL TESTING
+      // '/api': 'http://localhost:3000',
+
+      // DEVELOPMENT
+      '/api': 'https://airpolutionslovenia.onrender.com',
     },
   },
 })
