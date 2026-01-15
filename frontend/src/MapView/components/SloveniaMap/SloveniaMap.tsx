@@ -41,13 +41,13 @@ const createLabelIcon = (name: string, show: boolean) => {
 };
 
 // Standard unified AQI-like gradient for all pollutants
-// Muted (less neon) palette: Green -> Yellow -> Orange -> Red -> Dark Red
+// Higher-contrast palette: Green -> Yellow -> Orange -> Red -> Dark Red
 const STANDARD_HEAT_GRADIENT = {
-  0.0: '#6fae8c',  // muted green
-  0.15: '#d6c46f', // muted yellow
-  0.30: '#d09a62', // muted orange
-  0.50: '#c96b63', // muted red
-  0.80: '#8f3b3b'  // dark muted red
+  0.0: '#2e7d32',  // green
+  0.15: '#f9a825', // yellow
+  0.30: '#f57c00', // orange
+  0.50: '#e53935', // red
+  0.80: '#b71c1c'  // dark red
 };
 
 const getHeatMaxValue = (pollutant: PollutantType): number => {
@@ -165,8 +165,8 @@ export const SloveniaMap = ({
   // These are the SVG paths you pasted (<path class="leaflet-interactive" ...>).
   // They're the CircleMarker overlays, not the leaflet.heat canvas. We color them based on
   // selected pollutant + selected time so they visually track the same logic as the sidebar.
-  const cityOverlayBaseOpacity = 0.28;
-  const cityOverlayBaseStrokeOpacity = 0.22;
+  const cityOverlayBaseOpacity = 0.34;
+  const cityOverlayBaseStrokeOpacity = 0.30;
 
   return (
     <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
@@ -182,8 +182,14 @@ export const SloveniaMap = ({
             const raw = nearest ? getIntensityForTypeAtTime(nearest, pollutionType, selectedTimeIso) : 0;
             const normalized = normalizeHeatIntensity(raw, scaleMax);
             const fillColor = getColorForNormalizedIntensity(normalized);
-            const fillOpacity = normalized > 0 ? cityOverlayBaseOpacity : 0;
-            const strokeOpacity = normalized > 0 ? cityOverlayBaseStrokeOpacity : 0;
+            const fillOpacity =
+              normalized > 0
+                ? Math.min(0.62, cityOverlayBaseOpacity + normalized * 0.26)
+                : 0;
+            const strokeOpacity =
+              normalized > 0
+                ? Math.min(0.65, cityOverlayBaseStrokeOpacity + normalized * 0.18)
+                : 0;
 
             return (
           <CircleMarker
@@ -197,7 +203,7 @@ export const SloveniaMap = ({
                   fillOpacity: Math.min(0.5, fillOpacity + 0.18),
                   opacity: Math.min(0.6, strokeOpacity + 0.25),
                   color: 'rgba(0,0,0,0.35)',
-                  weight: 1,
+                  weight: 1.6,
                   stroke: true
                 });
               },
@@ -206,7 +212,7 @@ export const SloveniaMap = ({
                   fillOpacity,
                   opacity: strokeOpacity,
                   color: 'rgba(0,0,0,0.25)',
-                  weight: 1,
+                  weight: 1.25,
                   stroke: normalized > 0
                 });
               }
@@ -215,7 +221,7 @@ export const SloveniaMap = ({
               stroke: normalized > 0,
               color: 'rgba(0,0,0,0.25)',
               opacity: strokeOpacity,
-              weight: 1,
+              weight: 1.25,
               fill: true,
               fillColor,
               fillOpacity
