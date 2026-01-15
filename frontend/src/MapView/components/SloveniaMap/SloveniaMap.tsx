@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import styles from './SloveniaMap.module.css';
 import type { OmLocationTimeData } from '@/Services/api';
 import { useAppStore, type PollutantType } from '@/store/useStore';
+import { getColorForNormalizedIntensity, getHeatMaxValue, normalizeHeatIntensity } from '@/MapView/airQualityScale';
 
 
 export type SloveniaMapCity = {
@@ -40,26 +41,7 @@ const createLabelIcon = (name: string, show: boolean) => {
    });
 };
 
-// Standard unified AQI-like gradient for all pollutants
-// Higher-contrast palette: Green -> Yellow -> Orange -> Red -> Dark Red
-const STANDARD_HEAT_GRADIENT = {
-  0.0: '#2e7d32',  // green
-  0.15: '#f9a825', // yellow
-  0.30: '#f57c00', // orange
-  0.50: '#e53935', // red
-  0.80: '#b71c1c'  // dark red
-};
-
-const getHeatMaxValue = (pollutant: PollutantType): number => {
-  // Tighter thresholds so moderate values actually show up as Yellow/Orange
-  switch (pollutant) {
-    case 'pm10': return 100;     // Daily limit is 50, so 50 will be 0.5 (Red)
-    case 'pm2.5': return 60;     // Daily guidance around 25-50. 30 will be 0.5 (Red)
-    case 'o3': return 180;       // 1h threshold is 180 (Warning) -> 1.0 (Dark Red)
-    case 'no2': return 150;      // 1h threshold 200. 
-    default: return 100;
-  }
-}
+// NOTE: Color/scale helpers live in '@/MapView/airQualityScale' so the map and sidebar can match.
 
 const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoom?: number }) => {
   const map = useMap();
@@ -138,20 +120,6 @@ const getIntensityForTypeAtTime = (p: OmLocationTimeData, pollutionType: Polluta
   return Number.isFinite(v) ? v : 0;
 };
 
-const normalizeHeatIntensity = (rawValue: number, scaleMax: number): number => {
-  if (!Number.isFinite(rawValue) || rawValue <= 0) return 0;
-  if (!Number.isFinite(scaleMax) || scaleMax <= 0) return 0;
-  return Math.max(0, Math.min(1, rawValue / scaleMax));
-};
-
-const getColorForNormalizedIntensity = (t: number): string => {
-  if (!Number.isFinite(t) || t <= 0) return 'transparent';
-  if (t < 0.15) return STANDARD_HEAT_GRADIENT[0.0];
-  if (t < 0.30) return STANDARD_HEAT_GRADIENT[0.15];
-  if (t < 0.50) return STANDARD_HEAT_GRADIENT[0.30];
-  if (t < 0.80) return STANDARD_HEAT_GRADIENT[0.50];
-  return STANDARD_HEAT_GRADIENT[0.80];
-};
 
 const findNearestLocation = (lat: number, lng: number, data: OmLocationTimeData[]) => {
   if (!Array.isArray(data) || data.length === 0) return undefined;
@@ -188,12 +156,9 @@ export const SloveniaMap = ({
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
-  // IMPORTANT: Use dynamic scaling per time-slice so colors clearly change when
-  // the selected pollutant OR selected hour changes.
-  const rawValues = sloveniaData.map((p) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso));
-  const timeSliceMax = rawValues.reduce((m, v) => (Number.isFinite(v) ? Math.max(m, v) : m), 0);
-  const fallbackMax = getHeatMaxValue(pollutionType);
-  const scaleMax = timeSliceMax > 0 ? timeSliceMax : fallbackMax;
+  // Use an absolute-ish scale per pollutant so "green vs red" means the same thing
+  // everywhere (and can match the sidebar meaning).
+  const scaleMax = getHeatMaxValue(pollutionType);
 
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;

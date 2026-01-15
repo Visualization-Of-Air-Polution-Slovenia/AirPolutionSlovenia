@@ -5,6 +5,7 @@ import styles from './MapView.module.css';
 import { useCityData, useSloveniaData } from '@/Services';
 import { useAppStore, type PollutantType } from '@/store/useStore';
 import { MapViewContent } from './MapView.content';
+import { getBadgeForNormalizedIntensity, getHeatMaxValue, normalizeHeatIntensity } from './airQualityScale';
 
 import { SloveniaMap } from './components/SloveniaMap/SloveniaMap';
 
@@ -156,7 +157,7 @@ export const MapView = () => {
                   pollutants[type] = {
                      value: Math.round(val),
                      unit: 'µg/m³', // Assuming unit
-                     badge: 'good' // Simplified badge, or calculate dynamic
+                  badge: getBadgeForNormalizedIntensity(normalizeHeatIntensity(val, getHeatMaxValue(type)))
                   };
                }
             });
