@@ -28,15 +28,7 @@ export const PrivacyPolicy: React.FC = () => {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>3. Cookies</h2>
-          <p className={styles.text}>
-            We use essential cookies to ensure the basic functionality of the website. These cookies do not store any
-            personally identifiable information.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>4. Third-Party Links</h2>
+          <h2 className={styles.sectionTitle}>3. Third-Party Links</h2>
           <p className={styles.text}>
             This website may include links to third-party websites, plug-ins, and applications. Clicking on those links
             or enabling those connections may allow third parties to collect or share data about you. We do not control
@@ -45,7 +37,7 @@ export const PrivacyPolicy: React.FC = () => {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>5. Contact Us</h2>
+          <h2 className={styles.sectionTitle}>4. Contact Us</h2>
           <p className={styles.text}>
             If you have any questions about this privacy policy or our privacy practices, please contact the project leader:
             <br /><br />
