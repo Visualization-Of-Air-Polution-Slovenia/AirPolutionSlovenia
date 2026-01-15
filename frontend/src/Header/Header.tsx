@@ -36,17 +36,9 @@ export const Header = () => {
       </nav>
 
       <div className={styles.actions}>
-        <div className={styles.live}>
-          <span className={styles.pulseDot} aria-hidden="true" />
-          <span>Live Data</span>
-        </div>
-
         {/* <button className={styles.iconBtn} type="button" aria-label="Notifications">
           <span className="material-symbols-outlined">notifications</span>
         </button> */}
-        <button className={styles.iconBtn} type="button" aria-label="Settings">
-          <span className="material-symbols-outlined">settings</span>
-        </button>
 
         <button onClick={toggleTheme} className={styles.iconBtn} aria-label="Toggle theme" type="button">
           {theme === 'dark' ? ThemeIcons.Dark : ThemeIcons.Light}
