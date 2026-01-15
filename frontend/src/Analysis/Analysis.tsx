@@ -525,23 +525,21 @@ export const Analysis = () => {
           <section>
             <div className={styles.sectionTitle}>{AnalysisContent.side.timeRange}</div>
 
-            <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+            <div className={styles.modeToggle}>
               <button
                 type="button"
-                className={styles.smallLink}
+                className={`${styles.modeBtn} ${rangeMode === 'preset' ? styles.modeBtnActive : ''}`}
                 onClick={() => {
                   setRangeMode('preset');
                   setRangeToLatest(timeRange);
                 }}
-                style={{ textDecoration: rangeMode === 'preset' ? 'underline' : 'none' }}
               >
                 Preset
               </button>
               <button
                 type="button"
-                className={styles.smallLink}
+                className={`${styles.modeBtn} ${rangeMode === 'custom' ? styles.modeBtnActive : ''}`}
                 onClick={() => setRangeMode('custom')}
-                style={{ textDecoration: rangeMode === 'custom' ? 'underline' : 'none' }}
               >
                 Custom
               </button>
@@ -568,15 +566,15 @@ export const Analysis = () => {
             </div>
 
             {dataRange && (
-              <div style={{ marginTop: 8, color: 'var(--text-muted)', fontSize: 12 }}>
-                Available data: {dataRange.minDate} → {dataRange.maxDate}
+              <div className={styles.dataInfo}>
+                Available: {dataRange.minDate} → {dataRange.maxDate}
               </div>
             )}
 
             {rangeMode === 'custom' && (
-              <div style={{ marginTop: 10 }}>
-                <label style={{ display: 'grid', gap: 6, fontSize: 12, color: 'var(--text-muted)' }}>
-                  Days
+              <div className={styles.dateSection}>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputGroupLabel}>Duration (days)</span>
                   <input
                     className={styles.input}
                     type="number"
@@ -585,34 +583,43 @@ export const Analysis = () => {
                     value={customDays}
                     onChange={(e) => setCustomDays(Math.max(1, Number(e.target.value) || 1))}
                   />
-                </label>
+                </div>
               </div>
             )}
 
-            <div className={styles.inputRow}>
-              <input
-                className={styles.input}
-                type="date"
-                value={startDateInput}
-                onChange={(e) => {
-                  const nextStart = e.target.value;
-                  const { start, end } = clampDateOrder(nextStart, endDateInput);
-                  setStartDateInput(start);
-                  setEndDateInput(end);
-                }}
-              />
-              <input
-                className={styles.input}
-                type="date"
-                value={endDateInput}
-                onChange={(e) => {
-                  const nextEnd = e.target.value;
-                  const { start, end } = clampDateOrder(startDateInput, nextEnd);
-                  setStartDateInput(start);
-                  setEndDateInput(end);
-                }}
-                disabled={rangeMode === 'custom'}
-              />
+            <div className={styles.dateSection}>
+              <span className={styles.dateLabel}>Date Range</span>
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputGroupLabel}>From</span>
+                  <input
+                    className={styles.input}
+                    type="date"
+                    value={startDateInput}
+                    onChange={(e) => {
+                      const nextStart = e.target.value;
+                      const { start, end } = clampDateOrder(nextStart, endDateInput);
+                      setStartDateInput(start);
+                      setEndDateInput(end);
+                    }}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputGroupLabel}>To</span>
+                  <input
+                    className={styles.input}
+                    type="date"
+                    value={endDateInput}
+                    onChange={(e) => {
+                      const nextEnd = e.target.value;
+                      const { start, end } = clampDateOrder(startDateInput, nextEnd);
+                      setStartDateInput(start);
+                      setEndDateInput(end);
+                    }}
+                    disabled={rangeMode === 'custom'}
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
@@ -711,127 +718,65 @@ export const Analysis = () => {
       </aside>
 
       <section className={styles.main} aria-label="Analysis results">
-        <div className={styles.topbar}>
-          <div className={styles.topTitle}>
-            <span>
-              {AnalysisContent.topbar.heading}: {selectedPollutants.map((k) => pollutantLabelToCsv[k]).join(' vs ')}
-            </span>
-          </div>
-
-          <div className={styles.legend}>
-            {selectedPollutants.map((k) => (
-              <div key={k} className={styles.legendItem}>
-                <span className={styles.dot} style={{ background: pollutantColors[k] }} /> {pollutantLabelToCsv[k]}
-              </div>
-            ))}
-            <button
-              type="button"
-              style={{ border: 0, background: 'transparent', color: 'var(--text-muted)', cursor: 'pointer' }}
-              aria-label="More"
-            >
-              <span className="material-symbols-outlined">more_vert</span>
-            </button>
-          </div>
-        </div>
-
         <div className={styles.canvas}>
-          <div className={styles.grid}>
-            <div className={`${styles.card} ${styles.card8}`}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  gap: 'var(--distance-xl)',
-                  alignItems: 'start',
-                }}
-              >
-                <div>
-                  <div className={styles.cardTitle}>
-                    Annual Mean Concentration (
-                    {selectedPollutants.length === 1
-                      ? (POLLUTANTS.find((p) => p.key === selectedPollutants[0])?.label ?? selectedPollutants[0])
-                      : selectedPollutants
-                          .map((k) => POLLUTANTS.find((p) => p.key === k)?.label ?? k)
-                          .join(' / ')}
-                    )
-                  </div>
-                  <div className={styles.cardSubtitle}>{AnalysisContent.widgets.trendsSubtitle}</div>
-                </div>
-
-                <div className={styles.legend}>
-                  {selectedPollutants.map((k) => (
-                    <div key={k} className={styles.legendItem}>
-                      <span className={styles.dot} style={{ background: pollutantColors[k] }} /> {pollutantLabelToCsv[k]}
-                    </div>
-                  ))}
-                </div>
+          <div className={styles.chartCard}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: 'var(--distance-xl)',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <div className={styles.cardTitle}>Annual Mean Concentration</div>
+                <div className={styles.cardSubtitle}>{AnalysisContent.widgets.trendsSubtitle}</div>
               </div>
 
-              <div className={styles.chartArea}>
-                {allStatus === 'loading' && <div style={{ padding: 16, color: 'var(--text-muted)' }}>Loading full dataset…</div>}
-                {allStatus === 'error' && <div style={{ padding: 16, color: 'var(--warning)' }}>{allError}</div>}
-                {allStatus === 'success' && allWarning && (
-                  <div style={{ padding: 16, color: 'var(--text-muted)' }}>
-                    Data warnings: {allWarning}
+              <div className={styles.legend}>
+                {selectedPollutants.map((k) => (
+                  <div key={k} className={styles.legendItem}>
+                    <span className={styles.dot} style={{ background: pollutantColors[k] }} /> {pollutantLabelToCsv[k]}
                   </div>
-                )}
-                {allStatus === 'success' && selectedPollutants.length === 0 && (
-                  <div style={{ padding: 16, color: 'var(--text-muted)' }}>Select at least one pollutant.</div>
-                )}
-                {allStatus === 'success' && selectedPollutants.length > 0 && chartSvg}
-                {allStatus === 'success' && selectedPollutants.length > 0 && !chartSvg && (
-                  <div style={{ padding: 16, color: 'var(--text-muted)' }}>Not enough points for a chart.</div>
-                )}
+                ))}
               </div>
             </div>
 
-            <div className={`${styles.card} ${styles.card4}`}>
-              <div className={styles.cardTitle}>{AnalysisContent.widgets.summaryTitle}</div>
-              <div className={styles.cardSubtitle}>Highlights for the selected time range and model.</div>
-              <div style={{ marginTop: 'var(--distance-xl)', display: 'grid', gap: 'var(--distance)' }}>
-                <div
-                  style={{
-                    padding: 'var(--distance-lg)',
-                    borderRadius: 14,
-                    border: '1px solid var(--glass-border)',
-                    background: 'color-mix(in srgb, var(--surface-2) 70%, transparent)',
-                  }}
-                >
-                  <div style={{ fontWeight: 900 }}>Trend</div>
-                  <div style={{ color: 'var(--text-muted)', marginTop: 6 }}>
-                    Showing {selectedPollutants.length} pollutant(s) for {activeCity}
-                  </div>
+            <div className={styles.chartArea}>
+              {allStatus === 'loading' && <div style={{ padding: 16, color: 'var(--text-muted)' }}>Loading full dataset…</div>}
+              {allStatus === 'error' && <div style={{ padding: 16, color: 'var(--warning)' }}>{allError}</div>}
+              {allStatus === 'success' && allWarning && (
+                <div style={{ padding: 16, color: 'var(--text-muted)' }}>
+                  Data warnings: {allWarning}
                 </div>
+              )}
+              {allStatus === 'success' && selectedPollutants.length === 0 && (
+                <div style={{ padding: 16, color: 'var(--text-muted)' }}>Select at least one pollutant.</div>
+              )}
+              {allStatus === 'success' && selectedPollutants.length > 0 && chartSvg}
+              {allStatus === 'success' && selectedPollutants.length > 0 && !chartSvg && (
+                <div style={{ padding: 16, color: 'var(--text-muted)' }}>Not enough points for a chart.</div>
+              )}
 
-                <div
-                  style={{
-                    padding: 'var(--distance-lg)',
-                    borderRadius: 14,
-                    border: '1px solid var(--glass-border)',
-                    background: 'color-mix(in srgb, var(--surface-2) 70%, transparent)',
-                  }}
-                >
-                  <div style={{ fontWeight: 900 }}>Selected</div>
-                  <div style={{ color: 'var(--text-muted)', marginTop: 6 }}>
-                    {selectedPollutants.map((k) => pollutantLabelToCsv[k]).join(', ')}
-                  </div>
+              {/* Summary bar inside chart */}
+              <div className={styles.summaryBar}>
+                <div className={styles.summaryPill}>
+                  <span className={styles.summaryPillLabel}>City:</span>
+                  <span className={styles.summaryPillValue}>{activeCity}</span>
                 </div>
-
-                <div
-                  style={{
-                    padding: 'var(--distance-lg)',
-                    borderRadius: 14,
-                    border: '1px solid var(--glass-border)',
-                    background: 'color-mix(in srgb, var(--surface-2) 70%, transparent)',
-                  }}
-                >
-                  <div style={{ fontWeight: 900 }}>Limit</div>
-                  <div style={{ color: 'var(--text-muted)', marginTop: 6 }}>{limitDisplay}</div>
+                <div className={styles.summaryPill}>
+                  <span className={styles.summaryPillLabel}>Pollutants:</span>
+                  <span className={styles.summaryPillValue}>
+                    {selectedPollutants.map((k) => pollutantLabelToCsv[k]).join(', ') || 'None'}
+                  </span>
+                </div>
+                <div className={styles.summaryPill}>
+                  <span className={styles.summaryPillLabel}>Limit:</span>
+                  <span className={styles.summaryPillValue}>{limitDisplay}</span>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </main>
