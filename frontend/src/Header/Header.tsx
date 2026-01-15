@@ -40,7 +40,15 @@ export const Header = () => {
           <span className="material-symbols-outlined">notifications</span>
         </button> */}
 
-
+        <button
+          className={styles.iconBtn}
+          type="button"
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+        >
+          {theme === 'dark' ? ThemeIcons.Light : ThemeIcons.Dark}
+        </button>
       </div>
     </header>
   );
