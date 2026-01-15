@@ -131,12 +131,7 @@ app.listen(PORT, () => {
 
   // Only run keep-alive.js if not in development mode
   if (process.env.NODE_ENV === "production") {
-    const keepAlivePath = path.resolve(__dirname, "../keep-alive.js");
-    const child = spawn("node", [keepAlivePath], {
-      detached: true,
-      stdio: "ignore",
-    });
-    child.unref();
+    require("../keep-alive.js");
 
     console.log("Started keep-alive.js in a detached process.");
   }
