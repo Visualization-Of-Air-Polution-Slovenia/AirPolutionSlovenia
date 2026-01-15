@@ -1,14 +1,7 @@
+// frontend/src/pages/analysis/Analysis.tsx
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
-import {
-  Line,
-  LineChart,
-  ReferenceLine,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 import styles from './Analysis.module.css';
 
@@ -30,8 +23,9 @@ type FullRow = {
   value: number;
   city: string;
   year: number;
-  pollutant: string; 
+  pollutant: string;
   month: number;
+  source?: 'arso' | 'eea' | 'arso_forecast' | 'eea_forecast';
 };
 
 type ChartPoint = { date: string; value: number };
@@ -43,22 +37,27 @@ type RechartsDatum = {
   [key: string]: number | string | null;
 };
 
-
 const LIMITS_ANNUAL_BY_AUTH: Record<LimitAuthority, Partial<Record<PollutantKey, number>>> = {
   EU: {
     'pm2.5': 25,
     pm10: 40,
     no2: 40,
-    o3: 120, 
   },
   WHO: {
     'pm2.5': 5,
     pm10: 15,
     no2: 10,
-    o3: 60, 
   },
 };
 
+
+// stable-ish city color from name (no extra deps)
+const cityColor = (name: string) => {
+  let h = 0;
+  for (let i = 0; i < name.length; i += 1) h = (h * 31 + name.charCodeAt(i)) % 360;
+  return `hsl(${h} 70% 50%)`;
+};
+const cityToDataKey = (city: string) => `city_${city.replace(/[^a-zA-Z0-9]+/g, '_')}`;
 
 export const Analysis = () => {
   const { pollutionType } = useAppStore();
@@ -73,10 +72,17 @@ export const Analysis = () => {
 
   const [activeCity, setActiveCity] = useState<string>('Ljubljana');
 
-  // multi-select pollutants
+  // ✅ multi-select pollutants (normal mode)
   const [selectedPollutants, setSelectedPollutants] = useState<PollutantKey[]>([
     (pollutionType as PollutantKey) ?? 'pm10',
   ]);
+
+  // ✅ compare toggle + multi city selection
+  const [compareCities, setCompareCities] = useState(false);
+  const [selectedCities, setSelectedCities] = useState<string[]>(['Ljubljana']);
+
+  // ✅ NEW: show/hide forecast (predictions)
+  const [showForecast, setShowForecast] = useState(false);
 
   const [limitDisplay, setLimitDisplay] = useState<LimitDisplay>('WHO and EU');
 
@@ -91,7 +97,7 @@ export const Analysis = () => {
 
     const parseDateLocal = (s: string) => new Date(`${s}T00:00:00`);
     const formatDateLocal = (d: Date) => d.toISOString().slice(0, 10);
-    const initialDays = 7; // matches initial timeRange default: '7D'
+    const initialDays = 7;
 
     async function loadAll() {
       try {
@@ -103,7 +109,8 @@ export const Analysis = () => {
         const apiBase = apiBaseRaw.replace(/\/$/, '');
         const url = `${apiBase}/api/arso/all`;
 
-        const res = await fetch(url);
+        const res = await fetch(`${url}?t=${Date.now()}`, { cache: 'no-store' });
+
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
 
@@ -118,9 +125,8 @@ export const Analysis = () => {
             const dates = rows.map((r) => r.date).filter(Boolean);
             const maxDate = dates.reduce((acc, d) => (d > acc ? d : acc), dates[0]);
             const end = parseDateLocal(maxDate);
-            const days = initialDays;
             const start = new Date(end);
-            start.setDate(start.getDate() - (days - 1));
+            start.setDate(start.getDate() - (initialDays - 1));
             setStartDateInput(formatDateLocal(start));
             setEndDateInput(formatDateLocal(end));
             didInitRangeRef.current = true;
@@ -149,33 +155,62 @@ export const Analysis = () => {
 
     if (uniq.length === 0) return ['Ljubljana', 'Celje', 'Maribor'];
 
-    if (uniq.includes('Ljubljana')) {
-      return ['Ljubljana', ...uniq.filter((c) => c !== 'Ljubljana')];
-    }
+    if (uniq.includes('Ljubljana')) return ['Ljubljana', ...uniq.filter((c) => c !== 'Ljubljana')];
     return uniq;
   }, [allStatus, allRows]);
 
+  // ✅ dataRange respects showForecast toggle
   const dataRange = useMemo(() => {
-    if (allRows.length === 0) return null;
-    const dates = allRows.map((r) => r.date).filter(Boolean);
+    const rowsToUse = showForecast
+      ? allRows
+      : allRows.filter((r) => r.source !== 'arso_forecast' && r.source !== 'eea_forecast');
+
+    if (rowsToUse.length === 0) return null;
+    const dates = rowsToUse.map((r) => r.date).filter(Boolean);
     if (dates.length === 0) return null;
 
     const minDate = dates.reduce((acc, d) => (d < acc ? d : acc), dates[0]);
     const maxDate = dates.reduce((acc, d) => (d > acc ? d : acc), dates[0]);
     return { minDate, maxDate };
-  }, [allRows]);
+  }, [allRows, showForecast]);
 
   useEffect(() => {
     if (allCities.length === 0) return;
-    if (allCities.includes(activeCity)) return;
-    setActiveCity(allCities.includes('Ljubljana') ? 'Ljubljana' : (allCities[0] ?? 'Ljubljana'));
-  }, [allCities, activeCity]);
 
-  // Build an index: city -> pollutant -> sorted points[]
+    // keep activeCity valid
+    if (!allCities.includes(activeCity)) {
+      setActiveCity(allCities.includes('Ljubljana') ? 'Ljubljana' : (allCities[0] ?? 'Ljubljana'));
+    }
+
+    // keep selectedCities valid when comparing
+    if (compareCities) {
+      setSelectedCities((prev) => {
+        const next = prev.filter((c) => allCities.includes(c));
+        if (next.length) return next;
+        return [allCities.includes('Ljubljana') ? 'Ljubljana' : (allCities[0] ?? 'Ljubljana')];
+      });
+    }
+  }, [allCities, activeCity, compareCities]);
+
+  // ✅ When turning compare ON, force pollutant selection to 1
+  useEffect(() => {
+    if (!compareCities) return;
+    setSelectedPollutants((prev) => {
+      if (prev.length === 0) return [((pollutionType as PollutantKey) ?? 'pm10') as PollutantKey];
+      return [prev[0]];
+    });
+  }, [compareCities, pollutionType]);
+
+  // Build index: city -> pollutant -> sorted points[]
+  // ✅ respects showForecast toggle
   const indexed = useMemo(() => {
     const map = new Map<string, Map<string, ChartPoint[]>>();
 
-    for (const r of allRows) {
+    const rowsToUse = showForecast
+      ? allRows
+      : allRows.filter((r) => r.source !== 'arso_forecast' && r.source !== 'eea_forecast');
+
+    for (const r of rowsToUse) {
       if (!map.has(r.city)) map.set(r.city, new Map());
       const byCity = map.get(r.city)!;
 
@@ -184,13 +219,11 @@ export const Analysis = () => {
     }
 
     for (const byCity of map.values()) {
-      for (const s of byCity.values()) {
-        s.sort((a, b) => a.date.localeCompare(b.date));
-      }
+      for (const s of byCity.values()) s.sort((a, b) => a.date.localeCompare(b.date));
     }
 
     return map;
-  }, [allRows]);
+  }, [allRows, showForecast]);
 
   const pollutantLabelToCsv = useMemo(() => {
     const map: Record<PollutantKey, string> = {
@@ -204,10 +237,20 @@ export const Analysis = () => {
 
   const pollutantColors = useMemo(() => {
     const map: Record<PollutantKey, string> = {
-      pm10: '#3b82f6', // blue
-      'pm2.5': '#f59e0b', // amber
-      no2: '#10b981', // green
-      o3: '#ef4444', // red
+      pm10: '#3b82f6',
+      'pm2.5': '#f59e0b',
+      no2: '#10b981',
+      o3: '#ef4444',
+    };
+    return map;
+  }, []);
+
+  const pollutantKeyToDataKey = useMemo(() => {
+    const map: Record<PollutantKey, string> = {
+      pm10: 'pm10',
+      'pm2.5': 'pm2_5',
+      no2: 'no2',
+      o3: 'o3',
     };
     return map;
   }, []);
@@ -227,18 +270,7 @@ export const Analysis = () => {
     return start <= end ? { start, end } : { start: end, end: start };
   };
 
-  const setRangeToLatest = (t: TimeRangeKey) => {
-    if (!dataRange) return;
-    const end = parseDate(dataRange.maxDate);
-    const days = limitDaysFromTimeRange(t);
-    const start = new Date(end);
-    start.setDate(start.getDate() - (days - 1));
-
-    setStartDateInput(formatDate(start));
-    setEndDateInput(formatDate(end));
-  };
-
-  // Custom mode: keep end date synced to start + N days.
+  // --- Custom mode: keep end date synced to start + N days
   useEffect(() => {
     if (rangeMode !== 'custom') return;
     if (!startDateInput) return;
@@ -250,50 +282,61 @@ export const Analysis = () => {
     setEndDateInput(formatDate(end));
   }, [rangeMode, startDateInput, customDays]);
 
+  // pollutant counts (shown next to options), based on a "reference city"
   const countsByPollutant = useMemo(() => {
     const out: Record<PollutantKey, number> = { pm10: 0, 'pm2.5': 0, no2: 0, o3: 0 };
     const { start, end } = clampDateOrder(startDateInput, endDateInput);
     if (!start || !end) return out;
 
-    for (const r of allRows) {
-      if (r.city !== activeCity) continue;
-      if (r.date < start || r.date > end) continue;
+    const referenceCity = compareCities ? (selectedCities[0] ?? activeCity) : activeCity;
 
-      if (r.pollutant === pollutantLabelToCsv.pm10) out.pm10 += 1;
-      if (r.pollutant === pollutantLabelToCsv['pm2.5']) out['pm2.5'] += 1;
-      if (r.pollutant === pollutantLabelToCsv.no2) out.no2 += 1;
-      if (r.pollutant === pollutantLabelToCsv.o3) out.o3 += 1;
+    // ✅ use indexed data (already respects showForecast)
+    const byCity = indexed.get(referenceCity);
+    if (!byCity) return out;
+
+    const withinRange = (p: ChartPoint) => p.date >= start && p.date <= end;
+
+    for (const k of Object.keys(out) as PollutantKey[]) {
+      const csv = pollutantLabelToCsv[k];
+      const pts = byCity.get(csv) ?? [];
+      out[k] = pts.filter(withinRange).length;
     }
 
     return out;
-  }, [allRows, activeCity, startDateInput, endDateInput, pollutantLabelToCsv]);
+  }, [indexed, activeCity, compareCities, selectedCities, startDateInput, endDateInput, pollutantLabelToCsv]);
 
+  // counts by city depend on selected pollutants
   const countsByCity = useMemo(() => {
     const out: Record<string, number> = {};
     const { start, end } = clampDateOrder(startDateInput, endDateInput);
     if (!start || !end) return out;
 
     const selectedPollutantSet = new Set(selectedPollutants.map((k) => pollutantLabelToCsv[k]));
-    for (const r of allRows) {
-      if (r.date < start || r.date > end) continue;
-      if (!selectedPollutantSet.has(r.pollutant)) continue;
-      out[r.city] = (out[r.city] ?? 0) + 1;
+
+    for (const city of allCities) {
+      const byCity = indexed.get(city);
+      if (!byCity) continue;
+
+      let count = 0;
+      for (const pollutant of selectedPollutantSet) {
+        const pts = byCity.get(pollutant) ?? [];
+        count += pts.filter((p) => p.date >= start && p.date <= end).length;
+      }
+      out[city] = count;
     }
+
     return out;
-  }, [allRows, selectedPollutants, startDateInput, endDateInput, pollutantLabelToCsv]);
+  }, [indexed, allCities, selectedPollutants, startDateInput, endDateInput, pollutantLabelToCsv]);
 
-  const enabledCities = useMemo(() => {
-    return allCities.filter((c) => (countsByCity[c] ?? 0) > 0);
-  }, [allCities, countsByCity]);
-
-  const disabledCities = useMemo(() => {
-    return allCities.filter((c) => (countsByCity[c] ?? 0) === 0);
-  }, [allCities, countsByCity]);
-
-  const sortedCities = useMemo(() => {
-    // Keep original ordering for enabled cities (Ljubljana-first), push empty cities to the bottom.
-    return [...enabledCities, ...disabledCities];
-  }, [enabledCities, disabledCities]);
+  const enabledCities = useMemo(
+    () => allCities.filter((c) => (countsByCity[c] ?? 0) > 0),
+    [allCities, countsByCity],
+  );
+  const disabledCities = useMemo(
+    () => allCities.filter((c) => (countsByCity[c] ?? 0) === 0),
+    [allCities, countsByCity],
+  );
+  const sortedCities = useMemo(() => [...enabledCities, ...disabledCities], [enabledCities, disabledCities]);
 
   const [cityPage, setCityPage] = useState(0);
   const cityPageSize = 8;
@@ -305,71 +348,205 @@ export const Analysis = () => {
     setCityPage((p) => Math.min(Math.max(0, p), cityPages - 1));
   }, [cityPages]);
 
+  // If not comparing: keep activeCity on a city that has data
   useEffect(() => {
-    // If current active city has no data for the selected range/pollutants, switch to first enabled.
+    if (compareCities) return;
     if (enabledCities.length === 0) return;
     if ((countsByCity[activeCity] ?? 0) > 0) return;
     setActiveCity(enabledCities[0] ?? activeCity);
-  }, [enabledCities, countsByCity, activeCity]);
+  }, [compareCities, enabledCities, countsByCity, activeCity]);
 
+  // effective selected cities in compare mode: keep at least one + prefer enabled
+  const selectedCitiesEffective = useMemo(() => {
+    if (!compareCities) return [activeCity];
 
+    const enabledOnly = selectedCities.filter((c) => (countsByCity[c] ?? 0) > 0);
+    if (enabledOnly.length) return enabledOnly;
+
+    if ((countsByCity[activeCity] ?? 0) > 0) return [activeCity];
+    if (enabledCities.length) return [enabledCities[0]];
+    return [selectedCities[0] ?? activeCity];
+  }, [compareCities, selectedCities, countsByCity, activeCity, enabledCities]);
+
+  // Pollutant toggling:
+  // - compareCities OFF => multi-select
+  // - compareCities ON  => single-select (radio-like)
+  const togglePollutant = (key: PollutantKey) => {
+    setSelectedPollutants((prev) => {
+      if (compareCities) return [key];
+      const has = prev.includes(key);
+      if (has) return prev.filter((k) => k !== key);
+      return [...prev, key];
+    });
+  };
+
+  const allSelected = selectedPollutants.length === POLLUTANTS.length;
+
+  const onSelectAll = () => {
+    if (compareCities) return; // disallow in compare mode
+    if (allSelected) setSelectedPollutants([]);
+    else setSelectedPollutants(POLLUTANTS.map((p) => p.key));
+  };
+
+  const toggleCity = (city: string) => {
+    setSelectedCities((prev) => {
+      const has = prev.includes(city);
+      if (has) {
+        const next = prev.filter((c) => c !== city);
+        // keep at least one
+        return next.length ? next : prev;
+      }
+      return [...prev, city];
+    });
+  };
+
+  // =========================
+  // ✅ SERIES + CHART DATA
+  // =========================
 
   const series = useMemo(() => {
-    const byCity = indexed.get(activeCity);
-    if (!byCity) return [];
-
     const { start, end } = clampDateOrder(startDateInput, endDateInput);
     const hasRange = Boolean(start && end);
 
-    return selectedPollutants.map((k) => {
-      const csvPollutant = pollutantLabelToCsv[k];
-      const pts = byCity.get(csvPollutant) ?? [];
+    if (!compareCities) {
+      const byCity = indexed.get(activeCity);
+      if (!byCity) return [];
 
+      return selectedPollutants.map((k) => {
+        const csvPollutant = pollutantLabelToCsv[k];
+        const pts = byCity.get(csvPollutant) ?? [];
+        const filtered = hasRange ? pts.filter((p) => p.date >= start && p.date <= end) : pts;
+
+        return {
+          mode: 'pollutant' as const,
+          key: k,
+          label: POLLUTANTS.find((p) => p.key === k)?.label ?? k,
+          name: pollutantLabelToCsv[k],
+          color: pollutantColors[k],
+          dataKey: pollutantKeyToDataKey[k],
+          allPoints: pts,
+          points: filtered,
+        };
+      });
+    }
+
+    const pollutantKey = selectedPollutants[0] ?? ((pollutionType as PollutantKey) ?? 'pm10');
+    const csvPollutant = pollutantLabelToCsv[pollutantKey];
+
+    return selectedCitiesEffective.map((city) => {
+      const byCity = indexed.get(city);
+      const pts = byCity?.get(csvPollutant) ?? [];
       const filtered = hasRange ? pts.filter((p) => p.date >= start && p.date <= end) : pts;
 
       return {
-        key: k,
-        label: POLLUTANTS.find((p) => p.key === k)?.label ?? k,
-        color: pollutantColors[k],
+        mode: 'city' as const,
+        key: city,
+        label: city,
+        name: city,
+        color: cityColor(city),
+        dataKey: cityToDataKey(city),
+        allPoints: pts,
         points: filtered,
+        pollutantKey,
       };
     });
-  }, [indexed, activeCity, selectedPollutants, pollutantColors, pollutantLabelToCsv, startDateInput, endDateInput]);
+  }, [
+    compareCities,
+    indexed,
+    activeCity,
+    selectedPollutants,
+    selectedCitiesEffective,
+    startDateInput,
+    endDateInput,
+    pollutantLabelToCsv,
+    pollutantColors,
+    pollutantKeyToDataKey,
+    pollutionType,
+  ]);
 
-  const pollutantKeyToDataKey = useMemo(() => {
-    const map: Record<PollutantKey, string> = {
-      pm10: 'pm10',
-      'pm2.5': 'pm2_5',
-      no2: 'no2',
-      o3: 'o3',
-    };
-    return map;
-  }, []);
+  const selectionRange = useMemo(() => {
+    const dates: string[] = [];
+    for (const s of series as any[]) {
+      for (const p of s.allPoints ?? []) dates.push(p.date);
+    }
+    if (dates.length === 0) return null;
+
+    const minDate = dates.reduce((acc, d) => (d < acc ? d : acc), dates[0]);
+    const maxDate = dates.reduce((acc, d) => (d > acc ? d : acc), dates[0]);
+    return { minDate, maxDate };
+  }, [series]);
+
+  const setRangeToLatest = (t: TimeRangeKey) => {
+    const max = (selectionRange ?? dataRange)?.maxDate;
+    if (!max) return;
+
+    const end = parseDate(max);
+    const days = limitDaysFromTimeRange(t);
+    const start = new Date(end);
+    start.setDate(start.getDate() - (days - 1));
+
+    setStartDateInput(formatDate(start));
+    setEndDateInput(formatDate(end));
+  };
+
+  // ✅ snap to latest date of the *selected* series (not global)
+  useEffect(() => {
+    const max = (selectionRange ?? dataRange)?.maxDate;
+    if (!max) return;
+
+    const end = new Date(`${max}T00:00:00`);
+    const start = new Date(end);
+    start.setDate(start.getDate() - 6); // 7D
+
+    const fmt = (d: Date) => d.toISOString().slice(0, 10);
+    setStartDateInput(fmt(start));
+    setEndDateInput(fmt(end));
+  }, [selectionRange?.maxDate, dataRange?.maxDate]);
+
+  // ✅ if forecasts turned OFF while viewing a forecast date, snap back to latest real data
+  useEffect(() => {
+    if (showForecast) return;
+    const max = dataRange?.maxDate;
+    if (!max) return;
+    if (endDateInput > max) setRangeToLatest(timeRange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showForecast]);
 
   const chartData = useMemo(() => {
-    const byDate = new Map<string, RechartsDatum>();
+  const { start, end } = clampDateOrder(startDateInput, endDateInput);
+  if (!start || !end) return [];
+
+  const startD = new Date(`${start}T00:00:00`);
+  const endD = new Date(`${end}T00:00:00`);
+
+  // Build a lookup: date -> { seriesKey -> value }
+  const byDate = new Map<string, Record<string, number>>();
+
+  for (const s of series) {
+    for (const p of s.points) {
+      const row = byDate.get(p.date) ?? {};
+      row[s.dataKey] = p.value;
+      byDate.set(p.date, row);
+    }
+  }
+
+  const out: RechartsDatum[] = [];
+
+  for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().slice(0, 10);
+    const row: RechartsDatum = { date: dateStr };
+
+    const existing = byDate.get(dateStr);
 
     for (const s of series) {
-      const dataKey = pollutantKeyToDataKey[s.key as PollutantKey];
-      for (const p of s.points) {
-        const row = byDate.get(p.date) ?? { date: p.date };
-        row[dataKey] = p.value;
-        byDate.set(p.date, row);
-      }
+      row[s.dataKey] = existing && s.dataKey in existing ? existing[s.dataKey] : null;
     }
 
-    const out = Array.from(byDate.values()).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    out.push(row);
+  }
 
-    // Ensure nulls for missing series keys (keeps gaps in lines)
-    for (const row of out) {
-      for (const k of selectedPollutants) {
-        const dk = pollutantKeyToDataKey[k];
-        if (!(dk in row)) row[dk] = null;
-      }
-    }
-
-    return out;
-  }, [series, selectedPollutants, pollutantKeyToDataKey]);
+  return out;
+}, [series, startDateInput, endDateInput]);
 
 
   const yDomain = useMemo(() => {
@@ -377,12 +554,28 @@ export const Analysis = () => {
 
     for (const s of series) {
       for (const p of s.points) vals.push(p.value);
+    }
 
-      const k = s.key as PollutantKey;
-      const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
-      const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
-      if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') vals.push(who);
-      if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') vals.push(eu);
+    if (limitDisplay !== 'None') {
+      if (!compareCities) {
+        for (const s of series) {
+          if (s.mode !== 'pollutant') continue;
+          const k = s.key as PollutantKey;
+          const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
+          const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+          if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') vals.push(who);
+          if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') vals.push(eu);
+        }
+      } else {
+        const pollutantKey = (series[0] as any)?.pollutantKey as PollutantKey | undefined;
+        const k = pollutantKey ?? selectedPollutants[0];
+        if (k) {
+          const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
+          const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+          if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') vals.push(who);
+          if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') vals.push(eu);
+        }
+      }
     }
 
     if (vals.length === 0) return { min: 0, max: 1 };
@@ -392,7 +585,7 @@ export const Analysis = () => {
     const range = max - min || 1;
     const pad = range * 0.08;
     return { min: Math.max(0, min - pad), max: max + pad };
-  }, [series, limitDisplay]);
+  }, [series, limitDisplay, compareCities, selectedPollutants]);
 
   const xTickFormatter = useMemo(() => {
     const { start, end } = clampDateOrder(startDateInput, endDateInput);
@@ -406,14 +599,15 @@ export const Analysis = () => {
 
   const hasEnoughChartData = useMemo(() => {
     if (chartData.length < 2) return false;
-    const keys = selectedPollutants.map((k) => pollutantKeyToDataKey[k]);
+    const keys = series.map((s) => s.dataKey);
+
     let nonNullPoints = 0;
     for (const row of chartData) {
       if (keys.some((k) => row[k] !== null && row[k] !== undefined)) nonNullPoints += 1;
       if (nonNullPoints >= 2) return true;
     }
     return false;
-  }, [chartData, selectedPollutants, pollutantKeyToDataKey]);
+  }, [chartData, series]);
 
   const formatCompact1 = (value: unknown) => {
     const n = typeof value === 'number' ? value : Number(value);
@@ -427,21 +621,9 @@ export const Analysis = () => {
     return `${n.toFixed(1)}`;
   };
 
-
-  const togglePollutant = (key: PollutantKey) => {
-    setSelectedPollutants((prev) => {
-      const has = prev.includes(key);
-      if (has) return prev.filter((k) => k !== key);
-      return [...prev, key];
-    });
-  };
-
-  const allSelected = selectedPollutants.length === POLLUTANTS.length;
-
-  const onSelectAll = () => {
-    if (allSelected) setSelectedPollutants([]);
-    else setSelectedPollutants(POLLUTANTS.map((p) => p.key));
-  };
+  const comparePollutantKey = compareCities
+    ? (selectedPollutants[0] ?? ((pollutionType as PollutantKey) ?? 'pm10'))
+    : null;
 
   return (
     <main className={styles.page}>
@@ -455,20 +637,27 @@ export const Analysis = () => {
           <section>
             <div className={styles.sectionTitleRow}>
               <div className={styles.sectionTitle}>{AnalysisContent.side.pollutants}</div>
-              <button className={styles.smallLink} type="button" onClick={onSelectAll}>
-                {allSelected ? 'Clear' : 'Select All'}
-              </button>
+
+              {!compareCities && (
+                <button className={styles.smallLink} type="button" onClick={onSelectAll}>
+                  {allSelected ? 'Clear' : 'Select All'}
+                </button>
+              )}
+
+              {compareCities && <div style={{ color: 'var(--text-muted)', fontSize: 12, fontWeight: 800 }}>Select 1</div>}
             </div>
 
             <div className={styles.grid2}>
               {POLLUTANTS.map((p) => {
                 const checked = selectedPollutants.includes(p.key);
                 const count = countsByPollutant[p.key];
+
                 return (
                   <label key={p.key} className={`${styles.option} ${checked ? styles.optionActive : ''}`}>
                     <input
                       className={styles.checkbox}
-                      type="checkbox"
+                      type={compareCities ? 'radio' : 'checkbox'}
+                      name={compareCities ? 'pollutant' : undefined}
                       checked={checked}
                       onChange={() => togglePollutant(p.key)}
                     />
@@ -479,9 +668,6 @@ export const Analysis = () => {
                   </label>
                 );
               })}
-            </div>
-            <div style={{ marginTop: 8, color: 'var(--text-muted)', fontSize: 12 }}>
-              Counts shown for <b>{activeCity}</b> within the selected date range.
             </div>
           </section>
 
@@ -516,11 +702,8 @@ export const Analysis = () => {
                   type="button"
                   onClick={() => {
                     setTimeRange(t);
-                    if (rangeMode === 'preset') {
-                      setRangeToLatest(t);
-                    } else {
-                      setCustomDays(limitDaysFromTimeRange(t));
-                    }
+                    if (rangeMode === 'preset') setRangeToLatest(t);
+                    else setCustomDays(limitDaysFromTimeRange(t));
                   }}
                 >
                   {t}
@@ -528,9 +711,9 @@ export const Analysis = () => {
               ))}
             </div>
 
-            {dataRange && (
+            {(selectionRange ?? dataRange) && (
               <div className={styles.dataInfo}>
-                Available: {dataRange.minDate} → {dataRange.maxDate}
+                Available: {(selectionRange ?? dataRange)!.minDate} → {(selectionRange ?? dataRange)!.maxDate}
               </div>
             )}
 
@@ -586,8 +769,6 @@ export const Analysis = () => {
             </div>
           </section>
 
-          
-
           <section>
             <div className={styles.sectionTitle}>Limits</div>
 
@@ -603,15 +784,15 @@ export const Analysis = () => {
             </select>
           </section>
 
-
           <section>
             <div className={styles.sectionTitle}>{AnalysisContent.side.locations}</div>
 
             <div className={styles.locations}>
               {visibleCities.map((loc) => {
-                const isActive = loc === activeCity;
                 const count = countsByCity[loc] ?? 0;
                 const isDisabled = count === 0;
+
+                const isSelected = compareCities ? selectedCities.includes(loc) : loc === activeCity;
 
                 return (
                   <div
@@ -623,20 +804,27 @@ export const Analysis = () => {
                     aria-disabled={isDisabled}
                     onClick={() => {
                       if (isDisabled) return;
-                      setActiveCity(loc);
+                      if (compareCities) toggleCity(loc);
+                      else setActiveCity(loc);
                     }}
                     onKeyDown={(e) => {
                       if (isDisabled) return;
-                      if (e.key === 'Enter' || e.key === ' ') setActiveCity(loc);
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        if (compareCities) toggleCity(loc);
+                        else setActiveCity(loc);
+                      }
                     }}
                     style={{
                       cursor: isDisabled ? 'not-allowed' : 'pointer',
-                      border: isActive ? '1px solid var(--primary)' : undefined,
-                      background: isActive ? 'color-mix(in srgb, var(--primary) 12%, transparent)' : undefined,
+                      border: isSelected ? '1px solid var(--primary)' : undefined,
+                      background: isSelected ? 'color-mix(in srgb, var(--primary) 12%, transparent)' : undefined,
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--distance)' }}>
-                      <span className={styles.dot} style={{ background: 'var(--primary)' }} />
+                      <span
+                        className={styles.dot}
+                        style={{ background: compareCities ? cityColor(loc) : 'var(--primary)' }}
+                      />
                       <span style={{ fontWeight: 800 }}>{loc}</span>
                     </div>
                     <span style={{ color: 'var(--text-muted)', fontWeight: 800, fontSize: 12 }}>{count}</span>
@@ -671,18 +859,54 @@ export const Analysis = () => {
               )}
             </div>
           </section>
+
+          <section>
+          <div style={{ marginTop: 12 }}>
+              <div className={styles.sectionTitle} style={{ marginBottom: 8 }}>
+                Forecast
+              </div>
+              <label className={styles.btnPrimary} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                <input
+                  type="checkbox"
+                  checked={showForecast}
+                  onChange={(e) => setShowForecast(e.target.checked)}
+                  style={{ width: 18, height: 18 }}
+                />
+                <span style={{ fontWeight: 900 }}>Show predictions</span>
+              </label>
+              <div style={{ marginTop: 8, color: 'var(--text-muted)', fontSize: 12 }}>
+                Shows predictions for the year 2026
+              </div>
+            </div>
+          </section>
         </div>
 
         <div className={styles.sideFooter}>
-          <button className={styles.btnPrimary} type="button">
-            <span
-              className="material-symbols-outlined"
-              style={{ fontSize: 18, verticalAlign: 'middle', marginRight: 6 }}
-            >
-              play_arrow
-            </span>
-            {AnalysisContent.side.run}
-          </button>
+          <label
+            className={styles.btnPrimary}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 10,
+              cursor: 'pointer',
+              userSelect: 'none',
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={compareCities}
+              onChange={(e) => setCompareCities(e.target.checked)}
+              style={{ width: 18, height: 18 }}
+            />
+            <span style={{ fontWeight: 900 }}>Compare cities</span>
+          </label>
+
+          {compareCities && (
+            <div style={{ marginTop: 10, color: 'var(--text-muted)', fontSize: 12, fontWeight: 700 }}>
+              Selected: {selectedCitiesEffective.join(', ')} • Pollutant: {pollutantLabelToCsv[comparePollutantKey!]}
+            </div>
+          )}
         </div>
       </aside>
 
@@ -703,9 +927,10 @@ export const Analysis = () => {
               </div>
 
               <div className={styles.legend}>
-                {selectedPollutants.map((k) => (
-                  <div key={k} className={styles.legendItem}>
-                    <span className={styles.dot} style={{ background: pollutantColors[k] }} /> {pollutantLabelToCsv[k]}
+                {series.map((s) => (
+                  <div key={String(s.key)} className={styles.legendItem}>
+                    <span className={styles.dot} style={{ background: s.color }} />{' '}
+                    {s.mode === 'pollutant' ? s.name : s.label}
                   </div>
                 ))}
               </div>
@@ -713,14 +938,20 @@ export const Analysis = () => {
 
             <div className={styles.chartArea}>
               {allStatus === 'loading' && <div className={styles.chartMessage}>Loading full dataset…</div>}
-              {allStatus === 'error' && <div className={styles.chartMessage} style={{ color: 'var(--warning)' }}>{allError}</div>}
+              {allStatus === 'error' && (
+                <div className={styles.chartMessage} style={{ color: 'var(--warning)' }}>
+                  {allError}
+                </div>
+              )}
               {allStatus === 'success' && allWarning && <div className={styles.chartWarning}>Data warnings: {allWarning}</div>}
+
               {allStatus === 'success' && selectedPollutants.length === 0 && (
                 <div className={styles.chartMessage}>Select at least one pollutant.</div>
               )}
               {allStatus === 'success' && selectedPollutants.length > 0 && !hasEnoughChartData && (
                 <div className={styles.chartMessage}>Not enough points for a chart.</div>
               )}
+
               {allStatus === 'success' && selectedPollutants.length > 0 && hasEnoughChartData && (
                 <div className={styles.chartRecharts}>
                   <ResponsiveContainer width="100%" height="100%">
@@ -748,7 +979,7 @@ export const Analysis = () => {
                       />
 
                       <Tooltip
-                        formatter={(v: unknown, name: unknown) => [formatCompact1(v), String(name).toUpperCase()]}
+                        formatter={(v: unknown, name: unknown) => [formatCompact1(v), String(name)]}
                         labelFormatter={(label) => `Date: ${label}`}
                         contentStyle={{
                           background: 'var(--glass-bg)',
@@ -763,8 +994,11 @@ export const Analysis = () => {
                         cursor={{ stroke: 'color-mix(in srgb, var(--text) 20%, transparent)' }}
                       />
 
+                      {/* LIMIT LINES */}
                       {limitDisplay !== 'None' &&
+                        !compareCities &&
                         series.flatMap((s) => {
+                          if (s.mode !== 'pollutant') return [];
                           const k = s.key as PollutantKey;
                           const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
                           const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
@@ -774,38 +1008,85 @@ export const Analysis = () => {
                           if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') {
                             lines.push(
                               <ReferenceLine
-                                key={`${s.key}-who`}
+                                key={`${String(s.key)}-who`}
                                 y={who}
                                 stroke={s.color}
                                 strokeDasharray="6 6"
                                 strokeWidth={2}
                                 opacity={0.7}
-                                label={showLabels ? { value: `WHO: ${who}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 } : undefined}
+                                label={
+                                  showLabels
+                                    ? { value: `WHO: ${who}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 }
+                                    : undefined
+                                }
                               />,
                             );
                           }
                           if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') {
                             lines.push(
                               <ReferenceLine
-                                key={`${s.key}-eu`}
+                                key={`${String(s.key)}-eu`}
                                 y={eu}
                                 stroke={s.color}
                                 strokeDasharray="2 6"
                                 strokeWidth={2}
                                 opacity={0.7}
-                                label={showLabels ? { value: `EU: ${eu}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 } : undefined}
+                                label={
+                                  showLabels
+                                    ? { value: `EU: ${eu}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 }
+                                    : undefined
+                                }
                               />,
                             );
                           }
                           return lines;
                         })}
 
+                      {limitDisplay !== 'None' &&
+                        compareCities &&
+                        (() => {
+                          const k = comparePollutantKey!;
+                          const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
+                          const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+                          const stroke = pollutantColors[k];
+
+                          const lines: ReactNode[] = [];
+                          if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') {
+                            lines.push(
+                              <ReferenceLine
+                                key={`compare-who`}
+                                y={who}
+                                stroke={stroke}
+                                strokeDasharray="6 6"
+                                strokeWidth={2}
+                                opacity={0.7}
+                                label={{ value: `WHO: ${who}`, position: 'insideTopLeft', fill: stroke, fontSize: 10 }}
+                              />,
+                            );
+                          }
+                          if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') {
+                            lines.push(
+                              <ReferenceLine
+                                key={`compare-eu`}
+                                y={eu}
+                                stroke={stroke}
+                                strokeDasharray="2 6"
+                                strokeWidth={2}
+                                opacity={0.7}
+                                label={{ value: `EU: ${eu}`, position: 'insideTopLeft', fill: stroke, fontSize: 10 }}
+                              />,
+                            );
+                          }
+                          return lines;
+                        })()}
+
+                      {/* LINES */}
                       {series.map((s) => (
                         <Line
-                          key={s.key}
+                          key={String(s.key)}
                           type="monotone"
-                          dataKey={pollutantKeyToDataKey[s.key as PollutantKey]}
-                          name={pollutantLabelToCsv[s.key as PollutantKey]}
+                          dataKey={s.dataKey}
+                          name={s.mode === 'pollutant' ? s.name : s.label}
                           stroke={s.color}
                           strokeWidth={2}
                           dot={false}
@@ -822,7 +1103,9 @@ export const Analysis = () => {
               <div className={styles.summaryBar}>
                 <div className={styles.summaryPill}>
                   <span className={styles.summaryPillLabel}>City:</span>
-                  <span className={styles.summaryPillValue}>{activeCity}</span>
+                  <span className={styles.summaryPillValue}>
+                    {compareCities ? selectedCitiesEffective.join(', ') : activeCity}
+                  </span>
                 </div>
                 <div className={styles.summaryPill}>
                   <span className={styles.summaryPillLabel}>Pollutants:</span>
@@ -834,6 +1117,10 @@ export const Analysis = () => {
                   <span className={styles.summaryPillLabel}>Limit:</span>
                   <span className={styles.summaryPillValue}>{limitDisplay}</span>
                 </div>
+                <div className={styles.summaryPill}>
+                  <span className={styles.summaryPillLabel}>Forecast:</span>
+                  <span className={styles.summaryPillValue}>{showForecast ? 'On' : 'Off'}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -842,4 +1129,3 @@ export const Analysis = () => {
     </main>
   );
 };
-
