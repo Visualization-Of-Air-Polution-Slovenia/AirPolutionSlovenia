@@ -24,7 +24,10 @@ export const HealthCard = ({ title, icon, badge, tone, border, body, tags }: Hea
             {icon}
           </span>
         </div>
-        <div className={styles.badge}>{badge}</div>
+
+        <div className={`${styles.badge} ${styles[tone || 'neutral']}`}>
+          {badge}
+        </div>
       </div>
       <div className={styles.cardTitle}>{title}</div>
       <div className={styles.cardBody}>{body}</div>

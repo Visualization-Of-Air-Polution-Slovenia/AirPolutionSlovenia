@@ -24,6 +24,12 @@ const levelToTone = (
 
 export const Health = () => {
   const { selectedRegion, setSelectedRegion } = useAppStore();
+  useEffect(() => {
+    if (!selectedRegion && LOCATIONS.length > 0) {
+      setSelectedRegion(LOCATIONS[0].id as LocationId);
+    }
+  }, [selectedRegion, setSelectedRegion]);
+
 
   // simulate or fetch AQI
   const { data: cityApiData, isLoading, error } = useCityData(selectedRegion);
@@ -78,7 +84,7 @@ export const Health = () => {
 
   {/* === New top-right container for location and AQI === */}
   <div className={styles.topRightContainer}>
-    <div className={styles.locationWrapper}>
+    <div className={styles.locationWrapper}style={{ marginBottom: '6px' }}>
       <h2 className={styles.sectionTitleSmall}>Choose location</h2>
       <select
         className={styles.dropdown}
@@ -97,22 +103,28 @@ export const Health = () => {
     </div>
 
     <div className={styles.aqiWrapper}>
-      <div className={styles.alert}>
+      <div className={styles.alert} >
         <div className={styles.alertIconBox}>
           <span
             className="material-symbols-outlined"
             style={{
               color:
                 aqiTone === 'info'
-                  ? '#3498db'
+                  ? '#10b981'
                   : aqiTone === 'warning'
-                  ? '#f59e0b'
+                  ? '#f59e0b'   
                   : aqiTone === 'danger'
-                  ? '#ef4444'
+                  ? '#ef4444'   
                   : '#6b7280',
             }}
           >
-            warning
+            {aqiTone === 'info'
+              ? 'check_circle'
+              : aqiTone === 'warning'
+              ? 'warning'
+              : aqiTone === 'danger'
+              ? 'error'
+              : 'info'}
           </span>
         </div>
         <div>

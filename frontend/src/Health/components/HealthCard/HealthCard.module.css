@@ -49,6 +49,36 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+.badge.info {
+  background: color-mix(in srgb, var(--secondary) 18%, var(--surface));
+  border-color: color-mix(in srgb, var(--secondary) 35%, transparent);
+  color: color-mix(in srgb, var(--secondary) 85%, var(--text));
+}
+
+.badge.warning {
+  background: color-mix(in srgb, var(--warning) 20%, var(--surface));
+  border-color: color-mix(in srgb, var(--warning) 40%, transparent);
+  color: color-mix(in srgb, var(--warning) 90%, var(--text));
+}
+
+.badge.danger {
+  background: color-mix(in srgb, var(--danger) 18%, var(--surface));
+  border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+  color: color-mix(in srgb, var(--danger) 90%, var(--text));
+}
+
+.badge.neutral {
+  background: color-mix(in srgb, var(--border) 35%, var(--surface));
+  border-color: color-mix(in srgb, var(--border) 65%, transparent);
+  color: var(--text-muted);
+}
+
+/* if you want green for Low Risk etc. */
+.badge.success {
+  background: color-mix(in srgb, var(--primary) 18%, var(--surface));
+  border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+  color: color-mix(in srgb, var(--primary) 90%, var(--text));
+}
 
 .cardTitle {
   font-size: 20px;
