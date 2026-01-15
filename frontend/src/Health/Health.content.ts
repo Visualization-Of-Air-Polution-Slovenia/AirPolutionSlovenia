@@ -24,7 +24,7 @@ export interface SystemicCard {
   tone: 'info' | 'warning' | 'danger' | 'neutral';
   border: string;
   body: string;
-  tags: string[];
+  tags: readonly string[];
 }
 
 
