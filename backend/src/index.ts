@@ -8,7 +8,7 @@ const app = express();
 
 // Enable CORS for all origins
 app.use(cors({
-  origin: ['https://ambitious-sea-01dfcc903.1.azurestaticapps.net', 'http://localhost:5173'],
+  origin: ['https://ambitious-sea-01dfcc903.1.azurestaticapps.net', 'http://localhost:5173', 'https://www.airviz-slovenia.site'],
   credentials: true
 }));
 
