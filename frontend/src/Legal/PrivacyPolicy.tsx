@@ -6,7 +6,7 @@ export const PrivacyPolicy: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Privacy Policy</h1>
-        <p className={styles.lastUpdated}>Last updated: January 2024</p>
+        <p className={styles.lastUpdated}>Last updated: January 2026</p>
       </div>
 
       <div className={styles.content}>
@@ -28,19 +28,27 @@ export const PrivacyPolicy: React.FC = () => {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>3. Cookies</h2>
-          <p className={styles.text}>
-            We use essential cookies to ensure the basic functionality of the website. These cookies do not store any
-            personally identifiable information.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>4. Third-Party Links</h2>
+          <h2 className={styles.sectionTitle}>3. Third-Party Links</h2>
           <p className={styles.text}>
             This website may include links to third-party websites, plug-ins, and applications. Clicking on those links
             or enabling those connections may allow third parties to collect or share data about you. We do not control
             these third-party websites and are not responsible for their privacy statements.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>4. External Data Sources</h2>
+          <p className={styles.text}>
+            This website displays air quality data provided by external sources, including:
+          </p>
+            <ul className={styles.list}>
+                <li className={styles.listItem}><a href="https://www.arso.gov.si/" target="_blank" rel="noopener noreferrer">ARSO (Slovenian Environment Agency)</a></li>
+                <li className={styles.listItem}><a href="https://www.eea.europa.eu/" target="_blank" rel="noopener noreferrer">EEA (European Environment Agency)</a></li>
+                <li className={styles.listItem}><a href="https://waqi.info/" target="_blank" rel="noopener noreferrer">WAQI (World Air Quality Index)</a></li>
+                <li className={styles.listItem}><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></li>
+            </ul>
+          <p className={styles.text}>
+            We do not control or guarantee the accuracy of data from these sources.
           </p>
         </section>
 

@@ -1,5 +1,4 @@
 import cors from "cors";
-import { spawn } from "child_process";
 import express, { Request, Response } from "express";
 import path from "path";
 import { getData, getSloveniaStations, newSloveniaData, OmLocationTimeData, SimplifiedCityData, WaqiLocationData } from "./helpers/get_current_data";
