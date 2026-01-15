@@ -13,45 +13,38 @@
   height: 100%;
 }
 
-.cityMarker {
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+.grayscale :global(.leaflet-tile-pane) {
+  filter: grayscale(100%);
 }
 
-.cityMarkerSelected {
-  filter:
-    drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 16px color-mix(in srgb, var(--primary) 45%, transparent));
-  animation: markerGlow 1.25s ease-in-out infinite;
-}
-
-.circleLabel {
+.cityLabelIcon {
   background: transparent !important;
   border: none !important;
-  box-shadow: none !important;
-  color: #111 !important;
-  font-weight: 700 !important;
-  font-size: 12px !important;
-  padding: 0 !important;
 }
 
-.circleLabel::before {
-  display: none !important; /* removes tooltip little arrow */
+.cityLabelText {
+  text-align: center;
+  font-weight: 800;
+  color: #333;
+  font-size: 14px;
+  text-shadow: 
+    -1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  font-family: inherit;
 }
 
-@keyframes markerGlow {
-  0% {
-    filter:
-      drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 10px color-mix(in srgb, var(--primary) 30%, transparent));
-  }
-  50% {
-    filter:
-      drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 18px color-mix(in srgb, var(--primary) 55%, transparent));
-  }
-  100% {
-    filter:
-      drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 10px color-mix(in srgb, var(--primary) 30%, transparent));
-  }
+.cityLabelVisible .cityLabelText {
+  opacity: 1;
 }
+
+:global(.leaflet-interactive:focus),
+:global(.leaflet-container:focus) {
+  outline: none !important;
+}
+
