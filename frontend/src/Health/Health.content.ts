@@ -27,6 +27,8 @@ export interface SystemicCard {
   tags: string[];
 }
 
+
+
 export const SystemicCards = [
   {
     icon: 'pulmonology',

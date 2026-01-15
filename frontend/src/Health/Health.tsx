@@ -2,8 +2,7 @@ import styles from './Health.module.css';
 
 import { HealthContent, ResearchLinks, SystemicCards } from './Health.content';
 import { HealthCard } from './components/HealthCard/HealthCard';
-import { HealthResearchLink } from './components/HealthResearchLink/HealthResearchLink';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useAppStore } from '@/store/useStore';
 import { LOCATIONS, type LocationId } from './Health.locations';
 import { getAirQualityPrompt } from './Health.prompts';
@@ -13,6 +12,16 @@ import { useCityData } from '@/Services';
 /**
  * Displays health impact analysis, systemic health effects cards, and research links.
  */
+
+const levelToTone = (
+  level: 'GOOD' | 'MODERATE' | 'POOR' | null
+): 'info' | 'warning' | 'danger' | 'neutral' => {
+  if (!level) return 'neutral';
+  if (level === 'GOOD') return 'info';
+  if (level === 'MODERATE') return 'warning';
+  return 'danger';
+};
+
 export const Health = () => {
   const { selectedRegion, setSelectedRegion } = useAppStore();
 
@@ -26,11 +35,16 @@ export const Health = () => {
   const airPrompt = airIndex !== null ? getAirQualityPrompt(airIndex) : null;
 
   const level = airIndex !== null ? getAirQualityLevel(airIndex) : null;
-  const dynamicCards = useMemo(() => {
-    const baseCards = level ? getDynamicCardContent(level) : SystemicCards;
-    if (!airPrompt) return baseCards;
-    return baseCards.map((card) => ({ ...card, tone: airPrompt.cardTone }));
-  }, [level, airPrompt]);
+  const aqiTone = levelToTone(level);
+
+  const dynamicCards = level ? getDynamicCardContent(level) : SystemicCards;
+
+
+  const locations = useMemo(() => {
+      const base = ['Maribor', 'Ljubljana'];
+      if (selectedRegion && !base.includes(selectedRegion)) return [selectedRegion, ...base];
+      return base;
+    }, [selectedRegion]);
 
   return (
     <main className={styles.page}>
@@ -41,69 +55,83 @@ export const Health = () => {
 
   <div className={styles.canvas}>
     <section className={styles.hero}>
-      <div className={styles.heroTop}>
-        <div className={styles.label}>
-          <span className={`material-symbols-outlined ${styles.labelIcon}`}>
-            medical_services
-          </span>
-          <span>{HealthContent.label}</span>
-        </div>
+  <div className={styles.heroTop}>
+    <div className={styles.label}>
+      <span className={`material-symbols-outlined ${styles.labelIcon}`}>
+        medical_services
+      </span>
+      <span>{HealthContent.label}</span>
+    </div>
 
-        <h1 className={styles.title}>
-          {HealthContent.title.before}{' '}
-          <span className={styles.gradientText}>{HealthContent.title.highlight}</span>{' '}
-          {HealthContent.title.after}
-        </h1>
+    <h1 className={styles.title}>
+      {HealthContent.title.before}{' '}
+      <span className={styles.gradientText}>{HealthContent.title.highlight}</span>{' '}
+      {HealthContent.title.after}
+    </h1>
 
-        <p className={styles.intro}>
-          {isLoading
-            ? 'Loading current air quality…'
-            : error
-              ? 'Failed to load current air quality. Please try again.'
-              : airPrompt
-                ? airPrompt.intro
-                : 'Select a city to view current air quality and health information.'}
-        </p>
-      </div>
+    <p className={styles.intro}>
+      {airPrompt
+        ? airPrompt.intro
+        : 'Select a city to view current air quality and health information.'}
+    </p>
+  </div>
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Choose location</h2>
-        <select
-          className={styles.dropdown}
-          value={selectedRegion || ''}
-          onChange={(e) => setSelectedRegion(e.target.value as LocationId)}
-        >
-          <option value="" disabled>
-            City
+  {/* === New top-right container for location and AQI === */}
+  <div className={styles.topRightContainer}>
+    <div className={styles.locationWrapper}>
+      <h2 className={styles.sectionTitleSmall}>Choose location</h2>
+      <select
+        className={styles.dropdown}
+        value={selectedRegion || ''}
+        onChange={(e) => setSelectedRegion(e.target.value as LocationId)}
+      >
+        <option value="" disabled>
+          City
+        </option>
+        {LOCATIONS.map((loc) => (
+          <option key={loc.id} value={loc.id}>
+            {loc.label}
           </option>
-          {LOCATIONS.map((loc) => (
-            <option key={loc.id} value={loc.id}>
-              {loc.label}
-            </option>
-          ))}
-        </select>
-      </section>
+        ))}
+      </select>
+    </div>
 
+    <div className={styles.aqiWrapper}>
       <div className={styles.alert}>
         <div className={styles.alertIconBox}>
-          <span className="material-symbols-outlined">warning</span>
+          <span
+            className="material-symbols-outlined"
+            style={{
+              color:
+                aqiTone === 'info'
+                  ? '#3498db'
+                  : aqiTone === 'warning'
+                  ? '#f59e0b'
+                  : aqiTone === 'danger'
+                  ? '#ef4444'
+                  : '#6b7280',
+            }}
+          >
+            warning
+          </span>
         </div>
         <div>
           <div className={styles.alertLabel}>
             {airPrompt ? airPrompt.alert.label : 'Select a city'}
           </div>
           <div className={styles.alertValue}>
-            {isLoading
-              ? 'Loading…'
-              : error
-                ? 'Data not available'
-                : airPrompt
-                  ? `${airPrompt.alert.value} (${airIndex})`
-                  : 'Data not available'}
+            <span
+              className={`${styles.infoButton}`}
+              title="The AQI is calculated based on measurements of key air pollutants, including particulate matter (PM2.5 and PM10), ground-level ozone (O₃), carbon monoxide (CO), sulfur dioxide (SO₂), and nitrogen dioxide (NO₂)."
+            >
+            {airPrompt ? `${airPrompt.alert.value} (${airIndex})` : 'Not available'}
+            </span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     {/* === Keep grid separate === */}
     <div className={styles.grid}>
@@ -131,25 +159,6 @@ export const Health = () => {
         </div>
       </section>
 
-      <section>
-        <h2 className={styles.sectionTitle}>
-          <span className={`material-symbols-outlined ${styles.sectionIcon}`}>
-            library_books
-          </span>
-          {HealthContent.sections.research}
-        </h2>
-
-        <div className={styles.linkList}>
-          {ResearchLinks.map((r) => (
-            <HealthResearchLink
-              key={r.title}
-              title={r.title}
-              desc={r.desc}
-              meta={r.meta}
-            />
-          ))}
-        </div>
-      </section>
     </div>
   </div>
 </main>

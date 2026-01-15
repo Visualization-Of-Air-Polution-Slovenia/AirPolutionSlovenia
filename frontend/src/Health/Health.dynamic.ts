@@ -1,7 +1,33 @@
 // Health.dynamic.ts
 import { SystemicCards, type SystemicCard } from './Health.content';
-
 export type AirQualityLevel = 'GOOD' | 'MODERATE' | 'POOR';
+
+const TAGS_BY_LEVEL: Record<
+  AirQualityLevel,
+  Record<string, string[]>
+> = {
+  GOOD: {
+    'Respiratory System': ['Normal Breathing', 'Outdoor Safe'],
+    'Cardiovascular Health': ['Low Stress', 'Heart Safe'],
+    'Cognitive Function': ['Clear Mind', 'Focus'],
+    'Life Expectancy': ['Stable', 'Healthy Living'],
+  },
+
+  MODERATE: {
+    'Respiratory System': ['Irritation', 'Sensitive Groups'],
+    'Cardiovascular Health': ['Elevated Pressure', 'At Risk'],
+    'Cognitive Function': ['Mild Impact', 'Fatigue'],
+    'Life Expectancy': ['Slight Reduction'],
+  },
+
+  POOR: {
+    'Respiratory System': ['Asthma Risk', 'Shortness of Breath'],
+    'Cardiovascular Health': ['Heart Attack Risk', 'Inflammation'],
+    'Cognitive Function': ['Cognitive Decline', 'Neuro Risk'],
+    'Life Expectancy': ['Premature Death', 'Chronic Exposure'],
+  },
+};
+
 
 export const getAirQualityLevel = (index: number): AirQualityLevel => {
   if (index <= 50) return 'GOOD';
@@ -22,6 +48,7 @@ export const getDynamicCardContent = (level: AirQualityLevel): SystemicCard[] =>
   switch (level) {
     case 'GOOD':
       dynamicCards = baseCards.map((c) => {
+        const dynamicTags = TAGS_BY_LEVEL[level][c.title] ?? c.tags;
         switch (c.title) {
           case 'Respiratory System':
             return { ...c, badge: 'Low Risk', tone: 'info', body: 'Air quality is good. Respiratory risks are minimal for most people.' };
@@ -48,9 +75,11 @@ export const getDynamicCardContent = (level: AirQualityLevel): SystemicCard[] =>
 
     case 'MODERATE':
       dynamicCards = baseCards.map((c) => {
+        const dynamicTags = TAGS_BY_LEVEL[level][c.title] ?? c.tags;
+
         switch (c.title) {
           case 'Respiratory System':
-            return { ...c, badge: 'Moderate Risk', tone: 'warning', body: 'Air quality is moderate. Sensitive individuals may experience minor respiratory irritation.' };
+            return { ...c, badge: 'Moderate Risk', tone: 'warning', body: 'Air quality is moderate. Sensitive individuals may experience minor respiratory irritation.', tags: dynamicTags };
           case 'Cardiovascular Health':
             return { ...c, badge: 'Moderate Risk', tone: 'warning', body: 'Prolonged exposure may increase blood pressure or stress on the heart.' };
           case 'Cognitive Function':
@@ -74,6 +103,8 @@ export const getDynamicCardContent = (level: AirQualityLevel): SystemicCard[] =>
 
     case 'POOR':
       dynamicCards = baseCards.map((c) => {
+        const dynamicTags = TAGS_BY_LEVEL[level][c.title] ?? c.tags;
+
         switch (c.title) {
           case 'Respiratory System':
             return { ...c, badge: 'High Risk', tone: 'danger', body: 'Poor air quality significantly increases respiratory issues and risk of chronic lung disease.' };
