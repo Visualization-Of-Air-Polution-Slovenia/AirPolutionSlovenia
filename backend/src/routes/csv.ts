@@ -181,7 +181,7 @@ function loadAllRows(): {
     warnings: string[];
   };
 } {
-  //if (cachedRows && cachedMeta) return { rows: cachedRows, meta: cachedMeta };
+  if (cachedRows && cachedMeta) return { rows: cachedRows, meta: cachedMeta };
 
   const dataDir = path.resolve(process.cwd(), "data");
 
