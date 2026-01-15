@@ -6,7 +6,7 @@ export const TermsOfService: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Terms of Service</h1>
-        <p className={styles.lastUpdated}>Last updated: January 2024</p>
+        <p className={styles.lastUpdated}>Last updated: January 2026</p>
       </div>
 
       <div className={styles.content}>
