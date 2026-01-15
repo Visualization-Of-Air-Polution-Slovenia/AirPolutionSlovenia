@@ -6,7 +6,7 @@ export const PrivacyPolicy: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Privacy Policy</h1>
-        <p className={styles.lastUpdated}>Last updated: January 2024</p>
+        <p className={styles.lastUpdated}>Last updated: January 2026</p>
       </div>
 
       <div className={styles.content}>
@@ -37,7 +37,23 @@ export const PrivacyPolicy: React.FC = () => {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>4. Contact Us</h2>
+          <h2 className={styles.sectionTitle}>4. External Data Sources</h2>
+          <p className={styles.text}>
+            This website displays air quality data provided by external sources, including:
+          </p>
+            <ul className={styles.list}>
+                <li className={styles.listItem}><a href="https://www.arso.gov.si/" target="_blank" rel="noopener noreferrer">ARSO (Slovenian Environment Agency)</a></li>
+                <li className={styles.listItem}><a href="https://www.eea.europa.eu/" target="_blank" rel="noopener noreferrer">EEA (European Environment Agency)</a></li>
+                <li className={styles.listItem}><a href="https://waqi.info/" target="_blank" rel="noopener noreferrer">WAQI (World Air Quality Index)</a></li>
+                <li className={styles.listItem}><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></li>
+            </ul>
+          <p className={styles.text}>
+            We do not control or guarantee the accuracy of data from these sources.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>5. Contact Us</h2>
           <p className={styles.text}>
             If you have any questions about this privacy policy or our privacy practices, please contact the project leader:
             <br /><br />
