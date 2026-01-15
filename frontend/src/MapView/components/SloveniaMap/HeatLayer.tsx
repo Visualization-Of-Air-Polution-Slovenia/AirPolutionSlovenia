@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMap } from 'react-leaflet';
 
 import 'leaflet.heat';
@@ -12,11 +12,7 @@ export type HeatLayerProps = {
   radius?: number;
   blur?: number;
   minOpacity?: number;
-};
-
-type LeafletHeatLayer = L.Layer & {
-  setLatLngs: (latlngs: HeatPoint[]) => void;
-  _frame?: number | null;
+  gradient?: Record<number, string>;
 };
 
 export const HeatLayer = ({
@@ -25,53 +21,47 @@ export const HeatLayer = ({
   radius = 25,
   blur = 15,
   minOpacity = 0.4,
+  gradient
 }: HeatLayerProps) => {
   const map = useMap();
-  const layerRef = useRef<LeafletHeatLayer | null>(null);
+  const layerRef = useRef<any>(null);
 
-  const cancelPendingRedraw = (layer: LeafletHeatLayer | null) => {
-    const frame = layer?._frame;
-    if (typeof frame === 'number') {
-      L.Util.cancelAnimFrame(frame);
-      if (layer) layer._frame = null;
-    }
-  };
-
-  const options = useMemo(
-    () => ({
-      radius,
-      blur,
-      max,
-      minOpacity,
-    }),
-    [radius, blur, max, minOpacity]
-  );
-
-  // (Re)create layer when options change.
+  // 1. Handle Layer Lifecycle (Create / Destroy / Recreate on heavy prop changes)
   useEffect(() => {
     if (!map) return;
 
-    const layer = (L as unknown as { heatLayer: (pts: HeatPoint[], opts: unknown) => LeafletHeatLayer }).heatLayer(
-      points,
-      options
-    );
+    // Create a new heat layer
+    // Note: We use the current 'points' for initialization.
+    const layer = (L as any).heatLayer(points, {
+      max,
+      radius,
+      blur,
+      minOpacity,
+      gradient
+    });
+
     layer.addTo(map);
     layerRef.current = layer;
 
+    // Clean up
     return () => {
-      // leaflet.heat schedules redraw via requestAnimationFrame; cancel it so
-      // we don't crash if a pending redraw fires after the layer is removed.
-      cancelPendingRedraw(layer);
-      layerRef.current = null;
-      map.removeLayer(layer);
+      if (map && layerRef.current) {
+        map.removeLayer(layerRef.current);
+        layerRef.current = null;
+      }
     };
-  }, [map, options, points]);
+    // Re-create the layer ONLY if visualization parameters change
+    // We intentionally OMIT 'points' to avoid destroying the layer when only data updates
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [map, max, radius, blur, minOpacity, gradient]); 
 
-  // Update points without recreating the layer.
+  // 2. Handle Data Updates (Lightweight)
   useEffect(() => {
-    if (!layerRef.current) return;
-    cancelPendingRedraw(layerRef.current);
-    layerRef.current.setLatLngs(points);
+    // If the layer exists, just update the data points
+    // This triggers a redraw without flickering
+    if (layerRef.current) {
+      layerRef.current.setLatLngs(points);
+    }
   }, [points]);
 
   return null;

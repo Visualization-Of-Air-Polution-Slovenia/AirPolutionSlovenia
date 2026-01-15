@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 
 import L, { type LatLngExpression } from 'leaflet';
-import { MapContainer, Marker, TileLayer, useMap, CircleMarker, Tooltip, } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMap, CircleMarker } from 'react-leaflet';
 import { useEffect } from 'react';
 
 import styles from './SloveniaMap.module.css';
@@ -27,75 +27,60 @@ export type SloveniaMapProps = {
   onSelectCity: (cityKey: string) => void;
   sloveniaData: OmLocationTimeData[];
   selectedTimeIso: string; // ISO timestamp (hour precision)
+  showGrayscale: boolean;
+  showLabels: boolean;
 };
 
-const markerUrl = '/marker.png';
-const markerSelectedUrl = '/marker-selected.png';
+// Custom icon for city labels
+const createLabelIcon = (name: string, show: boolean) => {
+   return L.divIcon({
+     className: `${styles.cityLabelIcon} ${show ? styles.cityLabelVisible : ''}`,
+     html: `<div class="${styles.cityLabelText}">${name}</div>`,
+     iconSize: [100, 20], // Wide enough for text
+     iconAnchor: [50, 10] // Center
+   });
+};
 
-const markerSize: [number, number] = [32, 32];
-
-const getDangerLevel = (pollutant: PollutantType, v: number): 0 | 1 | 2 | 3 => {
-  if (!Number.isFinite(v)) return 0;
-
-  switch (pollutant) {
-    case 'pm10':
-      if (v >= 100) return 3;
-      if (v >= 50) return 2;
-      if (v >= 20) return 1;
-      return 0;
-    case 'pm2.5':
-      if (v >= 50) return 3;
-      if (v >= 25) return 2;
-      if (v >= 15) return 1;
-      return 0;
-    case 'o3':
-      if (v >= 240) return 3;
-      if (v >= 130) return 2;
-      if (v >= 50) return 1;
-      return 0;
-    case 'no2':
-      if (v >= 120) return 3;
-      if (v >= 90) return 2;
-      if (v >= 40) return 1;
-      return 0;
-    default:
-      return 0;
-  }
+// Standard unified AQI-like gradient for all pollutants
+// Green (Good) -> Yellow (Moderate) -> Orange (Unhealthy) -> Red (Bad)
+const STANDARD_HEAT_GRADIENT = {
+  0.0: 'lime',
+  0.4: '#ffe600', // Yellow
+  0.7: '#ff9900', // Orange
+  1.0: '#ff0000'  // Red 
 };
 
 const getHeatMaxValue = (pollutant: PollutantType): number => {
+  // Adjusted thresholds for softer visualization
   switch (pollutant) {
-    case 'pm10': return 150;
-    case 'pm2.5': return 80;
-    case 'o3': return 300;
-    case 'no2': return 150;
-    default: return 100;
+    case 'pm10': return 150; 
+    case 'pm2.5': return 80; 
+    case 'o3': return 240;   
+    case 'no2': return 200;  
+    default: return 150;
   }
 }
 
-const getDangerColors = (level: 0 | 1 | 2 | 3) => {
-  // Keep it simple: green → yellow → orange → red
-  switch (level) {
-    case 0: return { stroke: '#2e7d32', fill: '#66bb6a' };
-    case 1: return { stroke: '#f9a825', fill: '#ffee58' };
-    case 2: return { stroke: '#ef6c00', fill: '#ffb74d' };
-    case 3: return { stroke: '#c62828', fill: '#ef5350' };
-  }
-};
+const findClosestCityKey = (lat: number, lng: number, cities: SloveniaMapCity[]): string | undefined => {
+  if (cities.length === 0) return undefined;
+  
+  let bestKey = undefined;
+  let minDistSq = Infinity;
 
-const createMarkerIcon = (iconUrl: string, className: string, size: [number, number]) =>
-  L.icon({
-    iconUrl,
-    iconSize: size,
-    iconAnchor: [Math.round(size[0] / 2), size[1]],
-    popupAnchor: [0, -size[1]],
-    className,
-  });
+  for (const c of cities) {
+    const dSq = (c.position.lat - lat) ** 2 + (c.position.lng - lng) ** 2;
+    if (dSq < minDistSq) {
+      minDistSq = dSq;
+      bestKey = c.key;
+    }
+  }
+  return bestKey;
+};
 
 const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoom?: number }) => {
   const map = useMap();
   useEffect(() => {
-    map.flyTo(selected, zoom ?? map.getZoom(), { animate: true, duration: 0.6 });
+    map.setView(selected, zoom ?? map.getZoom(), { animate: false });
   }, [map, selected, zoom]);
   return null;
 };
@@ -143,7 +128,9 @@ export const SloveniaMap = ({
   selectedCityKey,
   onSelectCity,
   sloveniaData,
-  selectedTimeIso
+  selectedTimeIso,
+  showGrayscale,
+  showLabels
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
@@ -157,72 +144,52 @@ export const SloveniaMap = ({
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
 
-  const icon = createMarkerIcon(markerUrl, styles.cityMarker, markerSize);
-  const selectedIcon = createMarkerIcon(markerSelectedUrl, `${styles.cityMarker} ${styles.cityMarkerSelected}`, markerSize);
-
   return (
-    <div className={styles.wrap} aria-label="Map">
+    <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
       <MapContainer className={styles.map} center={center} zoom={zoom} scrollWheelZoom>
         <TileLayer url={tileUrl} attribution={tileAttribution} />
         
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
 
-        <HeatLayer points={heatPoints} max={getHeatMaxValue(pollutionType)} />
+        {/* Heatmap Layer */}
+        <HeatLayer 
+            key={pollutionType} // Force new instance if pollutant changes, just in case setOptions is flaky in some leaflet versions
+            points={heatPoints} 
+            max={getHeatMaxValue(pollutionType)} 
+            radius={25} 
+            blur={25} 
+            minOpacity={0.4}
+            gradient={STANDARD_HEAT_GRADIENT}
+        />
 
+        {/* Unified Interaction Zones for All Cities */}
+        {cities.map((city) => (
+          <CircleMarker
+            key={`city-zone-${city.key}`}
+            center={[city.position.lat, city.position.lng]}
+            radius={20} 
+            eventHandlers={{
+              click: () => onSelectCity(city.key),
+              mouseover: (e) => { e.target.setStyle({ fillOpacity: 0.1, color: '#333', weight: 1, stroke: true }); },
+              mouseout: (e) => { e.target.setStyle({ fillOpacity: 0, weight: 0, stroke: false }); }
+            }}
+            pathOptions={{ stroke: false, fill: true, fillColor: '#000', fillOpacity: 0 }}
+          />
+        ))}
 
-        {/* Pins for each location in sloveniaData, showing number of particles */}
-        {sloveniaData.map((p, idx) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const value = getIntensityForTypeAtTime(p, pollutionType as any, selectedTimeIso);
+        {/* Labels Layer (Using Marker with custom divIcon) */}
+        {cities.map((city) => (
+           <Marker
+             key={`city-label-${city.key}-${showLabels}`} // Force strict re-render on toggle
+             position={[city.position.lat, city.position.lng]}
+             icon={createLabelIcon(city.name, showLabels)}
+             interactive={false} // Pass through clicks to the CircleMarker below
+             zIndexOffset={1000}
+           />
+        ))}
 
-          if (!Number.isFinite(value) || value === 0) return null;
-
-          const lvl = getDangerLevel(pollutionType, value);
-          const { stroke, fill } = getDangerColors(lvl);
-
-
-          return (
-            <CircleMarker
-              key={`data-circle-${idx}`}
-              center={[p.latitude, p.longitude]}
-              radius={10}
-              pathOptions={{
-                color: stroke,
-                weight: 2,
-                fillColor: fill,
-                fillOpacity: 0.85,
-              }}
-            >
-              <Tooltip
-                permanent
-                direction="center"
-                className={styles.circleLabel}
-                opacity={1}
-              >
-                {Math.round(value)}
-              </Tooltip>
-            </CircleMarker>
-          );
-        })}
-
-        {/* Pins for each city (selection logic) */}
-        {cities.map((city) => {
-          const pos: LatLngExpression = [city.position.lat, city.position.lng];
-          const isSelected = city.key === selectedCityKey;
-          return (
-            <Marker
-              key={city.key}
-              position={pos}
-              icon={isSelected ? selectedIcon : icon}
-              zIndexOffset={isSelected ? 1000 : 0}
-              riseOnHover
-              eventHandlers={{
-                click: () => onSelectCity(city.key),
-              }}
-            />
-          );
-        })}
       </MapContainer>
     </div>
   );
 };
+
