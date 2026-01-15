@@ -1,8 +1,8 @@
 .footer {
+  flex-shrink: 0;
   background-color: var(--surface);
   border-top: 1px solid var(--border);
-  padding: var(--distance-xl);
-  margin-top: auto;
+  padding: var(--distance-lg) var(--distance-xl);
 }
 
 .content {

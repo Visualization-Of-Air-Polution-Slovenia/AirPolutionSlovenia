@@ -22,18 +22,20 @@ function App() {
 
         <Header />
 
-        <Routes>
-          {/* 4 Main pages */}
-          <Route path="/" element={<MapView />} />
-          <Route path="/map" element={<MapView />} />
-          <Route path="/analysis" element={<Analysis />} />
-          <Route path="/health" element={<Health />} />
+        <main className="app-main">
+          <Routes>
+            {/* 4 Main pages */}
+            <Route path="/" element={<MapView />} />
+            <Route path="/map" element={<MapView />} />
+            <Route path="/analysis" element={<Analysis />} />
+            <Route path="/health" element={<Health />} />
 
-          {/* Additional pages */}
-          <Route path="/about" element={<About />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-        </Routes>
+            {/* Additional pages */}
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+          </Routes>
+        </main>
 
         <Footer />
       </div>

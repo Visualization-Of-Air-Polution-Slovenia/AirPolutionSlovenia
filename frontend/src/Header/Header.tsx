@@ -17,7 +17,7 @@ export const Header = () => {
         </div>
         <h1 className={styles.title}>
           <Link to="/" className={styles.logoLink}>
-            Air Quality <span className={styles.highlight}>SLO</span>
+            AirViz <span className={styles.highlight}>Slovenia</span>
           </Link>
         </h1>
       </div>
@@ -40,9 +40,7 @@ export const Header = () => {
           <span className="material-symbols-outlined">notifications</span>
         </button> */}
 
-        <button onClick={toggleTheme} className={styles.iconBtn} aria-label="Toggle theme" type="button">
-          {theme === 'dark' ? ThemeIcons.Dark : ThemeIcons.Light}
-        </button>
+
       </div>
     </header>
   );
