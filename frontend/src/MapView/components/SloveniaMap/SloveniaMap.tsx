@@ -1,13 +1,12 @@
 import 'leaflet/dist/leaflet.css';
 
 import L, { type LatLngExpression } from 'leaflet';
-import { MapContainer, Marker, TileLayer, useMap, CircleMarker, Tooltip, } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMap, Circle } from 'react-leaflet';
 import { useEffect } from 'react';
 
 import styles from './SloveniaMap.module.css';
 import type { OmLocationTimeData } from '@/Services/api';
 import { useAppStore, type PollutantType } from '@/store/useStore';
-import { HeatLayer, type HeatPoint } from './HeatLayer';
 
 
 export type SloveniaMapCity = {
@@ -27,76 +26,82 @@ export type SloveniaMapProps = {
   onSelectCity: (cityKey: string) => void;
   sloveniaData: OmLocationTimeData[];
   selectedTimeIso: string; // ISO timestamp (hour precision)
+  showGrayscale: boolean;
+  showLabels: boolean;
 };
 
-const markerUrl = '/marker.png';
-const markerSelectedUrl = '/marker-selected.png';
+// Custom icon for city labels
+const createLabelIcon = (name: string, show: boolean) => {
+   return L.divIcon({
+     className: `${styles.cityLabelIcon} ${show ? styles.cityLabelVisible : ''}`,
+     html: `<div class="${styles.cityLabelText}">${name}</div>`,
+     iconSize: [100, 20], // Wide enough for text
+     iconAnchor: [50, 10] // Center
+   });
+};
 
-const markerSize: [number, number] = [32, 32];
-
-const getDangerLevel = (pollutant: PollutantType, v: number): 0 | 1 | 2 | 3 => {
-  if (!Number.isFinite(v)) return 0;
-
-  switch (pollutant) {
-    case 'pm10':
-      if (v >= 100) return 3;
-      if (v >= 50) return 2;
-      if (v >= 20) return 1;
-      return 0;
-    case 'pm2.5':
-      if (v >= 50) return 3;
-      if (v >= 25) return 2;
-      if (v >= 15) return 1;
-      return 0;
-    case 'o3':
-      if (v >= 240) return 3;
-      if (v >= 130) return 2;
-      if (v >= 50) return 1;
-      return 0;
-    case 'no2':
-      if (v >= 120) return 3;
-      if (v >= 90) return 2;
-      if (v >= 40) return 1;
-      return 0;
-    default:
-      return 0;
-  }
+// Standard unified AQI-like gradient for all pollutants
+// Higher-contrast palette: Green -> Yellow -> Orange -> Red -> Dark Red
+const STANDARD_HEAT_GRADIENT = {
+  0.0: '#2e7d32',  // green
+  0.15: '#f9a825', // yellow
+  0.30: '#f57c00', // orange
+  0.50: '#e53935', // red
+  0.80: '#b71c1c'  // dark red
 };
 
 const getHeatMaxValue = (pollutant: PollutantType): number => {
+  // Tighter thresholds so moderate values actually show up as Yellow/Orange
   switch (pollutant) {
-    case 'pm10': return 150;
-    case 'pm2.5': return 80;
-    case 'o3': return 300;
-    case 'no2': return 150;
+    case 'pm10': return 100;     // Daily limit is 50, so 50 will be 0.5 (Red)
+    case 'pm2.5': return 60;     // Daily guidance around 25-50. 30 will be 0.5 (Red)
+    case 'o3': return 180;       // 1h threshold is 180 (Warning) -> 1.0 (Dark Red)
+    case 'no2': return 150;      // 1h threshold 200. 
     default: return 100;
   }
 }
 
-const getDangerColors = (level: 0 | 1 | 2 | 3) => {
-  // Keep it simple: green → yellow → orange → red
-  switch (level) {
-    case 0: return { stroke: '#2e7d32', fill: '#66bb6a' };
-    case 1: return { stroke: '#f9a825', fill: '#ffee58' };
-    case 2: return { stroke: '#ef6c00', fill: '#ffb74d' };
-    case 3: return { stroke: '#c62828', fill: '#ef5350' };
-  }
-};
-
-const createMarkerIcon = (iconUrl: string, className: string, size: [number, number]) =>
-  L.icon({
-    iconUrl,
-    iconSize: size,
-    iconAnchor: [Math.round(size[0] / 2), size[1]],
-    popupAnchor: [0, -size[1]],
-    className,
-  });
-
 const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoom?: number }) => {
   const map = useMap();
   useEffect(() => {
-    map.flyTo(selected, zoom ?? map.getZoom(), { animate: true, duration: 0.6 });
+    map.setView(selected, zoom ?? map.getZoom(), { animate: false });
   }, [map, selected, zoom]);
+  return null;
+};
+
+// Approximate Slovenia bounding box (SW, NE).
+// Used to prevent zooming out too far beyond Slovenia.
+const SLOVENIA_BOUNDS: L.LatLngBoundsExpression = [
+  [45.42, 13.38],
+  [46.88, 16.62]
+];
+
+// Expand bounds by 25% on each side => total ~1.5x width/height.
+const padBounds = (bounds: L.LatLngBounds, padFraction: number) => {
+  const sw = bounds.getSouthWest();
+  const ne = bounds.getNorthEast();
+
+  const latSpan = ne.lat - sw.lat;
+  const lngSpan = ne.lng - sw.lng;
+
+  return L.latLngBounds(
+    [sw.lat - latSpan * padFraction, sw.lng - lngSpan * padFraction],
+    [ne.lat + latSpan * padFraction, ne.lng + lngSpan * padFraction]
+  );
+};
+
+const SLOVENIA_ZOOM_OUT_BOUNDS = padBounds(L.latLngBounds(SLOVENIA_BOUNDS), 0.25);
+
+const ConstrainZoomOut = ({ bounds }: { bounds: L.LatLngBounds }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    map.setMaxBounds(bounds);
+    // Prevent zooming out beyond the point where these bounds would no longer fill the view.
+    const minZoom = map.getBoundsZoom(bounds, false);
+    map.setMinZoom(minZoom);
+  }, [map, bounds]);
+
   return null;
 };
 
@@ -133,6 +138,40 @@ const getIntensityForTypeAtTime = (p: OmLocationTimeData, pollutionType: Polluta
   return Number.isFinite(v) ? v : 0;
 };
 
+const normalizeHeatIntensity = (rawValue: number, scaleMax: number): number => {
+  if (!Number.isFinite(rawValue) || rawValue <= 0) return 0;
+  if (!Number.isFinite(scaleMax) || scaleMax <= 0) return 0;
+  return Math.max(0, Math.min(1, rawValue / scaleMax));
+};
+
+const getColorForNormalizedIntensity = (t: number): string => {
+  if (!Number.isFinite(t) || t <= 0) return 'transparent';
+  if (t < 0.15) return STANDARD_HEAT_GRADIENT[0.0];
+  if (t < 0.30) return STANDARD_HEAT_GRADIENT[0.15];
+  if (t < 0.50) return STANDARD_HEAT_GRADIENT[0.30];
+  if (t < 0.80) return STANDARD_HEAT_GRADIENT[0.50];
+  return STANDARD_HEAT_GRADIENT[0.80];
+};
+
+const findNearestLocation = (lat: number, lng: number, data: OmLocationTimeData[]) => {
+  if (!Array.isArray(data) || data.length === 0) return undefined;
+
+  let best: OmLocationTimeData | undefined;
+  let bestDistSq = Infinity;
+
+  for (const p of data) {
+    const dLat = p.latitude - lat;
+    const dLng = p.longitude - lng;
+    const dSq = dLat * dLat + dLng * dLng;
+    if (dSq < bestDistSq) {
+      bestDistSq = dSq;
+      best = p;
+    }
+  }
+
+  return best;
+};
+
 export const SloveniaMap = ({
   center,
   zoom,
@@ -143,86 +182,116 @@ export const SloveniaMap = ({
   selectedCityKey,
   onSelectCity,
   sloveniaData,
-  selectedTimeIso
+  selectedTimeIso,
+  showGrayscale,
+  showLabels
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
-  const heatPoints: HeatPoint[] = sloveniaData
-    .map((p) => {
-      const v = getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso);
-      return [p.latitude, p.longitude, v] as HeatPoint;
-    })
-    .filter(([, , v]) => Number.isFinite(v) && v > 0);
+  // IMPORTANT: Use dynamic scaling per time-slice so colors clearly change when
+  // the selected pollutant OR selected hour changes.
+  const rawValues = sloveniaData.map((p) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso));
+  const timeSliceMax = rawValues.reduce((m, v) => (Number.isFinite(v) ? Math.max(m, v) : m), 0);
+  const fallbackMax = getHeatMaxValue(pollutionType);
+  const scaleMax = timeSliceMax > 0 ? timeSliceMax : fallbackMax;
 
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
 
-  const icon = createMarkerIcon(markerUrl, styles.cityMarker, markerSize);
-  const selectedIcon = createMarkerIcon(markerSelectedUrl, `${styles.cityMarker} ${styles.cityMarkerSelected}`, markerSize);
+  // These are the SVG paths you pasted (<path class="leaflet-interactive" ...>).
+  // They're the Leaflet circle overlays (not the leaflet.heat canvas). We color them based on
+  // selected pollutant + selected time so they visually track the same logic as the sidebar.
+  const cityOverlayBaseOpacity = 0.34;
+  const cityOverlayBaseStrokeOpacity = 0.30;
+
+  // Fixed real-world size (meters). This makes circles look bigger when you zoom in,
+  // and smaller when you zoom out, while representing the same geographic area.
+  const cityCircleRadiusMeters = 6000;
 
   return (
-    <div className={styles.wrap} aria-label="Map">
-      <MapContainer className={styles.map} center={center} zoom={zoom} scrollWheelZoom>
+    <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
+      <MapContainer
+        className={styles.map}
+        center={center}
+        zoom={zoom}
+        scrollWheelZoom
+        maxBounds={SLOVENIA_ZOOM_OUT_BOUNDS}
+        maxBoundsViscosity={1.0}
+      >
+        <ConstrainZoomOut bounds={SLOVENIA_ZOOM_OUT_BOUNDS} />
         <TileLayer url={tileUrl} attribution={tileAttribution} />
         
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
 
-        <HeatLayer points={heatPoints} max={getHeatMaxValue(pollutionType)} />
+        {/* Unified Interaction Zones for All Cities */}
+        {cities.map((city) => (
+          (() => {
+            const nearest = findNearestLocation(city.position.lat, city.position.lng, sloveniaData);
+            const raw = nearest ? getIntensityForTypeAtTime(nearest, pollutionType, selectedTimeIso) : 0;
+            const normalized = normalizeHeatIntensity(raw, scaleMax);
+            const fillColor = getColorForNormalizedIntensity(normalized);
+            const fillOpacity =
+              normalized > 0
+                ? Math.min(0.62, cityOverlayBaseOpacity + normalized * 0.26)
+                : 0;
+            const strokeOpacity =
+              normalized > 0
+                ? Math.min(0.65, cityOverlayBaseStrokeOpacity + normalized * 0.18)
+                : 0;
 
+            return (
+          <Circle
+            key={`city-zone-${city.key}`}
+            center={[city.position.lat, city.position.lng]}
+            radius={cityCircleRadiusMeters}
+            eventHandlers={{
+              click: () => onSelectCity(city.key),
+              mouseover: (e) => {
+                e.target.setStyle({
+                  fillOpacity: Math.min(0.5, fillOpacity + 0.18),
+                  opacity: Math.min(0.6, strokeOpacity + 0.25),
+                  color: 'rgba(0,0,0,0.35)',
+                  weight: 1.6,
+                  stroke: true
+                });
+              },
+              mouseout: (e) => {
+                e.target.setStyle({
+                  fillOpacity,
+                  opacity: strokeOpacity,
+                  color: 'rgba(0,0,0,0.25)',
+                  weight: 1.25,
+                  stroke: normalized > 0
+                });
+              }
+            }}
+            pathOptions={{
+              stroke: normalized > 0,
+              color: 'rgba(0,0,0,0.25)',
+              opacity: strokeOpacity,
+              weight: 1.25,
+              fill: true,
+              fillColor,
+              fillOpacity
+            }}
+          />
+            );
+          })()
+        ))}
 
-        {/* Pins for each location in sloveniaData, showing number of particles */}
-        {sloveniaData.map((p, idx) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const value = getIntensityForTypeAtTime(p, pollutionType as any, selectedTimeIso);
+        {/* Labels Layer (Using Marker with custom divIcon) */}
+        {cities.map((city) => (
+           <Marker
+             key={`city-label-${city.key}-${showLabels}`} // Force strict re-render on toggle
+             position={[city.position.lat, city.position.lng]}
+             icon={createLabelIcon(city.name, showLabels)}
+             interactive={false} // Pass through clicks to the CircleMarker below
+             zIndexOffset={1000}
+           />
+        ))}
 
-          if (!Number.isFinite(value) || value === 0) return null;
-
-          const lvl = getDangerLevel(pollutionType, value);
-          const { stroke, fill } = getDangerColors(lvl);
-
-
-          return (
-            <CircleMarker
-              key={`data-circle-${idx}`}
-              center={[p.latitude, p.longitude]}
-              radius={10}
-              pathOptions={{
-                color: stroke,
-                weight: 2,
-                fillColor: fill,
-                fillOpacity: 0.85,
-              }}
-            >
-              <Tooltip
-                permanent
-                direction="center"
-                className={styles.circleLabel}
-                opacity={1}
-              >
-                {Math.round(value)}
-              </Tooltip>
-            </CircleMarker>
-          );
-        })}
-
-        {/* Pins for each city (selection logic) */}
-        {cities.map((city) => {
-          const pos: LatLngExpression = [city.position.lat, city.position.lng];
-          const isSelected = city.key === selectedCityKey;
-          return (
-            <Marker
-              key={city.key}
-              position={pos}
-              icon={isSelected ? selectedIcon : icon}
-              zIndexOffset={isSelected ? 1000 : 0}
-              riseOnHover
-              eventHandlers={{
-                click: () => onSelectCity(city.key),
-              }}
-            />
-          );
-        })}
       </MapContainer>
     </div>
   );
 };
+

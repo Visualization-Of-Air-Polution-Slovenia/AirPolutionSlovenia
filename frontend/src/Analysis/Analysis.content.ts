@@ -15,7 +15,6 @@ export const AnalysisContent = {
   },
   widgets: {
     trendsTitle: 'Pollutant Trends Over Time',
-    trendsSubtitle: 'Comparative analysis (Weekly View)',
     summaryTitle: 'Summary',
     chartCard: {
       title: 'Annual Mean Concentration (PM₂.₅)',

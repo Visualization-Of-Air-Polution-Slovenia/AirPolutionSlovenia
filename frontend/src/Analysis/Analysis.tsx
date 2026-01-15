@@ -7,6 +7,7 @@ import styles from './Analysis.module.css';
 
 import { useAppStore } from '@/store/useStore';
 import { AnalysisContent } from './Analysis.content';
+import { generateTrendsSubtitle } from './Analysis.utils';
 
 const POLLUTANTS = [
   { key: 'pm10', label: 'PM₁₀' },
@@ -72,16 +73,13 @@ export const Analysis = () => {
 
   const [activeCity, setActiveCity] = useState<string>('Ljubljana');
 
-  // ✅ multi-select pollutants (normal mode)
   const [selectedPollutants, setSelectedPollutants] = useState<PollutantKey[]>([
     (pollutionType as PollutantKey) ?? 'pm10',
   ]);
 
-  // ✅ compare toggle + multi city selection
   const [compareCities, setCompareCities] = useState(false);
   const [selectedCities, setSelectedCities] = useState<string[]>(['Ljubljana']);
 
-  // ✅ NEW: show/hide forecast (predictions)
   const [showForecast, setShowForecast] = useState(false);
 
   const [limitDisplay, setLimitDisplay] = useState<LimitDisplay>('WHO and EU');
@@ -159,7 +157,6 @@ export const Analysis = () => {
     return uniq;
   }, [allStatus, allRows]);
 
-  // ✅ dataRange respects showForecast toggle
   const dataRange = useMemo(() => {
     const rowsToUse = showForecast
       ? allRows
@@ -192,7 +189,6 @@ export const Analysis = () => {
     }
   }, [allCities, activeCity, compareCities]);
 
-  // ✅ When turning compare ON, force pollutant selection to 1
   useEffect(() => {
     if (!compareCities) return;
     setSelectedPollutants((prev) => {
@@ -202,7 +198,6 @@ export const Analysis = () => {
   }, [compareCities, pollutionType]);
 
   // Build index: city -> pollutant -> sorted points[]
-  // ✅ respects showForecast toggle
   const indexed = useMemo(() => {
     const map = new Map<string, Map<string, ChartPoint[]>>();
 
@@ -290,7 +285,6 @@ export const Analysis = () => {
 
     const referenceCity = compareCities ? (selectedCities[0] ?? activeCity) : activeCity;
 
-    // ✅ use indexed data (already respects showForecast)
     const byCity = indexed.get(referenceCity);
     if (!byCity) return out;
 
@@ -400,10 +394,6 @@ export const Analysis = () => {
     });
   };
 
-  // =========================
-  // ✅ SERIES + CHART DATA
-  // =========================
-
   const series = useMemo(() => {
     const { start, end } = clampDateOrder(startDateInput, endDateInput);
     const hasRange = Boolean(start && end);
@@ -489,7 +479,6 @@ export const Analysis = () => {
     setEndDateInput(formatDate(end));
   };
 
-  // ✅ snap to latest date of the *selected* series (not global)
   useEffect(() => {
     const max = (selectionRange ?? dataRange)?.maxDate;
     if (!max) return;
@@ -503,7 +492,6 @@ export const Analysis = () => {
     setEndDateInput(fmt(end));
   }, [selectionRange?.maxDate, dataRange?.maxDate]);
 
-  // ✅ if forecasts turned OFF while viewing a forecast date, snap back to latest real data
   useEffect(() => {
     if (showForecast) return;
     const max = dataRange?.maxDate;
@@ -625,6 +613,17 @@ export const Analysis = () => {
     ? (selectedPollutants[0] ?? ((pollutionType as PollutantKey) ?? 'pm10'))
     : null;
 
+  const trendsSubtitle = useMemo(() => {
+    return generateTrendsSubtitle({
+      timeRange,
+      rangeMode,
+      customDays,
+      compareCities,
+      startDate: startDateInput,
+      endDate: endDateInput,
+    });
+  }, [timeRange, rangeMode, customDays, compareCities, startDateInput, endDateInput]);
+
   return (
     <main className={styles.page}>
       <aside className={styles.sidebar} aria-label="Analysis controls">
@@ -663,7 +662,6 @@ export const Analysis = () => {
                     />
                     <span className={styles.optionText}>
                       {p.label}
-                      <span style={{ marginLeft: 6, opacity: 0.7, fontWeight: 700 }}>({count ?? 0})</span>
                     </span>
                   </label>
                 );
@@ -798,7 +796,7 @@ export const Analysis = () => {
                   <div
                     key={loc}
                     className={`${styles.locationPill} ${isDisabled ? styles.locationPillDisabled : ''}`}
-                    role="button"
+                    role="button" 
                     tabIndex={isDisabled ? -1 : 0}
                     aria-label={`Select ${loc}`}
                     aria-disabled={isDisabled}
@@ -923,7 +921,7 @@ export const Analysis = () => {
             >
               <div>
                 <div className={styles.cardTitle}>Annual Mean Concentration</div>
-                <div className={styles.cardSubtitle}>{AnalysisContent.widgets.trendsSubtitle}</div>
+                <div className={styles.cardSubtitle}>{trendsSubtitle}</div>
               </div>
 
               <div className={styles.legend}>
@@ -1002,7 +1000,7 @@ export const Analysis = () => {
                           const k = s.key as PollutantKey;
                           const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
                           const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
-                          const showLabels = selectedPollutants.length === 1;
+                          const showLabels = true;
 
                           const lines = [] as ReactNode[];
                           if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') {
@@ -1016,7 +1014,7 @@ export const Analysis = () => {
                                 opacity={0.7}
                                 label={
                                   showLabels
-                                    ? { value: `WHO: ${who}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 }
+                                    ? { value: `WHO: ${who}`, position: 'left', fill: s.color, fontSize: 10 }
                                     : undefined
                                 }
                               />,
@@ -1033,7 +1031,7 @@ export const Analysis = () => {
                                 opacity={0.7}
                                 label={
                                   showLabels
-                                    ? { value: `EU: ${eu}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 }
+                                    ? { value: `EU: ${eu}`, position: 'left', fill: s.color, fontSize: 10 }
                                     : undefined
                                 }
                               />,
@@ -1060,7 +1058,7 @@ export const Analysis = () => {
                                 strokeDasharray="6 6"
                                 strokeWidth={2}
                                 opacity={0.7}
-                                label={{ value: `WHO: ${who}`, position: 'insideTopLeft', fill: stroke, fontSize: 10 }}
+                                label={{ value: `WHO: ${who}`, position: 'left', fill: stroke, fontSize: 10 }}
                               />,
                             );
                           }
@@ -1073,7 +1071,7 @@ export const Analysis = () => {
                                 strokeDasharray="2 6"
                                 strokeWidth={2}
                                 opacity={0.7}
-                                label={{ value: `EU: ${eu}`, position: 'insideTopLeft', fill: stroke, fontSize: 10 }}
+                                label={{ value: `EU: ${eu}`, position: 'left', fill: stroke, fontSize: 10 }}
                               />,
                             );
                           }
@@ -1118,7 +1116,7 @@ export const Analysis = () => {
                   <span className={styles.summaryPillValue}>{limitDisplay}</span>
                 </div>
                 <div className={styles.summaryPill}>
-                  <span className={styles.summaryPillLabel}>Forecast:</span>
+                  <span className={styles.summaryPillLabel}>Predicition:</span>
                   <span className={styles.summaryPillValue}>{showForecast ? 'On' : 'Off'}</span>
                 </div>
               </div>
