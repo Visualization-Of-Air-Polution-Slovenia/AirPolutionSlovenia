@@ -69,6 +69,42 @@ const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoo
   return null;
 };
 
+// Approximate Slovenia bounding box (SW, NE).
+// Used to prevent zooming out too far beyond Slovenia.
+const SLOVENIA_BOUNDS: L.LatLngBoundsExpression = [
+  [45.42, 13.38],
+  [46.88, 16.62]
+];
+
+// Expand bounds by 25% on each side => total ~1.5x width/height.
+const padBounds = (bounds: L.LatLngBounds, padFraction: number) => {
+  const sw = bounds.getSouthWest();
+  const ne = bounds.getNorthEast();
+
+  const latSpan = ne.lat - sw.lat;
+  const lngSpan = ne.lng - sw.lng;
+
+  return L.latLngBounds(
+    [sw.lat - latSpan * padFraction, sw.lng - lngSpan * padFraction],
+    [ne.lat + latSpan * padFraction, ne.lng + lngSpan * padFraction]
+  );
+};
+
+const SLOVENIA_ZOOM_OUT_BOUNDS = padBounds(L.latLngBounds(SLOVENIA_BOUNDS), 0.25);
+
+const ConstrainZoomOut = ({ bounds }: { bounds: L.LatLngBounds }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    map.setMaxBounds(bounds);
+    // Prevent zooming out beyond the point where these bounds would no longer fill the view.
+    const minZoom = map.getBoundsZoom(bounds, false);
+    map.setMinZoom(minZoom);
+  }, [map, bounds]);
+
+  return null;
+};
+
 const closestIndexToTarget = (times: string[], targetIso: string) => {
   if (times.length === 0) return -1;
 
@@ -174,7 +210,15 @@ export const SloveniaMap = ({
 
   return (
     <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
-      <MapContainer className={styles.map} center={center} zoom={zoom} scrollWheelZoom>
+      <MapContainer
+        className={styles.map}
+        center={center}
+        zoom={zoom}
+        scrollWheelZoom
+        maxBounds={SLOVENIA_ZOOM_OUT_BOUNDS}
+        maxBoundsViscosity={1.0}
+      >
+        <ConstrainZoomOut bounds={SLOVENIA_ZOOM_OUT_BOUNDS} />
         <TileLayer url={tileUrl} attribution={tileAttribution} />
         
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
