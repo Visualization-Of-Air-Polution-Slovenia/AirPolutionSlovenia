@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import styles from './SloveniaMap.module.css';
 import type { OmLocationTimeData } from '@/Services/api';
 import { useAppStore, type PollutantType } from '@/store/useStore';
-import { HeatLayer, type HeatPoint } from './HeatLayer';
 
 
 export type SloveniaMapCity = {
@@ -42,40 +41,25 @@ const createLabelIcon = (name: string, show: boolean) => {
 };
 
 // Standard unified AQI-like gradient for all pollutants
-// Green (Good) -> Yellow (Moderate) -> Orange (Unhealthy) -> Red (Bad)
+// Muted (less neon) palette: Green -> Yellow -> Orange -> Red -> Dark Red
 const STANDARD_HEAT_GRADIENT = {
-  0.0: 'lime',
-  0.4: '#ffe600', // Yellow
-  0.7: '#ff9900', // Orange
-  1.0: '#ff0000'  // Red 
+  0.0: '#6fae8c',  // muted green
+  0.15: '#d6c46f', // muted yellow
+  0.30: '#d09a62', // muted orange
+  0.50: '#c96b63', // muted red
+  0.80: '#8f3b3b'  // dark muted red
 };
 
 const getHeatMaxValue = (pollutant: PollutantType): number => {
-  // Adjusted thresholds for softer visualization
+  // Tighter thresholds so moderate values actually show up as Yellow/Orange
   switch (pollutant) {
-    case 'pm10': return 150; 
-    case 'pm2.5': return 80; 
-    case 'o3': return 240;   
-    case 'no2': return 200;  
-    default: return 150;
+    case 'pm10': return 100;     // Daily limit is 50, so 50 will be 0.5 (Red)
+    case 'pm2.5': return 60;     // Daily guidance around 25-50. 30 will be 0.5 (Red)
+    case 'o3': return 180;       // 1h threshold is 180 (Warning) -> 1.0 (Dark Red)
+    case 'no2': return 150;      // 1h threshold 200. 
+    default: return 100;
   }
 }
-
-const findClosestCityKey = (lat: number, lng: number, cities: SloveniaMapCity[]): string | undefined => {
-  if (cities.length === 0) return undefined;
-  
-  let bestKey = undefined;
-  let minDistSq = Infinity;
-
-  for (const c of cities) {
-    const dSq = (c.position.lat - lat) ** 2 + (c.position.lng - lng) ** 2;
-    if (dSq < minDistSq) {
-      minDistSq = dSq;
-      bestKey = c.key;
-    }
-  }
-  return bestKey;
-};
 
 const FlyToSelectedCity = ({ selected, zoom }: { selected: LatLngExpression; zoom?: number }) => {
   const map = useMap();
@@ -118,6 +102,40 @@ const getIntensityForTypeAtTime = (p: OmLocationTimeData, pollutionType: Polluta
   return Number.isFinite(v) ? v : 0;
 };
 
+const normalizeHeatIntensity = (rawValue: number, scaleMax: number): number => {
+  if (!Number.isFinite(rawValue) || rawValue <= 0) return 0;
+  if (!Number.isFinite(scaleMax) || scaleMax <= 0) return 0;
+  return Math.max(0, Math.min(1, rawValue / scaleMax));
+};
+
+const getColorForNormalizedIntensity = (t: number): string => {
+  if (!Number.isFinite(t) || t <= 0) return 'transparent';
+  if (t < 0.15) return STANDARD_HEAT_GRADIENT[0.0];
+  if (t < 0.30) return STANDARD_HEAT_GRADIENT[0.15];
+  if (t < 0.50) return STANDARD_HEAT_GRADIENT[0.30];
+  if (t < 0.80) return STANDARD_HEAT_GRADIENT[0.50];
+  return STANDARD_HEAT_GRADIENT[0.80];
+};
+
+const findNearestLocation = (lat: number, lng: number, data: OmLocationTimeData[]) => {
+  if (!Array.isArray(data) || data.length === 0) return undefined;
+
+  let best: OmLocationTimeData | undefined;
+  let bestDistSq = Infinity;
+
+  for (const p of data) {
+    const dLat = p.latitude - lat;
+    const dLng = p.longitude - lng;
+    const dSq = dLat * dLat + dLng * dLng;
+    if (dSq < bestDistSq) {
+      bestDistSq = dSq;
+      best = p;
+    }
+  }
+
+  return best;
+};
+
 export const SloveniaMap = ({
   center,
   zoom,
@@ -134,15 +152,21 @@ export const SloveniaMap = ({
 }: SloveniaMapProps) => {
   const { pollutionType } = useAppStore();
 
-  const heatPoints: HeatPoint[] = sloveniaData
-    .map((p) => {
-      const v = getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso);
-      return [p.latitude, p.longitude, v] as HeatPoint;
-    })
-    .filter(([, , v]) => Number.isFinite(v) && v > 0);
+  // IMPORTANT: Use dynamic scaling per time-slice so colors clearly change when
+  // the selected pollutant OR selected hour changes.
+  const rawValues = sloveniaData.map((p) => getIntensityForTypeAtTime(p, pollutionType, selectedTimeIso));
+  const timeSliceMax = rawValues.reduce((m, v) => (Number.isFinite(v) ? Math.max(m, v) : m), 0);
+  const fallbackMax = getHeatMaxValue(pollutionType);
+  const scaleMax = timeSliceMax > 0 ? timeSliceMax : fallbackMax;
 
   const selectedCity = cities.find((c) => c.key === selectedCityKey);
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
+
+  // These are the SVG paths you pasted (<path class="leaflet-interactive" ...>).
+  // They're the CircleMarker overlays, not the leaflet.heat canvas. We color them based on
+  // selected pollutant + selected time so they visually track the same logic as the sidebar.
+  const cityOverlayBaseOpacity = 0.28;
+  const cityOverlayBaseStrokeOpacity = 0.22;
 
   return (
     <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
@@ -151,30 +175,54 @@ export const SloveniaMap = ({
         
         {selectedPos ? <FlyToSelectedCity selected={selectedPos} zoom={flyToZoom} /> : null}
 
-        {/* Heatmap Layer */}
-        <HeatLayer 
-            key={pollutionType} // Force new instance if pollutant changes, just in case setOptions is flaky in some leaflet versions
-            points={heatPoints} 
-            max={getHeatMaxValue(pollutionType)} 
-            radius={25} 
-            blur={25} 
-            minOpacity={0.4}
-            gradient={STANDARD_HEAT_GRADIENT}
-        />
-
         {/* Unified Interaction Zones for All Cities */}
         {cities.map((city) => (
+          (() => {
+            const nearest = findNearestLocation(city.position.lat, city.position.lng, sloveniaData);
+            const raw = nearest ? getIntensityForTypeAtTime(nearest, pollutionType, selectedTimeIso) : 0;
+            const normalized = normalizeHeatIntensity(raw, scaleMax);
+            const fillColor = getColorForNormalizedIntensity(normalized);
+            const fillOpacity = normalized > 0 ? cityOverlayBaseOpacity : 0;
+            const strokeOpacity = normalized > 0 ? cityOverlayBaseStrokeOpacity : 0;
+
+            return (
           <CircleMarker
             key={`city-zone-${city.key}`}
             center={[city.position.lat, city.position.lng]}
-            radius={20} 
+            radius={18}
             eventHandlers={{
               click: () => onSelectCity(city.key),
-              mouseover: (e) => { e.target.setStyle({ fillOpacity: 0.1, color: '#333', weight: 1, stroke: true }); },
-              mouseout: (e) => { e.target.setStyle({ fillOpacity: 0, weight: 0, stroke: false }); }
+              mouseover: (e) => {
+                e.target.setStyle({
+                  fillOpacity: Math.min(0.5, fillOpacity + 0.18),
+                  opacity: Math.min(0.6, strokeOpacity + 0.25),
+                  color: 'rgba(0,0,0,0.35)',
+                  weight: 1,
+                  stroke: true
+                });
+              },
+              mouseout: (e) => {
+                e.target.setStyle({
+                  fillOpacity,
+                  opacity: strokeOpacity,
+                  color: 'rgba(0,0,0,0.25)',
+                  weight: 1,
+                  stroke: normalized > 0
+                });
+              }
             }}
-            pathOptions={{ stroke: false, fill: true, fillColor: '#000', fillOpacity: 0 }}
+            pathOptions={{
+              stroke: normalized > 0,
+              color: 'rgba(0,0,0,0.25)',
+              opacity: strokeOpacity,
+              weight: 1,
+              fill: true,
+              fillColor,
+              fillOpacity
+            }}
           />
+            );
+          })()
         ))}
 
         {/* Labels Layer (Using Marker with custom divIcon) */}

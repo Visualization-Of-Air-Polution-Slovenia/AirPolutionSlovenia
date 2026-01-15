@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './MapView.module.css';
 
 import { useCityData, useSloveniaData } from '@/Services';
-import { useAppStore } from '@/store/useStore';
+import { useAppStore, type PollutantType } from '@/store/useStore';
 import { MapViewContent } from './MapView.content';
 
 import { SloveniaMap } from './components/SloveniaMap/SloveniaMap';
@@ -288,12 +288,6 @@ export const MapView = () => {
             showLabels={showLabels}
           />
         </div>
-
-        <div className={styles.vignette} />
-
-        <div className={`${styles.blob} ${styles.blobPrimary} ${styles.blobOne}`} />
-        <div className={`${styles.blob} ${styles.blobWarning} ${styles.blobTwo}`} />
-        <div className={`${styles.blob} ${styles.blobPrimary} ${styles.blobThree}`} />
       </div>
 
       <div className={styles.controls}>

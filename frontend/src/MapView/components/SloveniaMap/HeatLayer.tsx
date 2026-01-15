@@ -61,6 +61,10 @@ export const HeatLayer = ({
     // This triggers a redraw without flickering
     if (layerRef.current) {
       layerRef.current.setLatLngs(points);
+      // Explicitly request redraw if the plugin supports it or needs it (usually automatic, but safe to call)
+      if (typeof (layerRef.current as any).redraw === 'function') {
+         (layerRef.current as any).redraw();
+      }
     }
   }, [points]);
 
