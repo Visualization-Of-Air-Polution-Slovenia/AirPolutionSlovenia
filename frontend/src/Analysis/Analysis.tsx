@@ -58,6 +58,22 @@ const cityColor = (name: string) => {
   for (let i = 0; i < name.length; i += 1) h = (h * 31 + name.charCodeAt(i)) % 360;
   return `hsl(${h} 70% 50%)`;
 };
+
+const CITY_PALETTE = [
+  '#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F', '#EDC948',
+  '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC',
+  '#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B',
+  '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF',
+  '#393B79', '#637939', '#8C6D31', '#843C39', '#7B4173', '#3182BD',
+  '#31A354', '#756BB1', '#636363', '#E6550D',
+] as const;
+
+
+const goldenAngleColor = (i: number) => {
+  const h = (i * 137.50776405003785) % 360;
+  return `hsl(${h} 75% 50%)`;
+};
+
 const cityToDataKey = (city: string) => `city_${city.replace(/[^a-zA-Z0-9]+/g, '_')}`;
 
 export const Analysis = () => {
@@ -156,6 +172,18 @@ export const Analysis = () => {
     if (uniq.includes('Ljubljana')) return ['Ljubljana', ...uniq.filter((c) => c !== 'Ljubljana')];
     return uniq;
   }, [allStatus, allRows]);
+
+  const cityColors = useMemo(() => {
+  const sorted = [...allCities].sort((a, b) => a.localeCompare(b));
+  const map: Record<string, string> = {};
+
+  sorted.forEach((city, i) => {
+    map[city] = CITY_PALETTE[i] ?? goldenAngleColor(i);
+  });
+
+  return map;
+}, [allCities]);
+
 
   const dataRange = useMemo(() => {
     const rowsToUse = showForecast
@@ -433,7 +461,7 @@ export const Analysis = () => {
         key: city,
         label: city,
         name: city,
-        color: cityColor(city),
+        color: cityColors[city] ?? goldenAngleColor(0),
         dataKey: cityToDataKey(city),
         allPoints: pts,
         points: filtered,
@@ -821,7 +849,7 @@ export const Analysis = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--distance)' }}>
                       <span
                         className={styles.dot}
-                        style={{ background: compareCities ? cityColor(loc) : 'var(--primary)' }}
+                        style={{ background: compareCities ? (cityColors[loc] ?? goldenAngleColor(0)) : 'var(--primary)' }}
                       />
                       <span style={{ fontWeight: 800 }}>{loc}</span>
                     </div>
