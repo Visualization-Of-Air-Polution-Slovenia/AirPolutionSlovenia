@@ -195,7 +195,7 @@ export const SloveniaMap = ({
           <CircleMarker
             key={`city-zone-${city.key}`}
             center={[city.position.lat, city.position.lng]}
-            radius={18}
+            radius={25}
             eventHandlers={{
               click: () => onSelectCity(city.key),
               mouseover: (e) => {
