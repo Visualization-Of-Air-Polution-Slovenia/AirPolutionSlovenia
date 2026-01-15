@@ -1,7 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 
 import L, { type LatLngExpression } from 'leaflet';
-import { MapContainer, Marker, TileLayer, useMap, CircleMarker } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMap, Circle } from 'react-leaflet';
 import { useEffect } from 'react';
 
 import styles from './SloveniaMap.module.css';
@@ -163,10 +163,14 @@ export const SloveniaMap = ({
   const selectedPos: LatLngExpression | null = selectedCity ? [selectedCity.position.lat, selectedCity.position.lng] : null;
 
   // These are the SVG paths you pasted (<path class="leaflet-interactive" ...>).
-  // They're the CircleMarker overlays, not the leaflet.heat canvas. We color them based on
+  // They're the Leaflet circle overlays (not the leaflet.heat canvas). We color them based on
   // selected pollutant + selected time so they visually track the same logic as the sidebar.
   const cityOverlayBaseOpacity = 0.34;
   const cityOverlayBaseStrokeOpacity = 0.30;
+
+  // Fixed real-world size (meters). This makes circles look bigger when you zoom in,
+  // and smaller when you zoom out, while representing the same geographic area.
+  const cityCircleRadiusMeters = 6000;
 
   return (
     <div className={`${styles.wrap} ${showGrayscale ? styles.grayscale : ''}`} aria-label="Map">
@@ -192,10 +196,10 @@ export const SloveniaMap = ({
                 : 0;
 
             return (
-          <CircleMarker
+          <Circle
             key={`city-zone-${city.key}`}
             center={[city.position.lat, city.position.lng]}
-            radius={25}
+            radius={cityCircleRadiusMeters}
             eventHandlers={{
               click: () => onSelectCity(city.key),
               mouseover: (e) => {
