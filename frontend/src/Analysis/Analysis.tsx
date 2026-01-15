@@ -1,4 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+
+import {
+  Line,
+  LineChart,
+  ReferenceLine,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import styles from './Analysis.module.css';
 
@@ -27,6 +37,11 @@ type FullRow = {
 type ChartPoint = { date: string; value: number };
 type LimitAuthority = 'WHO' | 'EU';
 type LimitDisplay = 'None' | 'WHO' | 'EU' | 'WHO and EU';
+
+type RechartsDatum = {
+  date: string;
+  [key: string]: number | string | null;
+};
 
 
 const LIMITS_ANNUAL_BY_AUTH: Record<LimitAuthority, Partial<Record<PollutantKey, number>>> = {
@@ -267,14 +282,35 @@ export const Analysis = () => {
     return out;
   }, [allRows, selectedPollutants, startDateInput, endDateInput, pollutantLabelToCsv]);
 
+  const enabledCities = useMemo(() => {
+    return allCities.filter((c) => (countsByCity[c] ?? 0) > 0);
+  }, [allCities, countsByCity]);
+
+  const disabledCities = useMemo(() => {
+    return allCities.filter((c) => (countsByCity[c] ?? 0) === 0);
+  }, [allCities, countsByCity]);
+
+  const sortedCities = useMemo(() => {
+    // Keep original ordering for enabled cities (Ljubljana-first), push empty cities to the bottom.
+    return [...enabledCities, ...disabledCities];
+  }, [enabledCities, disabledCities]);
+
   const [cityPage, setCityPage] = useState(0);
   const cityPageSize = 8;
-  const cityPages = Math.max(1, Math.ceil(allCities.length / cityPageSize));
-  const visibleCities = cityPages > 1 ? allCities.slice(cityPage * cityPageSize, (cityPage + 1) * cityPageSize) : allCities;
+  const cityPages = Math.max(1, Math.ceil(sortedCities.length / cityPageSize));
+  const visibleCities =
+    cityPages > 1 ? sortedCities.slice(cityPage * cityPageSize, (cityPage + 1) * cityPageSize) : sortedCities;
 
   useEffect(() => {
     setCityPage((p) => Math.min(Math.max(0, p), cityPages - 1));
   }, [cityPages]);
+
+  useEffect(() => {
+    // If current active city has no data for the selected range/pollutants, switch to first enabled.
+    if (enabledCities.length === 0) return;
+    if ((countsByCity[activeCity] ?? 0) > 0) return;
+    setActiveCity(enabledCities[0] ?? activeCity);
+  }, [enabledCities, countsByCity, activeCity]);
 
 
 
@@ -300,169 +336,96 @@ export const Analysis = () => {
     });
   }, [indexed, activeCity, selectedPollutants, pollutantColors, pollutantLabelToCsv, startDateInput, endDateInput]);
 
+  const pollutantKeyToDataKey = useMemo(() => {
+    const map: Record<PollutantKey, string> = {
+      pm10: 'pm10',
+      'pm2.5': 'pm2_5',
+      no2: 'no2',
+      o3: 'o3',
+    };
+    return map;
+  }, []);
 
-  const yDomainsByKey = useMemo(() => {
-  const out: Record<string, { min: number; max: number; range: number }> = {};
+  const chartData = useMemo(() => {
+    const byDate = new Map<string, RechartsDatum>();
 
-  for (const s of series) {
-    const vals = s.points.map((p) => p.value);
+    for (const s of series) {
+      const dataKey = pollutantKeyToDataKey[s.key as PollutantKey];
+      for (const p of s.points) {
+        const row = byDate.get(p.date) ?? { date: p.date };
+        row[dataKey] = p.value;
+        byDate.set(p.date, row);
+      }
+    }
 
-    const k = s.key as PollutantKey;
-    const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
-    const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+    const out = Array.from(byDate.values()).sort((a, b) => String(a.date).localeCompare(String(b.date)));
 
-    if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') vals.push(who);
-    if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') vals.push(eu);
+    // Ensure nulls for missing series keys (keeps gaps in lines)
+    for (const row of out) {
+      for (const k of selectedPollutants) {
+        const dk = pollutantKeyToDataKey[k];
+        if (!(dk in row)) row[dk] = null;
+      }
+    }
 
-    if (vals.length === 0) continue;
+    return out;
+  }, [series, selectedPollutants, pollutantKeyToDataKey]);
+
+
+  const yDomain = useMemo(() => {
+    const vals: number[] = [];
+
+    for (const s of series) {
+      for (const p of s.points) vals.push(p.value);
+
+      const k = s.key as PollutantKey;
+      const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
+      const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+      if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') vals.push(who);
+      if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') vals.push(eu);
+    }
+
+    if (vals.length === 0) return { min: 0, max: 1 };
 
     const min = Math.min(...vals);
     const max = Math.max(...vals);
-    out[s.key] = { min, max, range: max - min || 1 };
-  }
+    const range = max - min || 1;
+    const pad = range * 0.08;
+    return { min: Math.max(0, min - pad), max: max + pad };
+  }, [series, limitDisplay]);
 
-  return out;
-}, [series, limitDisplay]);
+  const xTickFormatter = useMemo(() => {
+    const { start, end } = clampDateOrder(startDateInput, endDateInput);
+    if (!start || !end) return (v: string) => v;
 
+    const days = Math.round((parseDate(end).getTime() - parseDate(start).getTime()) / (1000 * 60 * 60 * 24));
+    if (days <= 40) return (v: string) => String(v).slice(5);
+    if (days <= 400) return (v: string) => String(v).slice(0, 7);
+    return (v: string) => String(v).slice(0, 4);
+  }, [startDateInput, endDateInput]);
 
-  const chartSvg = useMemo(() => {
-    if (series.length === 0) return null;
-
-    const { start: startStr, end: endStr } = clampDateOrder(startDateInput, endDateInput);
-    if (!startStr || !endStr) return null;
-
-    const startDate = parseDate(startStr);
-    const endDate = parseDate(endStr);
-    if (startDate > endDate) return null;
-
-    const axisDates: string[] = [];
-    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-      axisDates.push(formatDate(d));
-      if (axisDates.length > 11000) break;
+  const hasEnoughChartData = useMemo(() => {
+    if (chartData.length < 2) return false;
+    const keys = selectedPollutants.map((k) => pollutantKeyToDataKey[k]);
+    let nonNullPoints = 0;
+    for (const row of chartData) {
+      if (keys.some((k) => row[k] !== null && row[k] !== undefined)) nonNullPoints += 1;
+      if (nonNullPoints >= 2) return true;
     }
-    if (axisDates.length < 2) return null;
+    return false;
+  }, [chartData, selectedPollutants, pollutantKeyToDataKey]);
 
-    const dateToIndex = new Map<string, number>();
-    axisDates.forEach((ds, idx) => dateToIndex.set(ds, idx));
+  const formatCompact1 = (value: unknown) => {
+    const n = typeof value === 'number' ? value : Number(value);
+    if (!Number.isFinite(n)) return '';
 
-    const W = 900;
-    const H = 260;
+    const abs = Math.abs(n);
+    const sign = n < 0 ? '-' : '';
 
-    const left = 40;
-    const right = 12;
-    const top = 12;
-    const bottom = 36;
-
-    const w = W - left - right;
-    const h = H - top - bottom;
-
-    const stepX = w / (axisDates.length - 1);
-
-    const valueToY = (seriesKey: string, v: number) => {
-      const dom = yDomainsByKey[seriesKey];
-      if (!dom) return top + h / 2;
-      return top + (1 - (v - dom.min) / dom.range) * h;
-    };
-
-    const diffDays = (a: string, b: string) => {
-      const da = parseDate(a);
-      const db = parseDate(b);
-      return Math.round((db.getTime() - da.getTime()) / (1000 * 60 * 60 * 24));
-    };
-
-    const buildPathWithGaps = (seriesKey: string, pts: ChartPoint[]) => {
-      const inRange = pts.filter((p) => p.date >= axisDates[0] && p.date <= axisDates[axisDates.length - 1]);
-      if (inRange.length < 2) return null;
-
-      let d = '';
-      let prevDate: string | null = null;
-
-      for (const p of inRange) {
-        const idx = dateToIndex.get(p.date);
-        if (idx === undefined) continue;
-
-        const x = left + idx * stepX;
-        const y = valueToY(seriesKey, p.value);
-
-        if (!prevDate || diffDays(prevDate, p.date) > 1) {
-          d += ` M ${x} ${y}`;
-        } else {
-          d += ` L ${x} ${y}`;
-        }
-
-        prevDate = p.date;
-      }
-
-      return d.trim().length ? d : null;
-    };
-
-    const firstDate = axisDates[0];
-    const lastDate = axisDates[axisDates.length - 1];
-
-    return (
-      <svg width="100%" height="260" viewBox={`0 0 ${W} ${H}`} style={{ display: 'block' }}>
-        <line x1={left} y1={top} x2={left} y2={top + h} stroke="currentColor" opacity="0.25" />
-        <line x1={left} y1={top + h} x2={left + w} y2={top + h} stroke="currentColor" opacity="0.25" />
-
-        
-        {series.map((s) => {
-          const pathD = buildPathWithGaps(s.key, s.points);
-          if (!pathD) return null;
-          return <path key={s.key} d={pathD} fill="none" stroke={s.color} strokeWidth="2" opacity="0.95" />;
-        })}
-
-        
-        {limitDisplay !== 'None' &&
-        series.map((s) => {
-          const key = s.key as PollutantKey;
-
-          const who = LIMITS_ANNUAL_BY_AUTH.WHO[key];
-          const eu = LIMITS_ANNUAL_BY_AUTH.EU[key];
-
-          const renderLimit = (kind: 'WHO' | 'EU', v: number, dash: string, labelX: number) => {
-            const y = valueToY(s.key, v);
-            return (
-              <g key={`${s.key}-${kind}`}>
-                <line
-                  x1={left}
-                  x2={left + w}
-                  y1={y}
-                  y2={y}
-                  stroke={s.color}
-                  strokeWidth="2"
-                  strokeDasharray={dash}
-                  opacity="0.7"
-                />
-                <text x={labelX} y={y - 6} fontSize="10" fill={s.color} opacity="0.9" style={{ fontWeight: 700 }}>
-                  {kind}: {v}
-                </text>
-              </g>
-            );
-          };
-
-          return (
-            <g key={`${s.key}-limits`}>
-              {(limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number'
-                ? renderLimit('WHO', who, '6 6', left + 6)
-                : null}
-
-              {(limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number'
-                ? renderLimit('EU', eu, '2 6', left + 78)
-                : null}
-            </g>
-          );
-        })}
-
-
-        <text x={left} y={top + h + 22} fontSize="10" fill="currentColor" opacity="0.6">
-          {firstDate}
-        </text>
-        <text x={left + w - 70} y={top + h + 22} fontSize="10" fill="currentColor" opacity="0.6">
-          {lastDate}
-        </text>
-      </svg>
-    );  
-  }, [series, yDomainsByKey, startDateInput, endDateInput, limitDisplay]);
+    if (abs >= 1_000_000) return `${sign}${(abs / 1_000_000).toFixed(1)}M`;
+    if (abs >= 1_000) return `${sign}${(abs / 1_000).toFixed(1)}k`;
+    return `${n.toFixed(1)}`;
+  };
 
 
   const togglePollutant = (key: PollutantKey) => {
@@ -648,20 +611,26 @@ export const Analysis = () => {
               {visibleCities.map((loc) => {
                 const isActive = loc === activeCity;
                 const count = countsByCity[loc] ?? 0;
+                const isDisabled = count === 0;
 
                 return (
                   <div
                     key={loc}
-                    className={styles.locationPill}
+                    className={`${styles.locationPill} ${isDisabled ? styles.locationPillDisabled : ''}`}
                     role="button"
-                    tabIndex={0}
+                    tabIndex={isDisabled ? -1 : 0}
                     aria-label={`Select ${loc}`}
-                    onClick={() => setActiveCity(loc)}
+                    aria-disabled={isDisabled}
+                    onClick={() => {
+                      if (isDisabled) return;
+                      setActiveCity(loc);
+                    }}
                     onKeyDown={(e) => {
+                      if (isDisabled) return;
                       if (e.key === 'Enter' || e.key === ' ') setActiveCity(loc);
                     }}
                     style={{
-                      cursor: 'pointer',
+                      cursor: isDisabled ? 'not-allowed' : 'pointer',
                       border: isActive ? '1px solid var(--primary)' : undefined,
                       background: isActive ? 'color-mix(in srgb, var(--primary) 12%, transparent)' : undefined,
                     }}
@@ -743,19 +712,110 @@ export const Analysis = () => {
             </div>
 
             <div className={styles.chartArea}>
-              {allStatus === 'loading' && <div style={{ padding: 16, color: 'var(--text-muted)' }}>Loading full dataset…</div>}
-              {allStatus === 'error' && <div style={{ padding: 16, color: 'var(--warning)' }}>{allError}</div>}
-              {allStatus === 'success' && allWarning && (
-                <div style={{ padding: 16, color: 'var(--text-muted)' }}>
-                  Data warnings: {allWarning}
-                </div>
-              )}
+              {allStatus === 'loading' && <div className={styles.chartMessage}>Loading full dataset…</div>}
+              {allStatus === 'error' && <div className={styles.chartMessage} style={{ color: 'var(--warning)' }}>{allError}</div>}
+              {allStatus === 'success' && allWarning && <div className={styles.chartWarning}>Data warnings: {allWarning}</div>}
               {allStatus === 'success' && selectedPollutants.length === 0 && (
-                <div style={{ padding: 16, color: 'var(--text-muted)' }}>Select at least one pollutant.</div>
+                <div className={styles.chartMessage}>Select at least one pollutant.</div>
               )}
-              {allStatus === 'success' && selectedPollutants.length > 0 && chartSvg}
-              {allStatus === 'success' && selectedPollutants.length > 0 && !chartSvg && (
-                <div style={{ padding: 16, color: 'var(--text-muted)' }}>Not enough points for a chart.</div>
+              {allStatus === 'success' && selectedPollutants.length > 0 && !hasEnoughChartData && (
+                <div className={styles.chartMessage}>Not enough points for a chart.</div>
+              )}
+              {allStatus === 'success' && selectedPollutants.length > 0 && hasEnoughChartData && (
+                <div className={styles.chartRecharts}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 10, right: 18, left: 10, bottom: 14 }}>
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={xTickFormatter}
+                        minTickGap={18}
+                        height={30}
+                        tickMargin={8}
+                        stroke="color-mix(in srgb, var(--text) 35%, transparent)"
+                        tick={{ fill: 'color-mix(in srgb, var(--text) 55%, transparent)', fontSize: 11 }}
+                        axisLine={{ stroke: 'color-mix(in srgb, var(--text) 18%, transparent)' }}
+                        tickLine={{ stroke: 'color-mix(in srgb, var(--text) 18%, transparent)' }}
+                      />
+                      <YAxis
+                        domain={[yDomain.min, yDomain.max]}
+                        width={58}
+                        tickFormatter={formatCompact1}
+                        tickMargin={10}
+                        stroke="color-mix(in srgb, var(--text) 35%, transparent)"
+                        tick={{ fill: 'color-mix(in srgb, var(--text) 65%, transparent)', fontSize: 12, fontWeight: 700 }}
+                        axisLine={{ stroke: 'color-mix(in srgb, var(--text) 18%, transparent)' }}
+                        tickLine={{ stroke: 'color-mix(in srgb, var(--text) 18%, transparent)' }}
+                      />
+
+                      <Tooltip
+                        formatter={(v: unknown, name: unknown) => [formatCompact1(v), String(name).toUpperCase()]}
+                        labelFormatter={(label) => `Date: ${label}`}
+                        contentStyle={{
+                          background: 'var(--glass-bg)',
+                          border: '1px solid var(--glass-border)',
+                          borderRadius: 12,
+                          color: 'var(--text)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                        }}
+                        labelStyle={{ color: 'var(--text-muted)', fontWeight: 800 }}
+                        itemStyle={{ color: 'var(--text)', fontWeight: 700 }}
+                        cursor={{ stroke: 'color-mix(in srgb, var(--text) 20%, transparent)' }}
+                      />
+
+                      {limitDisplay !== 'None' &&
+                        series.flatMap((s) => {
+                          const k = s.key as PollutantKey;
+                          const who = LIMITS_ANNUAL_BY_AUTH.WHO[k];
+                          const eu = LIMITS_ANNUAL_BY_AUTH.EU[k];
+                          const showLabels = selectedPollutants.length === 1;
+
+                          const lines = [] as ReactNode[];
+                          if ((limitDisplay === 'WHO' || limitDisplay === 'WHO and EU') && typeof who === 'number') {
+                            lines.push(
+                              <ReferenceLine
+                                key={`${s.key}-who`}
+                                y={who}
+                                stroke={s.color}
+                                strokeDasharray="6 6"
+                                strokeWidth={2}
+                                opacity={0.7}
+                                label={showLabels ? { value: `WHO: ${who}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 } : undefined}
+                              />,
+                            );
+                          }
+                          if ((limitDisplay === 'EU' || limitDisplay === 'WHO and EU') && typeof eu === 'number') {
+                            lines.push(
+                              <ReferenceLine
+                                key={`${s.key}-eu`}
+                                y={eu}
+                                stroke={s.color}
+                                strokeDasharray="2 6"
+                                strokeWidth={2}
+                                opacity={0.7}
+                                label={showLabels ? { value: `EU: ${eu}`, position: 'insideTopLeft', fill: s.color, fontSize: 10 } : undefined}
+                              />,
+                            );
+                          }
+                          return lines;
+                        })}
+
+                      {series.map((s) => (
+                        <Line
+                          key={s.key}
+                          type="monotone"
+                          dataKey={pollutantKeyToDataKey[s.key as PollutantKey]}
+                          name={pollutantLabelToCsv[s.key as PollutantKey]}
+                          stroke={s.color}
+                          strokeWidth={2}
+                          dot={false}
+                          connectNulls={false}
+                          isAnimationActive={false}
+                        />
+                      ))}
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
               )}
 
               {/* Summary bar inside chart */}

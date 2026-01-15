@@ -8,7 +8,7 @@
 }
 
 .sidebar {
-  width: 320px;
+  width: 352px;
   flex: 0 0 auto;
   border-right: 1px solid var(--border);
   background: var(--surface);
@@ -40,6 +40,31 @@
   display: flex;
   flex-direction: column;
   gap: var(--distance-xxl);
+
+  /* Minimal themed scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary) 55%, transparent)
+    color-mix(in srgb, var(--surface-2) 45%, transparent);
+}
+
+.sideBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sideBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sideBody::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 35%, transparent);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
+.sideBody::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--primary) 55%, transparent);
+  background-clip: padding-box;
 }
 
 .sectionTitleRow {
@@ -253,6 +278,13 @@
   background: color-mix(in srgb, var(--surface-2) 70%, transparent);
 }
 
+.locationPillDisabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-color: color-mix(in srgb, var(--border) 40%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 40%, transparent);
+}
+
 .dot {
   width: 10px;
   height: 10px;
@@ -291,6 +323,7 @@
   min-height: 0;
   overflow: hidden;
   padding: var(--distance-xl);
+  padding-right: var(--distance-lg);
   display: flex;
   flex-direction: column;
 }
@@ -328,20 +361,49 @@
   border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
   border-radius: 12px;
   margin-top: var(--distance-lg);
-  background-image: linear-gradient(color-mix(in srgb, var(--text) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--text) 8%, transparent) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance);
+  padding: var(--distance);
+}
+
+.chartRecharts {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  padding: 6px 8px 2px 2px;
+}
+
+.chartMessage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.chartWarning {
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .summaryBar {
-  position: absolute;
-  bottom: var(--distance-lg);
-  right: var(--distance-lg);
   display: flex;
   gap: var(--distance);
-  z-index: 10;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .summaryPill {
@@ -392,10 +454,6 @@
 
 @media (max-width: 768px) {
   .summaryBar {
-    flex-wrap: wrap;
-    bottom: var(--distance);
-    right: var(--distance);
-    left: var(--distance);
     justify-content: center;
   }
 }
