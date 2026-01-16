@@ -119,7 +119,12 @@ export const Analysis = () => {
         setAllError('');
         setAllWarning('');
 
-        const apiBaseRaw = import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL) : '';
+        // Keep behavior consistent with Services/api.ts: if VITE_API_URL is not set in production,
+        // fall back to the hosted backend instead of calling same-origin `/api/*` (which 404s on static hosting).
+        const apiBaseRaw = import.meta.env.VITE_API_URL
+          ? String(import.meta.env.VITE_API_URL)
+          : 'https://airpolutionslovenia.onrender.com';
+          
         const apiBase = apiBaseRaw.replace(/\/$/, '');
         const url = `${apiBase}/api/arso/all`;
 
